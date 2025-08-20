@@ -7,7 +7,7 @@ const postCache = new Map<number, kurosearch.Post>();
 
 export const PAGE_SIZE = 20;
 
-let getPageAbortController: AbortController | null = null;
+const getPageAbortController: AbortController | null = null;
 
 export const getPage = async (
 	pageNumber: number,
@@ -112,7 +112,7 @@ const parsePost = (post: r34.Post): kurosearch.Post => {
 		id: Number(id),
 		change: Number(change) * 1000,
 		parent_id: parent_id ? Number(parent_id) : undefined,
-		rating,
+		rating: (rating as unknown as kurosearch.Rating),
 		sample_height: Number(sample_height),
 		sample_width: Number(sample_width),
 		score: Number(score),
@@ -150,14 +150,14 @@ const byDescendingPriority = (a: kurosearch.Tag, b: kurosearch.Tag) =>
 export const getPostsUrl = (
 	pageNumber: number,
 	serializedTags: string,
-	apiKey: string,
-	userId: string
+	apiKey: string = '',
+	userId: string = ''
 ) => {
 	let url = '';
 	if (userId && apiKey) {
 		url = `${R34_API_URL}&s=post&q=index&fields=tag_info&json=1&api_key=${apiKey}&user_id=${userId}&limit=${PAGE_SIZE}&pid=${pageNumber}`;
 	} else {
-		url = `${API_URL}/posts?limit=${PAGE_SIZE}&pid=${pageNumber}`;
+		url = `${API_URL}?page=dapi&s=post&q=index&fields=tag_info&json=1&limit=${PAGE_SIZE}&pid=${pageNumber}`;
 	}
 	return serializedTags === '' ? url : `${url}&tags=${serializedTags}`;
 };

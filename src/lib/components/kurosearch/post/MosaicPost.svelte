@@ -15,6 +15,13 @@
 		src.endsWith('.jpg') || src.endsWith('.jpeg') || src.endsWith('.png') || src.endsWith('.webp');
 
 	$: previewSrc = isImage(post.sample_url) ? post.sample_url : post.preview_url;
+
+	function handleKeydown(event: KeyboardEvent) {
+		if (isEnter(event) || event.key === 'f') {
+			const el = event.currentTarget as HTMLElement | null;
+			el?.click();
+		}
+	}
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -23,11 +30,7 @@
 	class="post"
 	style="grid-row: span {rows};"
 	on:click
-	on:keydown={(event) => {
-		if (isEnter(event) || event.key === 'f') {
-			event.target?.click();
-		}
-	}}
+	on:keydown={handleKeydown}
 	class:open
 >
 	<img src={previewSrc} alt="post" class="post-media" tabindex="-1" loading="lazy" />

@@ -12,7 +12,7 @@ declare global {
 		type BlockingGroup =
 			| 'Loli'
 			| 'Animal-Related'
-			| 'Non-Consentual'
+			| 'Non-Consensual'
 			| 'Gore'
 			| 'Scat'
 			| 'AI-Generated'

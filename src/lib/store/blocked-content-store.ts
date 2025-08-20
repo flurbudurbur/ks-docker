@@ -5,9 +5,10 @@ const getInitial = () => ({
 	Loli: true,
 	'AI-Generated': false,
 	'Animal-Related': false,
-	'Non-Consentual': false,
+	'Non-Consensual': false,
 	Gore: false,
-	Scat: false
+	Scat: false,
+	Vore: false
 });
 
 const createBlockedContentStore = () => {

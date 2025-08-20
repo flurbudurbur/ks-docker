@@ -62,9 +62,13 @@
 	bind:currentTime
 	bind:paused
 	bind:duration
-	on:click={(e) => (e.target.paused ? e.target.play() : e.target.pause())}
+	on:click={() => {
+		if (video) {
+			video.paused ? video.play() : video.pause();
+		}
+	}}
 	on:ended
-	on:contextmenu|preventDefault={() => {}}
+	on:contextmenu|preventDefault
 />
 
 {#if currentTime !== undefined && duration !== undefined}

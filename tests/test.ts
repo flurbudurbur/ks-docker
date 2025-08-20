@@ -1,11 +1,11 @@
 import { expect, test } from '@playwright/test';
 
 // const indexPage = 'https://kurosearch.com';
-const indexPage = '/';
+const indexPage = 'http://localhost:4173/';
 
 test('index page has expected title', async ({ page }) => {
 	await page.goto(indexPage);
-	await expect(page).toHaveTitle('kurosearch');
+	await expect(page).toHaveTitle('kurosearch - Rule34 Hentai');
 });
 
 test('index page has expected links in header and footer', async ({ page }) => {
