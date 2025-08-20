@@ -169,8 +169,8 @@
 	}
 
 	.screen::-webkit-scrollbar {
-		width: 0px;
-		height: 0px;
+		width: 0;
+		height: 0;
 	}
 
 	.screen {

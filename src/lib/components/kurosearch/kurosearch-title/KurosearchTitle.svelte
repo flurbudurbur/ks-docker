@@ -41,21 +41,20 @@
 	}
 
 	.pride {
-		background: linear-gradient(
-			#60d0fa 30%,
-			#60d0fa 42%,
-			#f5aab9 42%,
-			#f5aab9 54%,
-			#fff 54%,
-			#fff 66%,
-			#f5aab9 66%,
-			#f5aab9 78%,
-			#60d0fa 78%,
-			#60d0fa 90%
-		);
-		background-size: 100% 80%;
-		background-position: bottom;
-		background-clip: text;
+        background-size: 100% 80%;
+        background: linear-gradient(
+                #60d0fa 30%,
+                #60d0fa 42%,
+                #f5aab9 42%,
+                #f5aab9 54%,
+                #fff 54%,
+                #fff 66%,
+                #f5aab9 66%,
+                #f5aab9 78%,
+                #60d0fa 78%,
+                #60d0fa 90%
+        ) bottom;
+        background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 	}

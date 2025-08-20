@@ -29,7 +29,7 @@
 				<span>⏳</span>
 			{:then _}
 				<span>✅</span>
-			{:catch}
+			{:catch error}
 				<span>❌</span>
 			{/await}
 			<span>{check.title}</span>

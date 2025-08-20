@@ -2,7 +2,7 @@ export const ALL_BLOCKING_GROUPS: readonly kurosearch.BlockingGroup[] = Object.f
 	'Loli',
 	'AI-Generated',
 	'Animal-Related',
-	'Non-Consentual',
+	'Non-Consensual',
 	'Gore',
 	'Scat',
 	'Vore'
@@ -22,7 +22,7 @@ export const BLOCKING_GROUP_TAGS: Record<kurosearch.BlockingGroup, readonly stri
 			'zoophilia',
 			'animal'
 		]),
-		'Non-Consentual': Object.freeze([
+		'Non-Consensual': Object.freeze([
 			'captive',
 			'captured',
 			'defeated',
