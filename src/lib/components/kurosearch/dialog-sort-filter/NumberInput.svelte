@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { isEnter } from '$lib/logic/keyboard-utils';
+    import {isEnter} from '$lib/logic/keyboard-utils';
 
-	export let value: number;
+    export let value: number;
 	export let min: number;
 	export let max: number;
 	export let step: number;

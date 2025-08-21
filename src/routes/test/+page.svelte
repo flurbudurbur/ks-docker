@@ -1,24 +1,24 @@
 <script lang="ts">
-	import Checkbox from '$lib/components/pure/checkbox/Checkbox.svelte';
-	import Heading1 from '$lib/components/pure/heading/Heading1.svelte';
-	import Heading3 from '$lib/components/pure/heading/Heading3.svelte';
-	import LoadingAnimation from '$lib/components/pure/loading-animation/LoadingAnimation.svelte';
-	import RotatingIconSelect from '$lib/components/pure/rotating-select/RotatingIconSelect.svelte';
-	import RotatingTextSelect from '$lib/components/pure/rotating-select/RotatingTextSelect.svelte';
-	import Select from '$lib/components/pure/select/Select.svelte';
-	import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
-	import TextInput from '$lib/components/pure/input-text/TextInput.svelte';
-	import ToggleIcon from '$lib/components/pure/toggle-icon/ToggleIcon.svelte';
-	import ModifierSelect from '$lib/components/kurosearch/modifier-select/ModifierSelect.svelte';
-	import ActiveTag from '$lib/components/kurosearch/tag-detailed/DetailedTag.svelte';
-	import { TAG_TYPES_WITH_ICONS } from '$lib/logic/tag-type-data';
-	import CodiconLink from '$lib/components/pure/icon-link/CodiconLink.svelte';
-	import DiscordLink from '$lib/components/kurosearch/link-discord/DiscordLink.svelte';
-	import AccountLink from '$lib/components/kurosearch/link-account/AccountLink.svelte';
-	import SettingsLink from '$lib/components/kurosearch/settings-link/SettingsLink.svelte';
-	import { base } from '$app/paths';
+    import Checkbox from '$lib/components/pure/checkbox/Checkbox.svelte';
+    import Heading1 from '$lib/components/pure/heading/Heading1.svelte';
+    import Heading3 from '$lib/components/pure/heading/Heading3.svelte';
+    import LoadingAnimation from '$lib/components/pure/loading-animation/LoadingAnimation.svelte';
+    import RotatingIconSelect from '$lib/components/pure/rotating-select/RotatingIconSelect.svelte';
+    import RotatingTextSelect from '$lib/components/pure/rotating-select/RotatingTextSelect.svelte';
+    import Select from '$lib/components/pure/select/Select.svelte';
+    import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
+    import TextInput from '$lib/components/pure/input-text/TextInput.svelte';
+    import ToggleIcon from '$lib/components/pure/toggle-icon/ToggleIcon.svelte';
+    import ModifierSelect from '$lib/components/kurosearch/modifier-select/ModifierSelect.svelte';
+    import ActiveTag from '$lib/components/kurosearch/tag-detailed/DetailedTag.svelte';
+    import {TAG_TYPES_WITH_ICONS} from '$lib/logic/tag-type-data';
+    import CodiconLink from '$lib/components/pure/icon-link/CodiconLink.svelte';
+    import DiscordLink from '$lib/components/kurosearch/link-discord/DiscordLink.svelte';
+    import AccountLink from '$lib/components/kurosearch/link-account/AccountLink.svelte';
+    import SettingsLink from '$lib/components/kurosearch/settings-link/SettingsLink.svelte';
+    import {base} from '$app/paths';
 
-	const tagTypeLetters = Object.fromEntries(
+    const tagTypeLetters = Object.fromEntries(
 		Object.keys(TAG_TYPES_WITH_ICONS).map((t) => [t, t.charAt(0)])
 	);
 

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+    import {createEventDispatcher, onDestroy, onMount} from 'svelte';
 
-	const dispatch = createEventDispatcher();
+    const dispatch = createEventDispatcher();
 	const close = () => dispatch('close');
 	const closeOnEscapePressed = (event: KeyboardEvent) => {
 		if (event.key === 'Escape') {

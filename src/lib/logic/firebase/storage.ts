@@ -1,13 +1,13 @@
 import { getAuth } from 'firebase/auth';
 import {
-	getFirestore,
-	getDoc,
-	doc,
-	getDocs,
-	query,
 	collection,
-	setDoc,
-	runTransaction
+	doc,
+	getDoc,
+	getDocs,
+	getFirestore,
+	query,
+	runTransaction,
+	setDoc
 } from 'firebase/firestore';
 import { createSearchableTag, createSupertag } from '../tag-utils';
 import { logFirestoreRead, logFirestoreWrite } from './analytics';

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { onpopstate } from '$lib/logic/use/onpopstate';
-	import { onMount } from 'svelte';
+    import {onpopstate} from '$lib/logic/use/onpopstate';
+    import {onMount} from 'svelte';
 
-	export let dialog: HTMLDialogElement;
+    export let dialog: HTMLDialogElement;
 
 	const onPopState = () => {
 		dialog.close();

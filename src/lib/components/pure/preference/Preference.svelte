@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Heading3 from '../heading/Heading3.svelte';
+    import Heading3 from '../heading/Heading3.svelte';
 
-	export let title: string;
+    export let title: string;
 	export let description: string;
 </script>
 
