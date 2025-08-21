@@ -17,7 +17,7 @@
 	}>();
 	const close = () => dialog.close();
 
-	$: valid = typeof name === 'string' && name !== '' && tags.length > 1;
+	$: valid = name !== '' && tags.length > 1;
 </script>
 
 <Dialog on:close={close} bind:dialog>
