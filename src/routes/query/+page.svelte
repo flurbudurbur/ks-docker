@@ -116,11 +116,11 @@
 	</code>
 
 	<code>
-		<p class="base">{base}</p>
+		<span class="base">{base}</span>
 		{#each fixedParams as p (p[0])}
-			<p class="fixed">{p[0]}={p[1]}</p>
+			<span class="fixed">{p[0]}={p[1]}</span>
 		{/each}
-		<p class="tags">{tags[0]}={tags[1]}</p>
+		<span class="tags">{tags[0]}={tags[1]}</span>
 	</code>
 </section>
 
@@ -147,7 +147,7 @@
 		word-wrap: break-word;
 	}
 
-	p:not(.base) {
+	span:not(.base) {
 		margin-left: var(--grid-gap);
 	}
 

@@ -6,6 +6,7 @@
 	export let alt: string;
 	export let width: number;
 	export let height: number;
+    const transparentPixel = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 </script>
 
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
@@ -13,6 +14,7 @@
 <img
 	class="post-media"
 	loading="lazy"
+	src={transparentPixel}
 	data-src={src}
 	{alt}
 	{width}
