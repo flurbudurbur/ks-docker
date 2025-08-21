@@ -1,7 +1,7 @@
 import { persistentWritable } from './persistent-store';
 import { StoreKey } from './store-keys';
 
-const getInitial = () => ({
+const getInitial = (): Record<kurosearch.BlockingGroup, boolean> => ({
 	'AI-Generated': false,
 	'Animal-Related': false,
 	'Non-Consensual': false,
@@ -11,7 +11,10 @@ const getInitial = () => ({
 });
 
 const createBlockedContentStore = () => {
-	const { subscribe, set } = persistentWritable(StoreKey.BlockedContent, getInitial());
+	const { subscribe, set } = persistentWritable<Record<kurosearch.BlockingGroup, boolean>>(
+		StoreKey.BlockedContent,
+		getInitial()
+	);
 
 	return {
 		subscribe,

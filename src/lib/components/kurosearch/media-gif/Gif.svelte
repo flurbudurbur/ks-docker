@@ -5,7 +5,6 @@
 	import { calculateAspectRatioCss } from '../post/ratio';
 	import { observeGif } from '$lib/logic/gif-observer';
 	import gifPreloadEnabled from '$lib/store/gif-preload-enabled-store';
-	import type kurosearch from '$lib/types/kurosearch';
 
 	export let post: kurosearch.Post;
 
