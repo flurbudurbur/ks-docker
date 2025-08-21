@@ -40,6 +40,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"firebase": "^10.0.0"
+		"firebase": "^12.1.0"
 	}
 }

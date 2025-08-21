@@ -10,8 +10,7 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .github
 .idea
-tests
 README.md
-playwright.config.ts
 .*
 !.dockerignore
+!.git
