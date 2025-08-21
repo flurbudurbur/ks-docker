@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import IconLink from '$lib/components/pure/icon-link/IconLink.svelte';
+    import {base} from '$app/paths';
+    import IconLink from '$lib/components/pure/icon-link/IconLink.svelte';
 </script>
 
 <IconLink title="Settings" href="{base}/preferences" className="gear">

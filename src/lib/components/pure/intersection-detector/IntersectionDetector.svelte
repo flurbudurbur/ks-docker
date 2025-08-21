@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+    import {createEventDispatcher} from 'svelte';
 
-	/**
+    /**
 	 * This prop should not change at runtime.
 	 * Dynamically adjusting it is not implemented
 	 */

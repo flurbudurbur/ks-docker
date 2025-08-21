@@ -1,12 +1,12 @@
 <script lang="ts">
-	import sort from '$lib/store/sort-store';
-	import filter from '$lib/store/filter-store';
-	import { createEventDispatcher } from 'svelte';
-	import SortFilterDialog from '../dialog-sort-filter/SortFilterDialog.svelte';
-	import { addHistory } from '$lib/logic/use/onpopstate';
-	import { getFilterLabel, getSortLabel } from './sortfilter';
+    import sort from '$lib/store/sort-store';
+    import filter from '$lib/store/filter-store';
+    import {createEventDispatcher} from 'svelte';
+    import SortFilterDialog from '../dialog-sort-filter/SortFilterDialog.svelte';
+    import {addHistory} from '$lib/logic/use/onpopstate';
+    import {getFilterLabel, getSortLabel} from './sortfilter';
 
-	const dispatch = createEventDispatcher();
+    const dispatch = createEventDispatcher();
 	const serializeSortFilter = (sort: any, filter: any) =>
 		JSON.stringify(Object.assign({}, sort, filter));
 

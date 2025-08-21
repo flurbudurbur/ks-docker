@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-	import RelativeTime from '../relative-time/RelativeTime.svelte';
-	import Score from '../score/Score.svelte';
-	import { formatCount } from '$lib/logic/format-count';
+    import {createEventDispatcher} from 'svelte';
+    import RelativeTime from '../relative-time/RelativeTime.svelte';
+    import Score from '../score/Score.svelte';
+    import {formatCount} from '$lib/logic/format-count';
 
-	const dispatch = createEventDispatcher();
+    const dispatch = createEventDispatcher();
 
 	export let post: kurosearch.Post;
 	export let active: string | undefined;

@@ -1,26 +1,26 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import AccountLink from '$lib/components/kurosearch/link-account/AccountLink.svelte';
-	import DiscordLink from '$lib/components/kurosearch/link-discord/DiscordLink.svelte';
-	import SettingsLink from '$lib/components/kurosearch/settings-link/SettingsLink.svelte';
-	import CodiconLink from '$lib/components/pure/icon-link/CodiconLink.svelte';
-	import CodiconTextLink from '$lib/components/pure/icon-link/CodiconTextLink.svelte';
-	import theme from '$lib/store/theme-store';
-	import wideLayoutEnabled from '$lib/store/wide-layout-enabled-store';
-	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
-	import TermsOfUseDialog from '$lib/components/kurosearch/dialog-terms-of-use/CookieMessage.svelte';
+    import {base} from '$app/paths';
+    import AccountLink from '$lib/components/kurosearch/link-account/AccountLink.svelte';
+    import DiscordLink from '$lib/components/kurosearch/link-discord/DiscordLink.svelte';
+    import SettingsLink from '$lib/components/kurosearch/settings-link/SettingsLink.svelte';
+    import CodiconLink from '$lib/components/pure/icon-link/CodiconLink.svelte';
+    import CodiconTextLink from '$lib/components/pure/icon-link/CodiconTextLink.svelte';
+    import theme from '$lib/store/theme-store';
+    import wideLayoutEnabled from '$lib/store/wide-layout-enabled-store';
+    import {browser} from '$app/environment';
+    import {page} from '$app/stores';
+    import TermsOfUseDialog from '$lib/components/kurosearch/dialog-terms-of-use/CookieMessage.svelte';
 
-	import './reset.css';
-	import './fonts.css';
-	import './defaults.css';
-	import './theme.css';
-	import './codicon.css';
-	import './scrollbar.css';
+    import './reset.css';
+    import './fonts.css';
+    import './defaults.css';
+    import './theme.css';
+    import './codicon.css';
+    import './scrollbar.css';
 
-	import '$lib/logic/firebase/firebase';
+    import '$lib/logic/firebase/firebase';
 
-	const userPhoto: string | undefined = undefined;
+    const userPhoto: string | undefined = undefined;
 
 	theme.subscribe((value) => {
 		if (browser) {

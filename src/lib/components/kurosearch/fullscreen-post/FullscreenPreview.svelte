@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { isAnimated } from '$lib/logic/media-utils';
+    import {isAnimated} from '$lib/logic/media-utils';
 
-	export let post: kurosearch.Post;
+    export let post: kurosearch.Post;
 	export let offset: string;
 
 	$: preview = isAnimated(post.sample_url) ? post.preview_url : post.sample_url;

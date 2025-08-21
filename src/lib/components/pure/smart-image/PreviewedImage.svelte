@@ -1,12 +1,9 @@
 <script lang="ts">
-	import {
-		calculateAspectRatio,
-		calculateAspectRatioCss
-	} from '$lib/components/kurosearch/post/ratio';
-	import highResolutionEnabled from '$lib/store/high-resolution-enabled';
-	import ObservedImage from './ObservedImage.svelte';
+    import {calculateAspectRatio, calculateAspectRatioCss} from '$lib/components/kurosearch/post/ratio';
+    import highResolutionEnabled from '$lib/store/high-resolution-enabled';
+    import ObservedImage from './ObservedImage.svelte';
 
-	export let post: kurosearch.Post;
+    export let post: kurosearch.Post;
 
 	let open: boolean;
 

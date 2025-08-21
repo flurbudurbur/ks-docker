@@ -1,16 +1,15 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import { createEventDispatcher } from 'svelte';
-	import ModifierSelect from '../modifier-select/ModifierSelect.svelte';
-	import LoadingAnimation from '$lib/components/pure/loading-animation/LoadingAnimation.svelte';
-	import CodiconLink from '$lib/components/pure/icon-link/CodiconLink.svelte';
-	import Suggestion from './Suggestion.svelte';
-	import { getTagDetails } from '$lib/logic/api-client/ApiClient';
-	import apiKey from '$lib/store/api-key-store';
-	import userId from '$lib/store/user-id-store';
-	import { getIndexedTag } from '$lib/indexeddb/idb';
+    import {base} from '$app/paths';
+    import {createEventDispatcher} from 'svelte';
+    import ModifierSelect from '../modifier-select/ModifierSelect.svelte';
+    import LoadingAnimation from '$lib/components/pure/loading-animation/LoadingAnimation.svelte';
+    import CodiconLink from '$lib/components/pure/icon-link/CodiconLink.svelte';
+    import Suggestion from './Suggestion.svelte';
+    import {getTagDetails} from '$lib/logic/api-client/ApiClient';
+    import apiKey from '$lib/store/api-key-store';
+    import userId from '$lib/store/user-id-store';
 
-	const dispatch = createEventDispatcher();
+    const dispatch = createEventDispatcher();
 
 	export let placeholder: string;
 	export let fetchSuggestions: (searchTerm: string) => Promise<Array<kurosearch.Suggestion>>;

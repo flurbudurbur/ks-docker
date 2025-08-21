@@ -1,7 +1,7 @@
 import {
-	GoogleAuthProvider,
 	browserLocalPersistence,
 	getAuth,
+	GoogleAuthProvider,
 	setPersistence,
 	signInWithPopup,
 	signOut as signOutFirebase

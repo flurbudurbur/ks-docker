@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { observeImage } from '$lib/logic/image-observer';
-	import { clickOnEnter } from '$lib/logic/keyboard-utils';
+    import {observeImage} from '$lib/logic/image-observer';
+    import {clickOnEnter} from '$lib/logic/keyboard-utils';
 
-	export let src: string;
+    export let src: string;
 	export let alt: string;
 	export let width: number;
 	export let height: number;

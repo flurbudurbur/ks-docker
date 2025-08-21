@@ -33,7 +33,7 @@ export const getTagDetails = async (
 	apiKey: string,
 	userId: string
 ): Promise<kurosearch.Tag | undefined> => {
-	let indexedTag = await getIndexedTag(name);
+	const indexedTag = await getIndexedTag(name);
 	if (indexedTag) {
 		return indexedTag;
 	}

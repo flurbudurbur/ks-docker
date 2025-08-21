@@ -1,12 +1,12 @@
 <script lang="ts">
-	import PlayButton from '../button-play/PlayButton.svelte';
-	import { isSpace, clickOnEnter } from '$lib/logic/keyboard-utils';
-	import { getGifSources } from '$lib/logic/media-utils';
-	import { calculateAspectRatioCss } from '../post/ratio';
-	import { observeGif } from '$lib/logic/gif-observer';
-	import gifPreloadEnabled from '$lib/store/gif-preload-enabled-store';
+    import PlayButton from '../button-play/PlayButton.svelte';
+    import {clickOnEnter, isSpace} from '$lib/logic/keyboard-utils';
+    import {getGifSources} from '$lib/logic/media-utils';
+    import {calculateAspectRatioCss} from '../post/ratio';
+    import {observeGif} from '$lib/logic/gif-observer';
+    import gifPreloadEnabled from '$lib/store/gif-preload-enabled-store';
 
-	export let post: kurosearch.Post;
+    export let post: kurosearch.Post;
 
 	let media: HTMLImageElement;
 	let playing = false;
