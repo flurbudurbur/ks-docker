@@ -13,6 +13,7 @@
 	import { isValidUrl } from '$lib/logic/url-utils';
 	import openTagsOnPostClick from '$lib/store/tags-shortcut-store';
 	import PreviewedImage from '$lib/components/pure/smart-image/PreviewedImage.svelte';
+	import type kurosearch from '$lib/types/kurosearch';
 
 	const dispatch = createEventDispatcher();
 

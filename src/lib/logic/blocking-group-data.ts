@@ -1,3 +1,5 @@
+import type kurosearch from '$lib/types/kurosearch';
+
 export const ALL_BLOCKING_GROUPS: readonly kurosearch.BlockingGroup[] = Object.freeze([
 	'AI-Generated',
 	'Animal-Related',

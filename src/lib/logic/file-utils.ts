@@ -1,6 +1,6 @@
 export const saveFile = async (content: string) => {
 	try {
-		const filename = 'kurosearch-config.json';
+		const filename = 'Kurosearch-config.json';
 		if ('showSaveFilePicker' in window) {
 			// @ts-expect-error - too new i guess
 			const handle = await showSaveFilePicker({ suggestedName: filename });

@@ -16,7 +16,7 @@ export const semiPersistentWritable = <T>(
 	let storage = undefined;
 
 	if (browser) {
-		const enabled = localStorage.getItem('kurosearch:localstorage-enabled') === 'true';
+		const enabled = localStorage.getItem('Kurosearch:localstorage-enabled') === 'true';
 		storage = enabled ? localStorage : sessionStorage;
 	}
 

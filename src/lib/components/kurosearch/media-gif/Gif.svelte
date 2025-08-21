@@ -5,6 +5,7 @@
 	import { calculateAspectRatioCss } from '../post/ratio';
 	import { observeGif } from '$lib/logic/gif-observer';
 	import gifPreloadEnabled from '$lib/store/gif-preload-enabled-store';
+	import type kurosearch from '$lib/types/kurosearch';
 
 	export let post: kurosearch.Post;
 
@@ -76,6 +77,7 @@
 		width: 0;
 		height: 0;
 	}
+
 	.media-img {
 		display: block;
 		width: 100%;
