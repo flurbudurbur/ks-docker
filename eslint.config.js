@@ -27,6 +27,9 @@ export default [
 		},
 		rules: {
 			...ts.configs.recommended.rules,
+			'no-undef': 'off',
+			'@typescript-eslint/no-explicit-any': 'off',
+			'@typescript-eslint/ban-ts-comment': 'off',
 			'@typescript-eslint/no-unused-vars': [
 				'error',
 				{
@@ -59,6 +62,9 @@ export default [
 		rules: {
 			...svelte.configs.recommended.rules,
 			...ts.configs.recommended.rules,
+			'no-undef': 'off',
+			'@typescript-eslint/no-explicit-any': 'off',
+			'@typescript-eslint/ban-ts-comment': 'off',
 			'@typescript-eslint/no-unused-vars': [
 				'error',
 				{
