@@ -8,9 +8,13 @@
 	export let dialog: HTMLDialogElement;
 	export let name = '';
 	export let description = '';
+
 	export let tags: kurosearch.ModifiedTag[];
 
-	const dispatch = createEventDispatcher();
+	type LocalSearchableTag = { modifier: '+' | '-' | '~'; name: string };
+	const dispatch = createEventDispatcher<{
+		submit: { name: string; description: string; tags: LocalSearchableTag[] };
+	}>();
 	const close = () => dialog.close();
 
 	$: valid = typeof name === 'string' && name !== '' && tags.length > 1;
@@ -40,7 +44,7 @@
 		<div>
 			<span> Tags</span>
 			<ol>
-				{#each tags as tag}
+				{#each tags as tag (tag.modifier + ':' + tag.name)}
 					<DetailedTag {tag} />
 				{/each}
 			</ol>

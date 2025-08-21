@@ -9,7 +9,7 @@ export const serializeSearchableTag = (tag: kurosearch.SearchableTag) =>
 
 export const serializeSearchableTags = (tags: kurosearch.SearchableTag[]) => {
 	const tagsByModifier = partitionTagsByModifier(tags);
-	let parts = [...serializeTags([...tagsByModifier['+'], ...tagsByModifier['-']])];
+	const parts = [...serializeTags([...tagsByModifier['+'], ...tagsByModifier['-']])];
 
 	if (tagsByModifier['~'].length > 0) {
 		parts.push(`( ${serializeTags(tagsByModifier['~']).join(' ~ ')} )`);
@@ -58,9 +58,7 @@ export const serializeSearch = (
 		parts.push(blockedString);
 	}
 
-	const result = parts.join('+');
-
-	return result;
+	return parts.join('+');
 };
 
 const serializeTags = (tags: kurosearch.SearchableTag[]) => tags.map(serializeSearchableTag);

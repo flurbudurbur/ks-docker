@@ -17,8 +17,7 @@
 			const registrations = await navigator.serviceWorker.getRegistrations();
 			await Promise.all(registrations.map((r) => r.update()));
 		}
-		// @ts-expect-error
-		window.location.reload(true);
+		window.location.reload();
 		message = 'Done';
 	};
 	onMount(() => {

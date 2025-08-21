@@ -13,7 +13,7 @@ describe('format-tag', () => {
 	const invalidNameCases = [undefined, null, 0, {}, []];
 	invalidNameCases.forEach((name) => {
 		it(`tag with invalid name (${name}) renders error`, () => {
-			// @ts-expect-error
+			// @ts-expect-error - passing invalid input
 			expect(formatActiveTag({ name, count: 1000 })).toBe('error');
 		});
 	});
@@ -21,7 +21,7 @@ describe('format-tag', () => {
 	const invalidCountCases = [undefined, null, 'a', {}, []];
 	invalidCountCases.forEach((count) => {
 		it(`tag with invalid name (${name}) renders only name`, () => {
-			// @ts-expect-error
+			// @ts-expect-error - passing invalid input
 			expect(formatActiveTag({ name: 'tag', count })).toBe('tag');
 		});
 	});

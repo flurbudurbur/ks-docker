@@ -10,7 +10,6 @@ declare global {
 
 	namespace kurosearch {
 		type BlockingGroup =
-			| 'Loli'
 			| 'Animal-Related'
 			| 'Non-Consensual'
 			| 'Gore'

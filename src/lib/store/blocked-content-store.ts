@@ -2,7 +2,6 @@ import { persistentWritable } from './persistent-store';
 import { StoreKey } from './store-keys';
 
 const getInitial = () => ({
-	Loli: true,
 	'AI-Generated': false,
 	'Animal-Related': false,
 	'Non-Consensual': false,

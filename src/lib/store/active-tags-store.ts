@@ -27,7 +27,7 @@ const createActiveTagsStore = () => {
 			apiKey: string = '',
 			userId: string = ''
 		) => {
-			let newTag: kurosearch.ModifiedTag = { modifier, name, count: 0, type: 'general' };
+			const newTag: kurosearch.ModifiedTag = { modifier, name, count: 0, type: 'general' };
 
 			try {
 				const tag = await getTagDetails(name, apiKey, userId);

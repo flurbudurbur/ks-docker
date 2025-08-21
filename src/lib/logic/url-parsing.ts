@@ -78,7 +78,7 @@ const parseUrlFilter = (searchParams: URLSearchParams) => {
 		const filterString = searchParams.get('filter') ?? '';
 		const parts = filterString.split(';');
 
-		let filter: Partial<FilterStoreData> = {};
+		const filter: Partial<FilterStoreData> = {};
 		parts.forEach((part) => {
 			if (part.startsWith('rating:')) {
 				const [, rating] = part.split(':');

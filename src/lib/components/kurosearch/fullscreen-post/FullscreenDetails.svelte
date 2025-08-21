@@ -22,6 +22,7 @@
 
 			return result;
 		},
+
 		{} as Record<string, kurosearch.Tag[]>
 	);
 </script>
@@ -50,7 +51,7 @@
 		{/if}
 	</div>
 	<div>
-		{#each Object.entries(tagsByType) as [type, tags]}
+		{#each Object.entries(tagsByType) as [type, tags] (type)}
 			<h3>{type}</h3>
 			<PostDetailsTagList {tags} />
 		{/each}

@@ -8,22 +8,26 @@
 	import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
 	import { nextModifier } from '$lib/logic/modifier-utils';
 
+	type LocalSearchableTag = { modifier: '+' | '-' | '~'; name: string };
+	type LocalSupertag = { name: string; description: string; tags: LocalSearchableTag[] };
+
 	export let dialog: HTMLDialogElement;
+
 	export let supertag: kurosearch.Supertag;
 
-	const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher<{
+		edit: { oldName: string; newSupertag: LocalSupertag };
+	}>();
 	const emitEdit = () => dispatch('edit', { oldName: supertag.name, newSupertag });
 
-	let newSupertag = { ...supertag, tags: [...supertag.tags] };
+	let newSupertag: LocalSupertag = { ...supertag, tags: [...supertag.tags] };
 </script>
 
 <Dialog bind:dialog on:close>
 	<div>
 		<h3>Edit Supertag</h3>
-		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<span>Name</span>
 		<TextInput bind:value={newSupertag.name} placeholder="Name" autocomplete="false" />
-		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<span>Description</span>
 		<TextInput
 			bind:value={newSupertag.description}
@@ -43,7 +47,7 @@
 			}}
 		/>
 		<ul>
-			{#each newSupertag.tags as tag, i}
+			{#each newSupertag.tags as tag, i (tag.modifier + ':' + tag.name)}
 				<ModifiedTag
 					{tag}
 					on:click={() => {

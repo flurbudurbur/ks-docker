@@ -29,20 +29,19 @@ export const loadFile = async (): Promise<string> =>
 				const file = await handle.getFile();
 				resolve(await file.text());
 			} else {
-				let fileInput: HTMLInputElement;
+				const fileInput: HTMLInputElement = document.createElement('input');
 				const readFile = (e: any) => {
-					var file = e.target.files[0];
+					const file = e.target.files[0];
 					if (!file) {
 						return;
 					}
-					var reader = new FileReader();
+					const reader = new FileReader();
 					reader.onload = (e: any) => {
 						resolve(e.target.result);
 						document.body.removeChild(fileInput);
 					};
 					reader.readAsText(file);
 				};
-				fileInput = document.createElement('input');
 				fileInput.type = 'file';
 				fileInput.style.display = 'none';
 				fileInput.onchange = readFile;

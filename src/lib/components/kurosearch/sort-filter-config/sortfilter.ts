@@ -54,8 +54,8 @@ export const getFilterLabel = (
 	scoreValue: number,
 	scoreComparator: kurosearch.ScoreComparator
 ) => {
-	let ratingLabel = getRatingLabel(rating);
-	let scoreLabel = getScoreLabel(scoreValue, scoreComparator);
+	const ratingLabel = getRatingLabel(rating);
+	const scoreLabel = getScoreLabel(scoreValue, scoreComparator);
 
 	return [ratingLabel, scoreLabel].filter((x) => x !== undefined).join(',') || 'All';
 };

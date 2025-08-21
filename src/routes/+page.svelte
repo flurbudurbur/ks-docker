@@ -19,16 +19,9 @@
 	import results from '$lib/store/results-store';
 	import sort from '$lib/store/sort-store';
 	import { onDestroy, onMount } from 'svelte';
-	import LynxMain from './LynxMain.svelte';
 	import SearchForm from './SearchForm.svelte';
 	import apiKey from '$lib/store/api-key-store';
 	import userId from '$lib/store/user-id-store';
-
-	console.log(
-		'%ckurosearch\n%cHi, if you are reading this because you are debugging or reverse-engineering, feel free to send me a DM on Discord :)',
-		'color:crimson;font-size:32px;',
-		'color:unset;font-size:auto;'
-	);
 
 	let loading = false;
 	let error: Error | undefined;
@@ -124,21 +117,6 @@
 
 <!-- <LynxMain /> -->
 
-<d class="news">
-	<span>❤</span>
-	<span>
-		Hey, sorry for the trouble in the last few days. Everything should be back working again but we
-		have some rough times ahead...
-	</span>
-</d>
-<d class="news">
-	<span>🆕</span>
-	<span>
-		If you are interested, you can specify your own API key in the settings, which will improve
-		performance and reliability.
-	</span>
-</d>
-
 <SearchForm {loading} on:submit={getFirstPage} />
 <ResultHeader {loading} on:sortfilterupdate={getFirstPage} />
 
@@ -206,15 +184,5 @@
 		height: 100vh;
 		border-radius: var(--border-radius-large);
 		animation: sweep ease-in-out 3s infinite;
-	}
-
-	.news {
-		display: flex;
-		align-items: center;
-		height: min(100%, 150px);
-		background-color: var(--background-1);
-		margin-inline: 0.5rem;
-		padding: 1rem;
-		gap: 1rem;
 	}
 </style>
