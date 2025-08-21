@@ -26,9 +26,9 @@
 		border-radius: var(--size);
 		width: var(--size);
 		height: var(--size);
-        padding: 8px 6px 6px;
+		padding: 8px 6px 6px;
 
-        color: #000;
+		color: #000;
 		background-color: #fff;
 
 		user-select: none;
