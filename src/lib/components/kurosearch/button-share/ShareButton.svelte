@@ -15,7 +15,7 @@
 
 		try {
 			await navigator.share(shareData);
-		} catch (_err) {
+		} catch {
 			// ignored
 		}
 	};
