@@ -23,13 +23,15 @@
 
 <h3>Network Checks</h3>
 <ol>
-	{#each networkChecks as check}
+	{#each networkChecks as check (check.title)}
 		<li>
 			{#await check.promise}
 				<span>⏳</span>
-			{:then _}
+			{:then _data}
+				{void _data}
 				<span>✅</span>
-			{:catch error}
+			{:catch _error}
+				{void _error}
 				<span>❌</span>
 			{/await}
 			<span>{check.title}</span>

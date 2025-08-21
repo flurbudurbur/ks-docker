@@ -12,15 +12,19 @@
 
 	$: file_url = post.file_url;
 	$: sample_url = post.sample_url;
-	$: tagsByType = post.tags.reduce((result, tag) => {
-		if (result[tag.type] === undefined) {
-			result[tag.type] = [];
-		}
+	$: tagsByType = post.tags.reduce(
+		(result, tag) => {
+			if (result[tag.type] === undefined) {
+				result[tag.type] = [];
+			}
 
-		result[tag.type].push(tag);
+			result[tag.type].push(tag);
 
-		return result;
-	}, {} as Record<string, kurosearch.Tag[]>);
+			return result;
+		},
+
+		{} as Record<string, kurosearch.Tag[]>
+	);
 </script>
 
 <div class="details">
@@ -47,7 +51,7 @@
 		{/if}
 	</div>
 	<div>
-		{#each Object.entries(tagsByType) as [type, tags]}
+		{#each Object.entries(tagsByType) as [type, tags] (type)}
 			<h3>{type}</h3>
 			<PostDetailsTagList {tags} />
 		{/each}

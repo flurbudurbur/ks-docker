@@ -2,7 +2,7 @@ import { replaceHtmlEntities } from '$lib/logic/replace-html-entities';
 import { fetchAbortPrevious } from '../fetchAbortPrevious';
 import { API_URL, R34_API_URL } from '../url';
 
-let getTagSuggestionsAbortController: AbortController | null = null;
+const getTagSuggestionsAbortController: AbortController | null = null;
 
 export const getTagSuggestions = async (term: string): Promise<kurosearch.Suggestion[]> => {
 	const url = new URL('https://api.rule34.xxx/autocomplete.php');

@@ -64,7 +64,11 @@
 	bind:duration
 	on:click={() => {
 		if (video) {
-			video.paused ? video.play() : video.pause();
+			if (video.paused) {
+				void video.play();
+			} else {
+				video.pause();
+			}
 		}
 	}}
 	on:ended

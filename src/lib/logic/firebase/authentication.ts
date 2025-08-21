@@ -7,7 +7,7 @@ import {
 	signOut as signOutFirebase
 } from 'firebase/auth';
 
-let googleAuthProvider = new GoogleAuthProvider();
+const googleAuthProvider = new GoogleAuthProvider();
 setPersistence(getAuth(), browserLocalPersistence);
 
 export const signIn = async () => signInWithPopup(getAuth(), googleAuthProvider);

@@ -12,11 +12,15 @@
 	};
 
 	onMount(() => {
-		browser && document.addEventListener('scroll', listener, { passive: true });
+		if (browser) {
+			document.addEventListener('scroll', listener, { passive: true });
+		}
 	});
 
 	onDestroy(() => {
-		browser && document.removeEventListener('scroll', listener);
+		if (browser) {
+			document.removeEventListener('scroll', listener);
+		}
 	});
 </script>
 

@@ -37,7 +37,6 @@
 			<div class="spacer" />
 			<button type="button" class="codicon codicon-close" on:click={close} />
 		</div>
-		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<div>
 			<b>Sorting</b>
 			<div class="row">

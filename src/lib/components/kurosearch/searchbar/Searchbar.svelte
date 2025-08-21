@@ -126,7 +126,7 @@
 			<div class="suggestion-footer" />
 		{:catch error}
 			<div class="suggestion-footer">
-				<i class={`codicon codicon-error`} />
+				<i class="codicon codicon-error" />
 				<span>{error.message}</span>
 			</div>
 		{/await}

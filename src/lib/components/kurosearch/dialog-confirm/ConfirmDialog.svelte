@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {createEventDispatcher, type EventDispatcher} from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 	import Dialog from '$lib/components/pure/dialog/Dialog.svelte';
 	import Heading3 from '$lib/components/pure/heading/Heading3.svelte';
 	import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
@@ -10,7 +10,7 @@
 	export let labelConfirm: string;
 	export let labelCancel: string;
 
-	const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher<{ confirm: void }>();
 	const confirm = () => {
 		dispatch('confirm');
 		dialog.close();

@@ -26,7 +26,9 @@
 	let disabled = false;
 	let name = '';
 	let selectedValue = 'one';
+
 	let selectedType: kurosearch.TagType = 'artist';
+
 	let modifier: kurosearch.TagModifier = '+';
 </script>
 

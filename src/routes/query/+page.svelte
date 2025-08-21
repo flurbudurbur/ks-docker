@@ -117,7 +117,7 @@
 
 	<code>
 		<p class="base">{base}</p>
-		{#each fixedParams as p}
+		{#each fixedParams as p (p[0])}
 			<p class="fixed">{p[0]}={p[1]}</p>
 		{/each}
 		<p class="tags">{tags[0]}={tags[1]}</p>

@@ -5,7 +5,7 @@
 </script>
 
 <div id="group-{name}" role="radiogroup">
-	{#each Object.entries(options) as [key, label]}
+	{#each Object.entries(options) as [key, label] (key)}
 		<input type="radio" name="group-{name}" value={key} id="{name}-{key}" bind:group={value} />
 		<label for="{name}-{key}">{label}</label>
 	{/each}

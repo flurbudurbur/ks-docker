@@ -51,20 +51,6 @@ const serializeUrlFilter = (filter: Partial<FilterStoreData>) => {
 	return parts.join(';');
 };
 
-const parseUrlTags = (searchParams: URLSearchParams) => {
-	if (!searchParams.has('tags')) {
-		return [];
-	}
-
-	const tagString = searchParams.get('tags') ?? '';
-	const tags = tagString.split(';');
-	if (!Array.isArray(tags) || tags.length === 0) {
-		return [];
-	}
-
-	return tags;
-};
-
 const parseUrlSort = (searchParams: URLSearchParams) => {
 	try {
 		if (!searchParams.has('sort')) {
@@ -92,7 +78,7 @@ const parseUrlFilter = (searchParams: URLSearchParams) => {
 		const filterString = searchParams.get('filter') ?? '';
 		const parts = filterString.split(';');
 
-		let filter: Partial<FilterStoreData> = {};
+		const filter: Partial<FilterStoreData> = {};
 		parts.forEach((part) => {
 			if (part.startsWith('rating:')) {
 				const [, rating] = part.split(':');
