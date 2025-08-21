@@ -1,8 +1,8 @@
 <script lang="ts">
-    import {formatTagname} from '$lib/logic/format-tag';
-    import {TAG_TYPES_WITH_ICONS} from '$lib/logic/tag-type-data';
+	import { formatTagname } from '$lib/logic/format-tag';
+	import { TAG_TYPES_WITH_ICONS } from '$lib/logic/tag-type-data';
 
-    export let tag: kurosearch.Tag;
+	export let tag: kurosearch.Tag;
 	export let active: boolean = false;
 
 	$: icon = TAG_TYPES_WITH_ICONS[tag.type] ?? 'no-icon';

@@ -1,12 +1,12 @@
 <script lang="ts">
-    import {getShareUrl} from '$lib/logic/url-parsing';
-    import activeTags from '$lib/store/active-tags-store';
-    import sort from '$lib/store/sort-store';
-    import filter from '$lib/store/filter-store';
-    import TagButton from '../button-tag/TagButton.svelte';
-    import {base} from '$app/paths';
+	import { getShareUrl } from '$lib/logic/url-parsing';
+	import activeTags from '$lib/store/active-tags-store';
+	import sort from '$lib/store/sort-store';
+	import filter from '$lib/store/filter-store';
+	import TagButton from '../button-tag/TagButton.svelte';
+	import { base } from '$app/paths';
 
-    const share = async () => {
+	const share = async () => {
 		const shareData = {
 			title: 'kurosearch',
 			text: 'Saved Search Configuration',

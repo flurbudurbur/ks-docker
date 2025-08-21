@@ -1,9 +1,9 @@
 <script lang="ts">
-    import {formatCount} from '$lib/logic/format-count';
-    import {formatTagname} from '$lib/logic/format-tag';
-    import {createEventDispatcher} from 'svelte';
+	import { formatCount } from '$lib/logic/format-count';
+	import { formatTagname } from '$lib/logic/format-tag';
+	import { createEventDispatcher } from 'svelte';
 
-    const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher();
 
 	export let suggestion: kurosearch.Suggestion;
 	export let selected = false;

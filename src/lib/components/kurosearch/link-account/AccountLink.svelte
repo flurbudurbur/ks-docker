@@ -1,8 +1,8 @@
 <script lang="ts">
-    import {base} from '$app/paths';
-    import IconLink from '$lib/components/pure/icon-link/IconLink.svelte';
+	import { base } from '$app/paths';
+	import IconLink from '$lib/components/pure/icon-link/IconLink.svelte';
 
-    export let src: string | undefined;
+	export let src: string | undefined;
 </script>
 
 <IconLink title="Account" href="{base}/account">

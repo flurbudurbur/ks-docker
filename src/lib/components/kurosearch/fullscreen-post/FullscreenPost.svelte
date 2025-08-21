@@ -1,10 +1,10 @@
 <script lang="ts">
-    import IconButton from '$lib/components/pure/button-icon/IconButton.svelte';
-    import Fullscreen from '$lib/components/pure/fullscreen/Fullscreen.svelte';
-    import {createEventDispatcher, onDestroy, onMount} from 'svelte';
-    import FullscreenScroller from './FullscreenScroller.svelte';
+	import IconButton from '$lib/components/pure/button-icon/IconButton.svelte';
+	import Fullscreen from '$lib/components/pure/fullscreen/Fullscreen.svelte';
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+	import FullscreenScroller from './FullscreenScroller.svelte';
 
-    export let index: number;
+	export let index: number;
 
 	const dispatch = createEventDispatcher();
 	const close = () => {

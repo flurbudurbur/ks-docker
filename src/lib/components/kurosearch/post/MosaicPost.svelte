@@ -1,10 +1,10 @@
 <script lang="ts">
-    import {formatCount} from '$lib/logic/format-count';
-    import {getPostId} from '$lib/logic/id-utils';
-    import {isEnter} from '$lib/logic/keyboard-utils';
-    import {calculateAspectRatio} from './ratio';
+	import { formatCount } from '$lib/logic/format-count';
+	import { getPostId } from '$lib/logic/id-utils';
+	import { isEnter } from '$lib/logic/keyboard-utils';
+	import { calculateAspectRatio } from './ratio';
 
-    export let post: kurosearch.Post;
+	export let post: kurosearch.Post;
 
 	let maxRatio = 1 / 3;
 	let rowsPerSquare = 5;

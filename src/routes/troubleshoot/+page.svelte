@@ -1,9 +1,9 @@
 <script lang="ts">
-    import {getComments, getPage, getTagSuggestions} from '$lib/logic/api-client/ApiClient';
-    import apiKey from '$lib/store/api-key-store';
-    import userId from '$lib/store/user-id-store';
+	import { getComments, getPage, getTagSuggestions } from '$lib/logic/api-client/ApiClient';
+	import apiKey from '$lib/store/api-key-store';
+	import userId from '$lib/store/user-id-store';
 
-    const networkChecks = [
+	const networkChecks = [
 		{
 			title: 'Tags',
 			promise: getTagSuggestions('big')

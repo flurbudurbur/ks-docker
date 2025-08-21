@@ -1,23 +1,23 @@
 <script lang="ts">
-    import ConfirmDialog from '$lib/components/kurosearch/dialog-confirm/ConfirmDialog.svelte';
-    import Supertag from '$lib/components/kurosearch/supertag/Supertag.svelte';
-    import Heading1 from '$lib/components/pure/heading/Heading1.svelte';
-    import Heading3 from '$lib/components/pure/heading/Heading3.svelte';
-    import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
-    import {signIn, signOut} from '$lib/logic/firebase/authentication';
-    import {getSettingsAndSupertags, saveSettingsAndSupertags} from '$lib/logic/firebase/storage';
-    import blockedContent from '$lib/store/blocked-content-store';
-    import firebaseLoggedIn from '$lib/store/firebase-login-store';
-    import localstorageEnabled from '$lib/store/localstorage-enabled-store';
-    import resultColumns from '$lib/store/result-columns-store';
-    import {StoreKey} from '$lib/store/store-keys';
-    import supertags from '$lib/store/supertags-store';
-    import theme from '$lib/store/theme-store';
-    import '$lib/logic/firebase/firebase';
-    import {loadFile, saveFile} from '$lib/logic/file-utils';
-    import {addHistory} from '$lib/logic/use/onpopstate';
+	import ConfirmDialog from '$lib/components/kurosearch/dialog-confirm/ConfirmDialog.svelte';
+	import Supertag from '$lib/components/kurosearch/supertag/Supertag.svelte';
+	import Heading1 from '$lib/components/pure/heading/Heading1.svelte';
+	import Heading3 from '$lib/components/pure/heading/Heading3.svelte';
+	import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
+	import { signIn, signOut } from '$lib/logic/firebase/authentication';
+	import { getSettingsAndSupertags, saveSettingsAndSupertags } from '$lib/logic/firebase/storage';
+	import blockedContent from '$lib/store/blocked-content-store';
+	import firebaseLoggedIn from '$lib/store/firebase-login-store';
+	import localstorageEnabled from '$lib/store/localstorage-enabled-store';
+	import resultColumns from '$lib/store/result-columns-store';
+	import { StoreKey } from '$lib/store/store-keys';
+	import supertags from '$lib/store/supertags-store';
+	import theme from '$lib/store/theme-store';
+	import '$lib/logic/firebase/firebase';
+	import { loadFile, saveFile } from '$lib/logic/file-utils';
+	import { addHistory } from '$lib/logic/use/onpopstate';
 
-    const reset = () => {
+	const reset = () => {
 		supertags.reset();
 	};
 

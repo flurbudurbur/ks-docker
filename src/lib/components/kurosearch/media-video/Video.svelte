@@ -1,11 +1,11 @@
 <script lang="ts">
-    import {formatVideoTime} from '$lib/logic/format-time';
-    import {isSpace} from '$lib/logic/keyboard-utils';
-    import {onDestroy, onMount} from 'svelte';
-    import {browser} from '$app/environment';
-    import PlayButton from '../button-play/PlayButton.svelte';
+	import { formatVideoTime } from '$lib/logic/format-time';
+	import { isSpace } from '$lib/logic/keyboard-utils';
+	import { onDestroy, onMount } from 'svelte';
+	import { browser } from '$app/environment';
+	import PlayButton from '../button-play/PlayButton.svelte';
 
-    const SKIP_TIME = 5;
+	const SKIP_TIME = 5;
 
 	export let src: string;
 	export let poster: string;

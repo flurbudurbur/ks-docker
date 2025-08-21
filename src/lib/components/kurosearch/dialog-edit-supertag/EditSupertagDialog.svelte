@@ -1,14 +1,14 @@
 <script lang="ts">
-    import Dialog from '$lib/components/pure/dialog/Dialog.svelte';
-    import TextInput from '$lib/components/pure/input-text/TextInput.svelte';
-    import {createEventDispatcher} from 'svelte';
-    import Searchbar from '../searchbar/Searchbar.svelte';
-    import {getTagSuggestions} from '$lib/logic/api-client/ApiClient';
-    import ModifiedTag from '../tag-modified/ModifiedTag.svelte';
-    import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
-    import {nextModifier} from '$lib/logic/modifier-utils';
+	import Dialog from '$lib/components/pure/dialog/Dialog.svelte';
+	import TextInput from '$lib/components/pure/input-text/TextInput.svelte';
+	import { createEventDispatcher } from 'svelte';
+	import Searchbar from '../searchbar/Searchbar.svelte';
+	import { getTagSuggestions } from '$lib/logic/api-client/ApiClient';
+	import ModifiedTag from '../tag-modified/ModifiedTag.svelte';
+	import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
+	import { nextModifier } from '$lib/logic/modifier-utils';
 
-    type LocalSearchableTag = { modifier: '+' | '-' | '~'; name: string };
+	type LocalSearchableTag = { modifier: '+' | '-' | '~'; name: string };
 	type LocalSupertag = { name: string; description: string; tags: LocalSearchableTag[] };
 
 	export let dialog: HTMLDialogElement;

@@ -1,8 +1,8 @@
 <script lang="ts">
-    import FullscreenVideo from './FullscreenVideo.svelte';
-    import FullscreenImage from './FullscreenImage.svelte';
+	import FullscreenVideo from './FullscreenVideo.svelte';
+	import FullscreenImage from './FullscreenImage.svelte';
 
-    export let post: kurosearch.Post;
+	export let post: kurosearch.Post;
 </script>
 
 <div>
