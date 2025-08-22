@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { onDestroy, onMount } from 'svelte';
+    import {browser} from '$app/environment';
+    import {onDestroy, onMount} from 'svelte';
 
 	let previousY = 0;
 	let visible = false;

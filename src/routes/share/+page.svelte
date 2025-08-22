@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import activeTagsStore from '$lib/store/active-tags-store';
-	import activeTags from '$lib/store/active-tags-store';
-	import sortStore from '$lib/store/sort-store';
-	import sort from '$lib/store/sort-store';
-	import filterStore from '$lib/store/filter-store';
-	import filter from '$lib/store/filter-store';
-	import { parseUrlSettings } from '$lib/logic/url-parsing';
-	import { SearchBuilder } from '$lib/logic/search-builder';
-	import activeSupertags from '$lib/store/active-supertags-store';
-	import blockedContent from '$lib/store/blocked-content-store';
-	import results from '$lib/store/results-store';
-	import apiKey from '$lib/store/api-key-store';
-	import userId from '$lib/store/user-id-store';
+    import {browser} from '$app/environment';
+    import activeTagsStore from '$lib/store/active-tags-store';
+    import activeTags from '$lib/store/active-tags-store';
+    import sortStore from '$lib/store/sort-store';
+    import sort from '$lib/store/sort-store';
+    import filterStore from '$lib/store/filter-store';
+    import filter from '$lib/store/filter-store';
+    import {parseUrlSettings} from '$lib/logic/url-parsing';
+    import {SearchBuilder} from '$lib/logic/search-builder';
+    import activeSupertags from '$lib/store/active-supertags-store';
+    import blockedContent from '$lib/store/blocked-content-store';
+    import results from '$lib/store/results-store';
+    import apiKey from '$lib/store/api-key-store';
+    import userId from '$lib/store/user-id-store';
 
-	const applyUrlSearchParamsToStore = async () => {
+    const applyUrlSearchParamsToStore = async () => {
 		if (!browser) {
 			return;
 		}

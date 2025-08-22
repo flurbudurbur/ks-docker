@@ -1,21 +1,28 @@
 <script lang="ts">
-	import { observeImage } from '$lib/logic/image-observer';
-	import { clickOnEnter } from '$lib/logic/keyboard-utils';
+    import {observeImage} from '$lib/logic/image-observer';
+    import {clickOnEnter} from '$lib/logic/keyboard-utils';
 
-	let { src, alt, width, height } = $props();
+    export let src: string;
+	export let alt: string;
+	export let width: number;
+	export let height: number;
+	const transparentPixel = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 </script>
 
-<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <img
 	class="post-media"
 	loading="lazy"
+	src={transparentPixel}
 	data-src={src}
 	{alt}
 	{width}
 	{height}
 	tabindex="0"
-	onkeydown={clickOnEnter}
+	on:click
+	on:load
+	on:keydown={clickOnEnter}
 	use:observeImage
 />
 
@@ -24,7 +31,7 @@
 		position: absolute;
 		display: block;
 		width: 100%;
-		height: auto;
+		height: 100%;
 		object-fit: contain;
 		contain: strict;
 		z-index: var(--z-media);

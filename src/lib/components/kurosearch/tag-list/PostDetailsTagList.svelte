@@ -1,8 +1,8 @@
 <script lang="ts">
-	import activeTagsStore from '$lib/store/active-tags-store';
-	import SimpleTag from '../tag-simple/SimpleTag.svelte';
+    import activeTagsStore from '$lib/store/active-tags-store';
+    import SimpleTag from '../tag-simple/SimpleTag.svelte';
 
-	export let tags: kurosearch.Tag[];
+    export let tags: kurosearch.Tag[];
 </script>
 
 <ul class="tags">

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { base } from '$app/paths';
+    import {base} from '$app/paths';
 
-	const LOAD_SRC = `${base}/assets/load.svg`;
+    const LOAD_SRC = `${base}/assets/load.svg`;
 	const PLAY_SRC = `${base}/assets/play.svg`;
 	const PAUSE_SRC = `${base}/assets/pause.svg`;
 

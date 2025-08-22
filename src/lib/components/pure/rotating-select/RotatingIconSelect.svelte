@@ -1,7 +1,7 @@
 <script lang="ts">
-	import IconButton from '../button-icon/IconButton.svelte';
+    import IconButton from '../button-icon/IconButton.svelte';
 
-	export let options: Record<string, string>;
+    export let options: Record<string, string>;
 	export let value: string;
 	export let id: string | undefined = undefined;
 

@@ -1,15 +1,15 @@
 <script lang="ts">
-	import IntersectionDetector from '$lib/components/pure/intersection-detector/IntersectionDetector.svelte';
-	import results from '$lib/store/results-store';
-	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
-	import FullscreenDetails from './FullscreenDetails.svelte';
-	import FullscreenMedia from './FullscreenMedia.svelte';
-	import FullscreenPreview from './FullscreenPreview.svelte';
-	import fullscreenHintDone from '$lib/store/fullscreen-hint-done-store';
-	import autoplayFullscreenEnabled from '$lib/store/autoplay-fullscreen-enabled-store';
-	import IconButton from '$lib/components/pure/button-icon/IconButton.svelte';
+    import IntersectionDetector from '$lib/components/pure/intersection-detector/IntersectionDetector.svelte';
+    import results from '$lib/store/results-store';
+    import {createEventDispatcher, onDestroy, onMount} from 'svelte';
+    import FullscreenDetails from './FullscreenDetails.svelte';
+    import FullscreenMedia from './FullscreenMedia.svelte';
+    import FullscreenPreview from './FullscreenPreview.svelte';
+    import fullscreenHintDone from '$lib/store/fullscreen-hint-done-store';
+    import autoplayFullscreenEnabled from '$lib/store/autoplay-fullscreen-enabled-store';
+    import IconButton from '$lib/components/pure/button-icon/IconButton.svelte';
 
-	const dispatch = createEventDispatcher();
+    const dispatch = createEventDispatcher();
 
 	export let index: number;
 

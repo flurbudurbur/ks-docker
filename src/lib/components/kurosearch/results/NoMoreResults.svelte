@@ -1,8 +1,8 @@
 <script>
-	import { base } from '$app/paths';
-	import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
-	import activeSupertagsStore from '$lib/store/active-supertags-store';
-	import activeTagsStore from '$lib/store/active-tags-store';
+    import {base} from '$app/paths';
+    import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
+    import activeSupertagsStore from '$lib/store/active-supertags-store';
+    import activeTagsStore from '$lib/store/active-tags-store';
 </script>
 
 <section>

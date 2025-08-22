@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { formatCreatedAt } from '$lib/logic/format-relative-time';
+    import {formatCreatedAt} from '$lib/logic/format-relative-time';
 
-	export let comment: kurosearch.Comment;
+    export let comment: kurosearch.Comment;
 </script>
 
 <div>

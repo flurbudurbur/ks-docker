@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { isValidUrl } from '$lib/logic/url-utils';
+    import {isValidUrl} from '$lib/logic/url-utils';
 
-	export let source: string;
+    export let source: string;
 
 	$: url = isValidUrl(source) ? new URL(source) : null;
 	$: label = url?.hostname?.replace(/^www./, '');

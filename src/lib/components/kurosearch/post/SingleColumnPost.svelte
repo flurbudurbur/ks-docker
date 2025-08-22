@@ -1,20 +1,20 @@
 <script lang="ts">
-	import Sources from './Sources.svelte';
-	import Comments from '../post-comment/Comments.svelte';
-	import Video from '../media-video/Video.svelte';
-	import Gif from '../media-gif/Gif.svelte';
-	import { createEventDispatcher } from 'svelte';
-	import { getVideoSources, isLoop } from '$lib/logic/media-utils';
-	import alwaysLoop from '$lib/store/always-loop-store';
-	import { getPostId } from '$lib/logic/id-utils';
-	import Summary from '../post-summary/Summary.svelte';
-	import PostDetailsTagList from '../tag-list/PostDetailsTagList.svelte';
-	import FullscreenButton from './FullscreenButton.svelte';
-	import { isValidUrl } from '$lib/logic/url-utils';
-	import openTagsOnPostClick from '$lib/store/tags-shortcut-store';
-	import PreviewedImage from '$lib/components/pure/smart-image/PreviewedImage.svelte';
+    import Sources from './Sources.svelte';
+    import Comments from '../post-comment/Comments.svelte';
+    import Video from '../media-video/Video.svelte';
+    import Gif from '../media-gif/Gif.svelte';
+    import {createEventDispatcher} from 'svelte';
+    import {getVideoSources, isLoop} from '$lib/logic/media-utils';
+    import alwaysLoop from '$lib/store/always-loop-store';
+    import {getPostId} from '$lib/logic/id-utils';
+    import Summary from '../post-summary/Summary.svelte';
+    import PostDetailsTagList from '../tag-list/PostDetailsTagList.svelte';
+    import FullscreenButton from './FullscreenButton.svelte';
+    import {isValidUrl} from '$lib/logic/url-utils';
+    import openTagsOnPostClick from '$lib/store/tags-shortcut-store';
+    import PreviewedImage from '$lib/components/pure/smart-image/PreviewedImage.svelte';
 
-	const dispatch = createEventDispatcher();
+    const dispatch = createEventDispatcher();
 
 	export let post: kurosearch.Post;
 	export let openTab: string | undefined = undefined;
