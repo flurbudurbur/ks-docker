@@ -1,0 +1,25 @@
+services:
+  kurosearch:
+    container_name: 'kurosearch'
+    restart: unless-stopped
+    image: 'ghcr.io/flurbudurbur/kurosearch:latest'
+    ports:
+      - 8080:8080
+      - 8443:8443
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    env_file:
+      - '.env'
+    build:
+      context: .
+      dockerfile: Dockerfile
+      tags:
+        - kurosearch:latest
+        - kurosearch:1.0.0
+        - ghcr.io/flurbudurbur/kurosearch:latest
+        - ghcr.io/flurbudurbur/kurosearch:1.0.0
+
+volumes:
+  caddy_data:
+  caddy_config:

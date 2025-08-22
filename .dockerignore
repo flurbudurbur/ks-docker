@@ -2,12 +2,11 @@
 /build
 /package
 /brand
+/test-results
 *.md
 vite.config.*.timestamp-*
 .*
 
 # Exceptions
-!.env.example
 !.git
 !.*ignore
-!.prettierrc

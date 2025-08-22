@@ -20,17 +20,31 @@ export const getPage = async (
 	throwOnUnexpectedStatus(response);
 
 	try {
-		let data = await response.json();
-		data = data.filter((x: any) => x.change); // sometimes api returns placeholders that cause lots of null issues
+		const data: unknown = await response.json();
+		const arrayData = Array.isArray(data) ? data : [];
+		const filtered = arrayData.filter((x: any) => x && x.change); // sometimes api returns placeholders
 
-		const posts = data.map(parsePost) as kurosearch.Post[];
+		const posts = filtered.map(parsePost) as kurosearch.Post[];
 
 		posts.forEach((post) => {
 			postCache.set(post.id, post);
-			post.tags.forEach((tag) => {
-				addIndexedTag(tag);
-			});
 		});
+
+		// Index tags only in a real browser with IndexedDB available
+		if (typeof window !== 'undefined' && 'indexedDB' in window) {
+			// Fire-and-forget so it won't affect tests or SSR
+			import('$lib/indexeddb/idb')
+				.then(({ addIndexedTag }) => {
+					for (const post of posts) {
+						for (const tag of post.tags) {
+							addIndexedTag(tag);
+						}
+					}
+				})
+				.catch(() => {
+					// Optional enhancement; ignore failures
+				});
+		}
 
 		return posts;
 	} catch (error) {

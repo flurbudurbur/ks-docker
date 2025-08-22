@@ -1,28 +1,93 @@
-FROM guergeiro/pnpm:lts-latest-alpine AS tests-native
+# syntax=docker/dockerfile:1
+
+# Common args
+ARG PNPM_VERSION=10.15.0
+ARG PLAYWRIGHT_BROWSERS="chromium"
+
+FROM node:lts-alpine AS node-tests
 WORKDIR /app
 
-# prepare environment
-RUN apk add --no-cache git
+# keep CI deterministic
+ENV CI=true \
+    NODE_ENV=test \
+    PNPM_HOME=/root/.local/share/pnpm \
+    PATH="/root/.local/share/pnpm:$PATH" \
+    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
+# prepare minimal environment
+# pin pnpm to same version as package.json
+RUN apk add --no-cache git \
+  && corepack enable \
+  && corepack prepare pnpm@${PNPM_VERSION} --activate
+
+# Use cache for speed & fetch config
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm fetch
+RUN --mount=type=cache,id=pnpm-store,target=/root/.local/share/pnpm/store \
+    pnpm fetch
+
+# bring in the rest of the app
 COPY . .
 
-RUN pnpm install --offline --frozen-lockfile
-RUN pnpm run check
-RUN pnpm run test:unit
+# strict lockfile-based install and run tests
+RUN --mount=type=cache,id=pnpm-store,target=/root/.local/share/pnpm/store \
+    pnpm install --frozen-lockfile --offline \
+ && pnpm run check \
+ && pnpm run test:unit
 
-FROM node:lts-bookworm AS tests-playwright
+
+# ubuntu for playwrght compatibility
+FROM node:lts-bookworm AS playwright-tests
 WORKDIR /app
-RUN npx -y playwright install --with-deps
-RUN corepack enable && corepack prepare pnpm@15 --activate
 
-COPY --from=tests-native /app .
+ENV CI=true \
+    NODE_ENV=test \
+    PNPM_HOME=/root/.local/share/pnpm \
+    PATH="/root/.local/share/pnpm:$PATH" \
+    PLAYWRIGHT_BROWSERS_PATH=0
 
-RUN npm run test:integration
+RUN corepack enable \
+ && corepack prepare pnpm@${PNPM_VERSION} --activate
 
-FROM guergeiro/pnpm:lts-latest AS builder
+# reuse previously generated node_modules & workspace
+COPY --from=node-tests /app ./
+
+RUN --mount=type=cache,id=playwright-browsers,target=/app/node_modules/playwright/.local-browsers \
+    pnpm exec playwright install-deps && \
+    pnpm exec playwright install ${PLAYWRIGHT_BROWSERS}
+
+RUN pnpm run test:integration
+
+FROM node:lts-alpine AS builder
 WORKDIR /app
-COPY --from=tests-playwright /app .
 
-RUN pnpm run format
+ENV NODE_ENV=production \
+    PNPM_HOME=/root/.local/share/pnpm \
+    PATH="/root/.local/share/pnpm:$PATH"
+
+RUN apk add --no-cache git \
+  && corepack enable \
+  && corepack prepare pnpm@${PNPM_VERSION} --activate
+
+COPY --from=playwright-tests /app ./
+
+RUN pnpm run build
+
+FROM caddy:2.10.0-alpine AS server
+LABEL author=flurbudurbur \
+    org.opencontainers.image.title="kurosearch" \
+    org.opencontainers.image.source="https://github.com/kurozenzen/kurosearch" \
+    org.opencontainers.image.description="Static site served by Caddy" \
+    org.opencontainers.image.licenses="MIT"
+
+USER caddy
+
+# expose ports for http(s) traffic
+EXPOSE 80 443
+
+COPY --from=builder /app/build /srv
+COPY ./Caddyfile /etc/caddy/Caddyfile
+
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
+ CMD wget -q --spider http://localhost/ || exit 1
+
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

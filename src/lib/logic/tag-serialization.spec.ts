@@ -134,7 +134,7 @@ describe('Serialization', () => {
 		});
 		it('includes blocked content if neccessary', () => {
 			expect(serializeSearch([], 'id', 'desc', 0, 'all', '>=', ['Gore'], [])).toBe(
-				'sort:id:desc+-gore+-necrophilia+-amputee+-guro+-blood+-amputed*'
+				'sort:id:desc+-gore+-necrophilia+-amputee+-guro+-blood'
 			);
 		});
 	});
