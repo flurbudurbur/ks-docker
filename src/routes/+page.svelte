@@ -150,10 +150,10 @@
 {/if}
 
 {#if loading}
-	<div />
+	<div></div>
 {/if}
 
-<style>
+<style lang="scss">
 	:global(main) {
 		display: flex;
 		flex-direction: column;

@@ -19,7 +19,7 @@
 	{/if}
 </button>
 
-<style>
+<style lang="scss">
 	button {
 		--size: 48px;
 

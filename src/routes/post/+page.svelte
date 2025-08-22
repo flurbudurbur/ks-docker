@@ -86,7 +86,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="scss">
 	h3 {
 		color: var(--text-highlight);
 	}

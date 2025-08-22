@@ -9,7 +9,7 @@
 	{formatTagname(tag.name)}
 </button>
 
-<style>
+<style lang="scss">
 	button {
 		display: inline-flex;
 		align-items: center;

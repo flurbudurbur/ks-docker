@@ -24,7 +24,8 @@
 	<section>
 		<h3>Create Supertag</h3>
 
-		<button type="button" class="codicon codicon-close" on:click={close} />
+		<button type="button" class="codicon codicon-close" aria-label="Close dialog" on:click={close}
+		></button>
 
 		<div>
 			<label for="supertag-name"> Name </label>
@@ -68,7 +69,7 @@
 	</section>
 </Dialog>
 
-<style>
+<style lang="scss">
 	section {
 		display: grid;
 		grid-template-columns: 1fr auto;

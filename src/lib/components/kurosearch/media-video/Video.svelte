@@ -131,7 +131,7 @@
 			on:dblclick|stopPropagation|preventDefault={skip}
 			preload="metadata"
 			style={`aspect-ratio: ${width} / ${height}`}
-		/>
+		></video>
 		<span class:hide={intentHideOverlay} class="hidable">{formatVideoTime(timeLeft)}</span>
 		<input
 			bind:value={currentTime}
@@ -152,7 +152,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="scss">
 	div {
 		width: 100%;
 		position: relative;

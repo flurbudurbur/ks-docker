@@ -34,8 +34,9 @@
 	<div class="container">
 		<div class="row">
 			<h3>Sorting and Filtering</h3>
-			<div class="spacer" />
-			<button type="button" class="codicon codicon-close" on:click={close} />
+			<div class="spacer"></div>
+			<button type="button" class="codicon codicon-close" aria-label="Close dialog" on:click={close}
+			></button>
 		</div>
 		<div>
 			<b>Sorting</b>
@@ -66,7 +67,7 @@
 	</div>
 </Dialog>
 
-<style>
+<style lang="scss">
 	.container {
 		display: flex;
 		flex-direction: column;

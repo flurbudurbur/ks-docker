@@ -6,7 +6,7 @@
 
 <span>{formatCreatedAt(value)}</span>
 
-<style>
+<style lang="scss">
 	span {
 		white-space: nowrap;
 	}

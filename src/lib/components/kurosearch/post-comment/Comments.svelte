@@ -24,7 +24,7 @@
 	{/if}
 {/await}
 
-<style>
+<style lang="scss">
 	.comments {
 		display: flex;
 		flex-direction: column;

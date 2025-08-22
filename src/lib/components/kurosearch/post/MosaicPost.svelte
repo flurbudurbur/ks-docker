@@ -10,6 +10,7 @@
 	let rowsPerSquare = 5;
 	let ratio = calculateAspectRatio(post.width, post.height);
 	let rows = Math.max(Math.min(Math.round(rowsPerSquare / ratio), rowsPerSquare / maxRatio), 2);
+	let open = false;
 
 	const isImage = (src: string) =>
 		src.endsWith('.jpg') || src.endsWith('.jpeg') || src.endsWith('.png') || src.endsWith('.webp');
@@ -40,7 +41,7 @@
 	<span class="score">{formatCount(post.score)}</span>
 </div>
 
-<style>
+<style lang="scss">
 	img {
 		object-fit: cover;
 		object-position: top;

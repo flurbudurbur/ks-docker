@@ -6,7 +6,7 @@
 	<slot />
 </button>
 
-<style>
+<style lang="scss">
 	button {
 		width: var(--line-height-small);
 		height: var(--line-height-small);

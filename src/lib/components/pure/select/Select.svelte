@@ -9,7 +9,7 @@
 	{/each}
 </select>
 
-<style>
+<style lang="scss">
 	select {
 		display: inline-flex;
 		align-items: center;

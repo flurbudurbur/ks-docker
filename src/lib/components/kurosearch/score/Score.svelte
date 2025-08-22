@@ -6,7 +6,7 @@
 
 <span data-testid="score" class="codicon codicon-heart">{formatCount(value)}</span>
 
-<style>
+<style lang="scss">
 	span {
 		white-space: nowrap;
 		display: inline-flex;

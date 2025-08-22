@@ -23,7 +23,7 @@
 
 <h1 class={cssClass}>{@html title}</h1>
 
-<style>
+<style lang="scss">
 	h1 {
 		font-family: 'Zen Kaku Gothic New', sans-serif;
 		font-size: 72px;

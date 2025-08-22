@@ -50,7 +50,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="scss">
 	div {
 		position: fixed;
 		top: 0;

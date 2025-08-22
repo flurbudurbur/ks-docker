@@ -33,7 +33,7 @@
 	<ObservedImage src={actualSrc} {alt} width={post.width} height={post.height} />
 </div>
 
-<style>
+<style lang="scss">
 	div {
 		position: relative;
 	}

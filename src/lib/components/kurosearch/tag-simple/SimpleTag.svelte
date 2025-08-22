@@ -12,7 +12,7 @@
 	{formatTagname(tag.name)}
 </button>
 
-<style>
+<style lang="scss">
 	button {
 		--background-color: var(--background-2);
 		--background-color-hover: var(--background-3);

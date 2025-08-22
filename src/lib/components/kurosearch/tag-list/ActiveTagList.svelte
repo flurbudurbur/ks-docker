@@ -34,7 +34,7 @@
 				title="Create a supertag from the current selection."
 				on:click={() => dispatch('createSupertag', tags)}
 			>
-				<i class="codicon codicon-star-full" />
+				<i class="codicon codicon-star-full"></i>
 			</TagButton>
 		{/if}
 		{#if supportsUrlSharing()}
@@ -43,7 +43,7 @@
 	{/if}
 </ul>
 
-<style>
+<style lang="scss">
 	ul {
 		min-height: var(--line-height-small);
 		display: flex;

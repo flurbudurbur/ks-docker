@@ -30,7 +30,7 @@
 	</div>
 </Dialog>
 
-<style>
+<style lang="scss">
 	div {
 		display: flex;
 		flex-direction: column;

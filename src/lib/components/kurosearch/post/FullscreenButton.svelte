@@ -1,8 +1,8 @@
-<button type="button" title="Enter Fullscreen mode" on:click>
-	<i class="codicon codicon-screen-full" />
+<button type="button" title="Enter Fullscreen mode" aria-label="Enter Fullscreen mode" on:click>
+	<i class="codicon codicon-screen-full"></i>
 </button>
 
-<style>
+<style lang="scss">
 	button {
 		/* Layout */
 		display: flex;

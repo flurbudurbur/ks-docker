@@ -19,7 +19,7 @@
 	{/each}
 </ul>
 
-<style>
+<style lang="scss">
 	.tags {
 		display: flex;
 		flex-wrap: wrap;

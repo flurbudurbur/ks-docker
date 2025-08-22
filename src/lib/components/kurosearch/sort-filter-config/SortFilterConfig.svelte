@@ -25,9 +25,9 @@
 		addHistory('dialog');
 	}}
 >
-	<i class="codicon codicon-filter" />
+	<i class="codicon codicon-filter"></i>
 	<span>{filterLabel}</span>
-	<i class="codicon codicon-arrow-swap" />
+	<i class="codicon codicon-arrow-swap"></i>
 	<span>{sortLabel}</span>
 </button>
 
@@ -41,7 +41,7 @@
 	}}
 />
 
-<style>
+<style lang="scss">
 	button {
 		display: flex;
 		align-items: center;

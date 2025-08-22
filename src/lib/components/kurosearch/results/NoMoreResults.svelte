@@ -37,7 +37,7 @@
 	</div>
 </section>
 
-<style>
+<style lang="scss">
 	section {
 		overflow: hidden;
 		background-color: var(--background-1);

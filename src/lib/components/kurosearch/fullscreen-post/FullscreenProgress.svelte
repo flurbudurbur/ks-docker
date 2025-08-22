@@ -9,7 +9,7 @@
 	<input type="range" bind:value step="0.001" {max} on:scroll|stopPropagation|preventDefault />
 </div>
 
-<style>
+<style lang="scss">
 	div {
 		position: absolute;
 		display: flex;

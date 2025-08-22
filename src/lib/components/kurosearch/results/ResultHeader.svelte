@@ -11,7 +11,7 @@
 	<SortFilterConfig on:sortfilterupdate />
 </div>
 
-<style>
+<style lang="scss">
 	div {
 		width: 100%;
 		height: var(--line-height);

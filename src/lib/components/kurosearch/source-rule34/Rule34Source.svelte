@@ -2,9 +2,9 @@
 	export let url: string;
 </script>
 
-<a href={url} target="_newtab"><i class="codicon codicon-file" /> File</a>
+<a href={url} target="_newtab"><i class="codicon codicon-file"></i> File</a>
 
-<style>
+<style lang="scss">
 	a {
 		color: var(--text-link);
 		font-size: var(--text-size);

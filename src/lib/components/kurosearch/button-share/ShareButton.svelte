@@ -25,7 +25,7 @@
 	<img src="{base}/assets/share.svg" alt="No more results to load" width="24" height="24" />
 </TagButton>
 
-<style>
+<style lang="scss">
 	img {
 		width: 16px;
 		height: 16px;

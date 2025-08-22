@@ -9,11 +9,11 @@
 	{#if src}
 		<img class="profile-picture" {src} alt="Account" />
 	{:else}
-		<i class="codicon codicon-account" />
+		<i class="codicon codicon-account"></i>
 	{/if}
 </IconLink>
 
-<style>
+<style lang="scss">
 	img,
 	i {
 		width: 16px;

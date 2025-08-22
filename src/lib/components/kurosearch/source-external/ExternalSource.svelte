@@ -8,10 +8,10 @@
 </script>
 
 {#if url}
-	<a href={url.toString()} target="_newtab"><i class="codicon codicon-link" /> {label}</a>
+	<a href={url.toString()} target="_newtab"><i class="codicon codicon-link"></i> {label}</a>
 {/if}
 
-<style>
+<style lang="scss">
 	a {
 		color: var(--text-link);
 		font-size: var(--text-size);

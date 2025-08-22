@@ -8,9 +8,10 @@
 	};
 </script>
 
-<button type="button" {title} class={icon} class:active on:click={toggleActive} />
+<button type="button" {title} aria-label={title} class={icon} class:active on:click={toggleActive}
+></button>
 
-<style>
+<style lang="scss">
 	button {
 		background-color: unset;
 		color: var(--text);

@@ -6,7 +6,7 @@
 
 <input type="text" bind:value {placeholder} {autocomplete} />
 
-<style>
+<style lang="scss">
 	input {
 		display: block;
 		height: var(--box-height);

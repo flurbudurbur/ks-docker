@@ -4,10 +4,10 @@
 </script>
 
 <IconLink title="Settings" href="{base}/preferences" className="gear">
-	<i class="codicon codicon-settings-gear" />
+	<i class="codicon codicon-settings-gear"></i>
 </IconLink>
 
-<style>
+<style lang="scss">
 	i {
 		height: 16px;
 	}

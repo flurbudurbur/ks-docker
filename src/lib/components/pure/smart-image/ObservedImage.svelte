@@ -21,7 +21,7 @@
 	use:observeImage
 />
 
-<style>
+<style lang="scss">
 	img {
 		position: absolute;
 		display: block;

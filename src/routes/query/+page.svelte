@@ -124,7 +124,7 @@
 	</code>
 </section>
 
-<style>
+<style lang="scss">
 	:global(main) {
 		display: flex;
 		flex-direction: column;

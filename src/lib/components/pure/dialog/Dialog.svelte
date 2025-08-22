@@ -28,7 +28,7 @@
 	<slot />
 </dialog>
 
-<style>
+<style lang="scss">
 	dialog {
 		border-radius: var(--border-radius-large);
 		background-color: var(--background-0);

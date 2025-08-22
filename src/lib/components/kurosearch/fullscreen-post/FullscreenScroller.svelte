@@ -112,14 +112,14 @@
 			class="details-button"
 			on:click={() => current.scrollBy({ left: container.clientWidth, top: 0, behavior: 'smooth' })}
 		>
-			<i class="codicon codicon-tag" />
+			<i class="codicon codicon-tag"></i>
 		</IconButton>
 	</div>
 	{#if postNext}
 		<FullscreenPreview post={postNext} offset={offsetNext} />
 	{/if}
 	{#each { length: $results.posts.length } as _, i}
-		<div class="pseudo snap-item" style:top="{i * 100}vh" />
+		<div class="pseudo snap-item" style:top="{i * 100}vh"></div>
 	{/each}
 	<IntersectionDetector
 		absoluteTop="{$results.posts.length * 100}vh"
@@ -128,7 +128,7 @@
 	/>
 </div>
 
-<style>
+<style lang="scss">
 	.root {
 		position: relative;
 		overflow-y: scroll;

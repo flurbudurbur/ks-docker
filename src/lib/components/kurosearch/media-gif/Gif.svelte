@@ -71,7 +71,7 @@
 	/>
 </div>
 
-<style>
+<style lang="scss">
 	.animated-preload {
 		position: absolute;
 		user-select: none;

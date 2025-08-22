@@ -28,4 +28,7 @@
 	}
 </script>
 
-<div bind:this={ref} style={absoluteTop ? `position:absolute;top:${absoluteTop};` : undefined} />
+<div
+	bind:this={ref}
+	style={absoluteTop ? `position:absolute;top:${absoluteTop};` : undefined}
+></div>

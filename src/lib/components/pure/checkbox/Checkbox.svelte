@@ -8,7 +8,7 @@
 	<slot />
 </label>
 
-<style>
+<style lang="scss">
 	label {
 		display: flex;
 		align-items: center;

@@ -60,7 +60,7 @@
 	</div>
 </div>
 
-<style>
+<style lang="scss">
 	.details {
 		padding-block: 10vh;
 		padding-inline: var(--grid-gap);

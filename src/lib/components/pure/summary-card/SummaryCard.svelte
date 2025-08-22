@@ -7,7 +7,7 @@
 
 <a class="card" href="#{id}">
 	<div class="icon">
-		<i class="codicon codicon-{icon}" />
+		<i class="codicon codicon-{icon}"></i>
 	</div>
 	<div class="text">
 		<h3>{title}</h3>
@@ -15,7 +15,7 @@
 	</div>
 </a>
 
-<style>
+<style lang="scss">
 	.card {
 		padding: 1.5rem;
 		border: 2px solid var(--background-1);

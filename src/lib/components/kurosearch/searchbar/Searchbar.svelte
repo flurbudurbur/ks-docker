@@ -123,17 +123,17 @@
 					/>
 				{/each}
 			{/if}
-			<div class="suggestion-footer" />
+			<div class="suggestion-footer"></div>
 		{:catch error}
 			<div class="suggestion-footer">
-				<i class="codicon codicon-error" />
+				<i class="codicon codicon-error"></i>
 				<span>{error.message}</span>
 			</div>
 		{/await}
 	</ol>
 </div>
 
-<style>
+<style lang="scss">
 	.searchbar {
 		display: flex;
 		align-items: center;
@@ -148,47 +148,47 @@
 		isolation: isolate;
 		z-index: var(--z-searchbar);
 		gap: 8px;
-	}
 
-	input {
-		font-size: var(--text-size);
-		background-color: transparent;
-		border: none;
-		color: var(--text);
-		flex-grow: 1;
-		outline: none;
-		min-width: 0;
-		height: 100%;
-		padding: unset;
-	}
+		&.open {
+			border-radius: 22px 22px 0 0;
+			filter: drop-shadow(0px 3px 5px black);
+		}
 
-	.searchbar.open {
-		border-radius: 22px 22px 0 0;
-		filter: drop-shadow(0px 3px 5px black);
-	}
+		input {
+			font-size: var(--text-size);
+			background-color: transparent;
+			border: none;
+			color: var(--text);
+			flex-grow: 1;
+			outline: none;
+			min-width: 0;
+			height: 100%;
+			padding: unset;
+		}
 
-	ol.open {
-		display: block;
-	}
+		ol {
+			display: none;
+			box-sizing: border-box;
+			position: absolute;
+			top: var(--line-height-large);
+			left: 0;
+			width: 100%;
+			background-color: var(--background-1);
+			border-radius: 0 0 22px 22px;
+			overflow: hidden;
+			min-height: 22px;
 
-	ol {
-		display: none;
-		box-sizing: border-box;
-		position: absolute;
-		top: var(--line-height-large);
-		left: 0;
-		width: 100%;
-		background-color: var(--background-1);
-		border-radius: 0 0 22px 22px;
-		overflow: hidden;
-		min-height: 22px;
-	}
+			&.open {
+				display: block;
+			}
+		}
 
-	.suggestion-footer {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 8px;
-		gap: var(--small-gap);
+		.suggestion-footer {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 8px;
+			gap: var(--small-gap);
+		}
 	}
 </style>

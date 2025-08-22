@@ -33,7 +33,7 @@
 	{/each}
 </ol>
 
-<style>
+<style lang="scss">
 	ol {
 		display: flex;
 		flex-wrap: wrap;

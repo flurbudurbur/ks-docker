@@ -4,7 +4,7 @@
 
 <a href={url} target="_newtab" class="codicon codicon-link-external">Open</a>
 
-<style>
+<style lang="scss">
 	a {
 		color: var(--text-link);
 		font-size: var(--text-size);

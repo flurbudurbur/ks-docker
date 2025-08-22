@@ -12,7 +12,7 @@
 	<slot />
 </button>
 
-<style>
+<style lang="scss">
 	button {
 		height: var(--box-height);
 		padding-inline: var(--box-height);

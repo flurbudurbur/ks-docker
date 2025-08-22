@@ -11,7 +11,7 @@
 	<slot />
 </div>
 
-<style>
+<style lang="scss">
 	p {
 		margin-block-end: var(--grid-gap);
 	}

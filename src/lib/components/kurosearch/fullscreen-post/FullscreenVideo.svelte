@@ -73,7 +73,7 @@
 	}}
 	on:ended
 	on:contextmenu|preventDefault
-/>
+></video>
 
 {#if currentTime !== undefined && duration !== undefined}
 	<span>{formatVideoTime(currentTime)} / {formatVideoTime(duration)}</span>
@@ -81,7 +81,7 @@
 
 <FullscreenProgress bind:value={currentTime} max={duration} />
 
-<style>
+<style lang="scss">
 	video {
 		display: flex;
 		width: 100vw;

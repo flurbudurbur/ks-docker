@@ -149,7 +149,7 @@
 	<FullscreenProgress bind:value={currentTime} max={$autoplayFullscreenDelay} />
 {/if}
 
-<style>
+<style lang="scss">
 	img {
 		display: flex;
 		width: 100vw;

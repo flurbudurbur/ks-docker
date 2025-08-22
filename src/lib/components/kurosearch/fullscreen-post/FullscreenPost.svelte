@@ -37,11 +37,11 @@
 <Fullscreen on:close={close}>
 	<FullscreenScroller bind:index on:endreached />
 	<IconButton class="button-close" on:click={close}>
-		<i class="codicon codicon-close" />
+		<i class="codicon codicon-close"></i>
 	</IconButton>
 </Fullscreen>
 
-<style>
+<style lang="scss">
 	:global(.button-close) {
 		position: fixed;
 		top: var(--grid-gap);

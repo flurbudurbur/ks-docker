@@ -135,7 +135,7 @@
 	on:submit={(e) => supertags.add(e.detail)}
 />
 
-<style>
+<style lang="scss">
 	section {
 		display: flex;
 		flex-direction: column;

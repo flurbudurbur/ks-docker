@@ -14,7 +14,7 @@
 
 <div class="error">
 	<div class="icon">
-		<i class={icon} />
+		<i class={icon}></i>
 	</div>
 	<div>
 		<h3>{title}</h3>
@@ -22,7 +22,7 @@
 	</div>
 </div>
 
-<style>
+<style lang="scss">
 	.error {
 		display: flex;
 		align-items: center;

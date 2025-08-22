@@ -27,10 +27,10 @@
 	on:click={() => window.scrollTo(0, 0)}
 	class:visible
 >
-	<i class="codicon codicon-arrow-up" />
+	<i class="codicon codicon-arrow-up"></i>
 </button>
 
-<style>
+<style lang="scss">
 	button {
 		color: var(--text-accent);
 		background-color: var(--accent);

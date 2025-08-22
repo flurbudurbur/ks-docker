@@ -6,6 +6,7 @@
 .*
 
 vite.config.*.timestamp-*
+*.log
 
 !.github
 !.env.example

@@ -51,7 +51,7 @@
 		/>
 		<DiscordLink />
 		<CodiconLink title="Documentation" href="{base}/help" icon="codicon codicon-book" />
-		<div />
+		<div></div>
 		<CodiconLink title="Search" href="{base}/" icon="codicon codicon-search" />
 		<SettingsLink />
 		<AccountLink src={userPhoto} />
@@ -82,7 +82,7 @@
 	</p>
 </footer>
 
-<style>
+<style lang="scss">
 	:global(body) {
 		display: flex;
 		flex-direction: column;

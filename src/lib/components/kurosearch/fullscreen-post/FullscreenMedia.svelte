@@ -13,7 +13,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="scss">
 	div {
 		height: 100vh;
 		width: 100vw;

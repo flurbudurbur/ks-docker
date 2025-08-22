@@ -204,7 +204,7 @@
 	on:confirm={reset}
 />
 
-<style>
+<style lang="scss">
 	section {
 		padding-inline: var(--grid-gap);
 	}

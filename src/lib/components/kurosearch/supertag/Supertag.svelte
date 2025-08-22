@@ -19,19 +19,21 @@
 	<button
 		type="button"
 		class="codicon codicon-edit"
+		aria-label="Edit supertag"
 		on:click={() => {
 			editDialog.showModal();
 			addHistory('dialog');
 		}}
-	/>
+	></button>
 	<button
 		type="button"
 		class="codicon codicon-close"
+		aria-label="Delete supertag"
 		on:click={() => {
 			deleteDialog.showModal();
 			addHistory('dialog');
 		}}
-	/>
+	></button>
 	<span>{supertag.description || supertag.name}</span>
 	<ol>
 		{#each supertag.tags as tag}
@@ -51,7 +53,7 @@
 
 <EditSupertagDialog bind:dialog={editDialog} {supertag} on:edit />
 
-<style>
+<style lang="scss">
 	li {
 		display: grid;
 		grid-template-columns: auto 1fr auto auto;

@@ -11,9 +11,6 @@
 	type LocalSearchableTag = { modifier: '+' | '-' | '~'; name: string };
 	type LocalSupertag = { name: string; description: string; tags: LocalSearchableTag[] };
 
-	type LocalSearchableTag = { modifier: '+' | '-' | '~'; name: string };
-	type LocalSupertag = { name: string; description: string; tags: LocalSearchableTag[] };
-
 	export let dialog: HTMLDialogElement;
 
 	export let supertag: kurosearch.Supertag;
@@ -76,7 +73,7 @@
 	</div>
 </Dialog>
 
-<style>
+<style lang="scss">
 	div {
 		display: flex;
 		flex-direction: column;

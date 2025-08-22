@@ -205,7 +205,7 @@
 	on:confirm={reset}
 />
 
-<style>
+<style lang="scss">
 	section {
 		padding-inline: 8px;
 	}

@@ -7,12 +7,12 @@
 </script>
 
 <div>
-	<i class={icon} />
+	<i class={icon}></i>
 	<b>{title}</b>
 	<p>{description}</p>
 </div>
 
-<style>
+<style lang="scss">
 	div {
 		display: grid;
 		grid-template-columns: auto 1fr;

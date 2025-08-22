@@ -26,7 +26,7 @@
 
 <input type="number" {min} {max} {step} bind:value={internalValue} on:keyup={blurOnEnter} />
 
-<style>
+<style lang="scss">
 	input[type='number'] {
 		height: var(--line-height);
 		box-sizing: border-box;

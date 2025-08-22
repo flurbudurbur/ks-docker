@@ -27,7 +27,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="scss">
 	div {
 		display: flex;
 		justify-content: center;

@@ -11,7 +11,7 @@
 	{/each}
 </div>
 
-<style>
+<style lang="scss">
 	div {
 		display: flex;
 		height: var(--box-height);

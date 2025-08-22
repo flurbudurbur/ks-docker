@@ -10,7 +10,7 @@
 	</circle>
 </svg>
 
-<style>
+<style lang="scss">
 	svg {
 		height: 8px;
 		margin: auto;

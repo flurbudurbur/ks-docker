@@ -4,7 +4,7 @@
 
 <span title="Rated {value}.">{value.charAt(0).toUpperCase()}</span>
 
-<style>
+<style lang="scss">
 	span {
 		color: var(--text);
 		font-size: 12px;

@@ -62,7 +62,7 @@
 	</section>
 </div>
 
-<style>
+<style lang="scss">
 	div {
 		padding-inline: var(--grid-gap);
 	}

@@ -8,10 +8,10 @@
 </script>
 
 <IconLink {title} {href} {newtab}>
-	<i class={icon} />
+	<i class={icon}></i>
 </IconLink>
 
-<style>
+<style lang="scss">
 	i {
 		height: 16px;
 	}

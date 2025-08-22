@@ -9,7 +9,7 @@
 	<slot />
 </a>
 
-<style>
+<style lang="scss">
 	a {
 		display: inline-flex;
 		align-items: center;

@@ -93,7 +93,7 @@
 	</div>
 </li>
 
-<style>
+<style lang="scss">
 	.post {
 		position: relative;
 		container-type: inline-size;

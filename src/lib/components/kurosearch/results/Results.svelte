@@ -54,7 +54,7 @@
 	<FullscreenPost index={fullscreenIndex} on:close={exitFullscreen} on:endreached />
 {/if}
 
-<style>
+<style lang="scss">
 	.single-column {
 		width: 100%;
 		display: flex;

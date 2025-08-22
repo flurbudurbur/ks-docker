@@ -9,7 +9,7 @@
 
 <img src={preview} alt="post #{post.id}" style:top={offset} />
 
-<style>
+<style lang="scss">
 	img {
 		display: flex;
 		position: absolute;

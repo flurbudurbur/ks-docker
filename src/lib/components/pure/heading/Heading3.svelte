@@ -1,6 +1,6 @@
 <h3><slot /></h3>
 
-<style>
+<style lang="scss">
 	h3 {
 		color: var(--text-highlight);
 		font-size: var(--text-size-h3);
