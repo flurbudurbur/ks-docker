@@ -73,7 +73,7 @@ export const getCount = async (tags: string, apiKey: string = '', userId: string
 
 export const getPost = async (id: number, apiKey: string = '', userId: string = '') => {
 	if (!postCache.has(id)) {
-		let url = '';
+		let url: string;
 		if (userId && apiKey) {
 			url = `${R34_API_URL}&s=post&q=index&fields=tag_info&json=1&id=${id}&api_key=${apiKey}&user_id=${userId}`;
 		} else {
@@ -170,7 +170,7 @@ export const getPostsUrl = (
 	apiKey: string = '',
 	userId: string = ''
 ) => {
-	let url = '';
+	let url: string;
 	if (userId && apiKey) {
 		url = `${R34_API_URL}&s=post&q=index&fields=tag_info&json=1&api_key=${apiKey}&user_id=${userId}&limit=${PAGE_SIZE}&pid=${pageNumber}`;
 	} else {
@@ -180,7 +180,7 @@ export const getPostsUrl = (
 };
 
 export const getCountUrl = (serializedTags: string, apiKey: string, userId: string) => {
-	let url = '';
+	let url: string;
 	if (userId && apiKey) {
 		url = `${R34_API_URL}&s=post&q=index&limit=0&api_key=${apiKey}&user_id=${userId}`;
 	} else {
