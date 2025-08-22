@@ -12,8 +12,17 @@
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div onclick={stopPropagation(preventDefault(bubble('click')))} onscroll={stopPropagation(preventDefault(bubble('scroll')))}>
-	<input type="range" bind:value step="0.001" {max} onscroll={stopPropagation(preventDefault(bubble('scroll')))} />
+<div
+	onclick={stopPropagation(preventDefault(bubble('click')))}
+	onscroll={stopPropagation(preventDefault(bubble('scroll')))}
+>
+	<input
+		type="range"
+		bind:value
+		step="0.001"
+		{max}
+		onscroll={stopPropagation(preventDefault(bubble('scroll')))}
+	/>
 </div>
 
 <style lang="scss">

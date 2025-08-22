@@ -5,7 +5,6 @@
 	import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
 	import DetailedTag from '$lib/components/kurosearch/tag-detailed/DetailedTag.svelte';
 
-
 	interface Props {
 		dialog: HTMLDialogElement;
 		name?: string;

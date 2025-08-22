@@ -8,12 +8,7 @@
 		newtab?: boolean;
 	}
 
-	let {
-		title,
-		href,
-		icon,
-		newtab = false
-	}: Props = $props();
+	let { title, href, icon, newtab = false }: Props = $props();
 </script>
 
 <IconLink {title} {href} {newtab}>

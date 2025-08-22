@@ -37,31 +37,37 @@
 		}
 	};
 
-	let query = $derived(getQueryUrl(
-		new SearchBuilder()
-			.withApiKey($apiKey)
-			.withUserId($userId)
-			.withPid($results.pageCount)
-			.withTags($activeTags)
-			.withBlockedContent($blockedContent)
-			.withSortProperty($sort.property)
-			.withSortDirection($sort.direction)
-			.withScoreValue($filter.scoreValue)
-			.withScoreComparator($filter.scoreComparator)
-			.withRating($filter.rating)
-			.withSupertags($activeSupertags)
-			.getQuery()
-	));
+	let query = $derived(
+		getQueryUrl(
+			new SearchBuilder()
+				.withApiKey($apiKey)
+				.withUserId($userId)
+				.withPid($results.pageCount)
+				.withTags($activeTags)
+				.withBlockedContent($blockedContent)
+				.withSortProperty($sort.property)
+				.withSortDirection($sort.direction)
+				.withScoreValue($filter.scoreValue)
+				.withScoreComparator($filter.scoreComparator)
+				.withRating($filter.rating)
+				.withSupertags($activeSupertags)
+				.getQuery()
+		)
+	);
 
 	let base = $derived(query && `${query.protocol}//${query.hostname}`);
-	let fixedParams = $derived(query
-		? [...query.searchParams.entries()].filter(([key]) =>
-				['page', 's', 'q', 'fields', 'json', 'limit'].includes(key)
-			)
-		: []);
-	let tags = $derived(query
-		? ([...query.searchParams.entries()].find(([key]) => key === 'tags') ?? ['tags', ''])
-		: ['tags', '']);
+	let fixedParams = $derived(
+		query
+			? [...query.searchParams.entries()].filter(([key]) =>
+					['page', 's', 'q', 'fields', 'json', 'limit'].includes(key)
+				)
+			: []
+	);
+	let tags = $derived(
+		query
+			? ([...query.searchParams.entries()].find(([key]) => key === 'tags') ?? ['tags', ''])
+			: ['tags', '']
+	);
 </script>
 
 <svelte:head>

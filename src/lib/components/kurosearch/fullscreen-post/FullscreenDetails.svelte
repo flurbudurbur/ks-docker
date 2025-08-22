@@ -16,19 +16,21 @@
 
 	let file_url = $derived(post.file_url);
 	let sample_url = $derived(post.sample_url);
-	let tagsByType = $derived(post.tags.reduce(
-		(result, tag) => {
-			if (result[tag.type] === undefined) {
-				result[tag.type] = [];
-			}
+	let tagsByType = $derived(
+		post.tags.reduce(
+			(result, tag) => {
+				if (result[tag.type] === undefined) {
+					result[tag.type] = [];
+				}
 
-			result[tag.type].push(tag);
+				result[tag.type].push(tag);
 
-			return result;
-		},
+				return result;
+			},
 
-		{} as Record<string, kurosearch.Tag[]>
-	));
+			{} as Record<string, kurosearch.Tag[]>
+		)
+	);
 </script>
 
 <div class="details">

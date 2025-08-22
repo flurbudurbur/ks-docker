@@ -11,7 +11,6 @@
 
 	const dispatch = createEventDispatcher();
 
-
 	const validateTags = (
 		activeTags: kurosearch.ModifiedTag[],
 		blockedContent: Record<kurosearch.BlockingGroup, boolean>,
@@ -80,7 +79,9 @@
 
 		return errors;
 	};
-	let conflictingTags = $derived(validateTags($activeTagsStore, $blockedContent, $activeSupertagsStore));
+	let conflictingTags = $derived(
+		validateTags($activeTagsStore, $blockedContent, $activeSupertagsStore)
+	);
 </script>
 
 <section>

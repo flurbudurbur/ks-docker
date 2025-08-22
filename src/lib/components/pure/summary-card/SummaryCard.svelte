@@ -6,12 +6,7 @@
 		description: string;
 	}
 
-	let {
-		id,
-		icon,
-		title,
-		description
-	}: Props = $props();
+	let { id, icon, title, description }: Props = $props();
 </script>
 
 <a class="card" href="#{id}">

@@ -22,7 +22,9 @@
 
 	let postCurrent = $derived($results.posts[index]);
 	let postPrevious = $derived(index > 0 ? $results.posts[index - 1] : undefined);
-	let postNext = $derived(index < $results.posts.length - 1 ? $results.posts[index + 1] : undefined);
+	let postNext = $derived(
+		index < $results.posts.length - 1 ? $results.posts[index + 1] : undefined
+	);
 	let offsetCurrent = $derived(`${index * 100}vh`);
 	let offsetPrevious = $derived(`${(index - 1) * 100}vh`);
 	let offsetNext = $derived(`${(index + 1) * 100}vh`);

@@ -11,7 +11,7 @@
 	interface Props {
 		playing: boolean;
 		loading: boolean;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { ...props }: Props = $props();

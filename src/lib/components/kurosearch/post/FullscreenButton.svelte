@@ -4,7 +4,12 @@
 	const bubble = createBubbler();
 </script>
 
-<button type="button" title="Enter Fullscreen mode" aria-label="Enter Fullscreen mode" onclick={bubble('click')}>
+<button
+	type="button"
+	title="Enter Fullscreen mode"
+	aria-label="Enter Fullscreen mode"
+	onclick={bubble('click')}
+>
 	<i class="codicon codicon-screen-full"></i>
 </button>
 

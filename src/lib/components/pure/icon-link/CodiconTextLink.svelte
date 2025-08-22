@@ -7,13 +7,7 @@
 		target?: string;
 	}
 
-	let {
-		title,
-		href,
-		icon,
-		label,
-		target = '_self'
-	}: Props = $props();
+	let { title, href, icon, label, target = '_self' }: Props = $props();
 </script>
 
 <a {title} {href} {target} class={icon}>

@@ -13,7 +13,9 @@
 	let dialog: HTMLDialogElement = $state();
 	let sortFilterBefore = $state('');
 
-	let filterLabel = $derived(getFilterLabel($filter.rating, $filter.scoreValue, $filter.scoreComparator));
+	let filterLabel = $derived(
+		getFilterLabel($filter.rating, $filter.scoreValue, $filter.scoreComparator)
+	);
 	let sortLabel = $derived(getSortLabel($sort.property, $sort.direction));
 </script>
 

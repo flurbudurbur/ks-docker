@@ -7,13 +7,7 @@
 		children?: import('svelte').Snippet;
 	}
 
-	let {
-		title,
-		href,
-		newtab = false,
-		className = '',
-		children
-	}: Props = $props();
+	let { title, href, newtab = false, className = '', children }: Props = $props();
 </script>
 
 <a {title} {href} target={newtab ? '_blank' : '_self'} class={className}>

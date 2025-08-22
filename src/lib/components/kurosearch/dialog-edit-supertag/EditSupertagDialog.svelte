@@ -11,7 +11,6 @@
 	type LocalSearchableTag = { modifier: '+' | '-' | '~'; name: string };
 	type LocalSupertag = { name: string; description: string; tags: LocalSearchableTag[] };
 
-
 	interface Props {
 		dialog: HTMLDialogElement;
 		supertag: kurosearch.Supertag;

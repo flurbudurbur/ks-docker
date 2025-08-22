@@ -12,7 +12,12 @@
 	let { tag }: Props = $props();
 </script>
 
-<button type="button" class={MODIFIER_NAMES[tag.modifier]} onclick={bubble('click')} oncontextmenu={preventDefault(bubble('contextmenu'))}>
+<button
+	type="button"
+	class={MODIFIER_NAMES[tag.modifier]}
+	onclick={bubble('click')}
+	oncontextmenu={preventDefault(bubble('contextmenu'))}
+>
 	{formatTagname(tag.name)}
 </button>
 

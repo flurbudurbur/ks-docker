@@ -12,13 +12,7 @@
 		labelCancel: string;
 	}
 
-	let {
-		dialog = $bindable(),
-		title,
-		warning,
-		labelConfirm,
-		labelCancel
-	}: Props = $props();
+	let { dialog = $bindable(), title, warning, labelConfirm, labelCancel }: Props = $props();
 
 	const dispatch = createEventDispatcher<{ confirm: void }>();
 	const confirm = () => {

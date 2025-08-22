@@ -3,12 +3,11 @@
 
 	import { createEventDispatcher } from 'svelte';
 
-	
 	interface Props {
 		/**
-	 * This prop should not change at runtime.
-	 * Dynamically adjusting it is not implemented
-	 */
+		 * This prop should not change at runtime.
+		 * Dynamically adjusting it is not implemented
+		 */
 		rootMargin: string;
 		absoluteTop: string | undefined;
 	}

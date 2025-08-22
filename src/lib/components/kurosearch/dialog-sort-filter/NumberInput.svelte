@@ -10,12 +10,7 @@
 		step: number;
 	}
 
-	let {
-		value = $bindable(),
-		min,
-		max,
-		step
-	}: Props = $props();
+	let { value = $bindable(), min, max, step }: Props = $props();
 
 	let internalValue: string = $state();
 

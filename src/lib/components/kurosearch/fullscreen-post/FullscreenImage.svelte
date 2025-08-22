@@ -28,12 +28,9 @@
 		return highResolutionEnabled ? [sample_url, file_url] : [preview_url, sample_url];
 	};
 
-	let [previewSrc, fullSrc] = $derived(getSources(
-		post.type,
-		post.file_url,
-		post.sample_url,
-		post.preview_url
-	));
+	let [previewSrc, fullSrc] = $derived(
+		getSources(post.type, post.file_url, post.sample_url, post.preview_url)
+	);
 
 	let currentTime = $state(0);
 	let lastFrameTime = Date.now();
