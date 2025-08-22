@@ -1,11 +1,18 @@
 <script lang="ts">
+	import { createBubbler, preventDefault } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import { formatTagname } from '$lib/logic/format-tag';
 	import { MODIFIER_NAMES } from '$lib/logic/tag-modifier-data';
 
-	export let tag: kurosearch.SearchableTag;
+	interface Props {
+		tag: kurosearch.SearchableTag;
+	}
+
+	let { tag }: Props = $props();
 </script>
 
-<button type="button" class={MODIFIER_NAMES[tag.modifier]} on:click on:contextmenu|preventDefault>
+<button type="button" class={MODIFIER_NAMES[tag.modifier]} onclick={bubble('click')} oncontextmenu={preventDefault(bubble('contextmenu'))}>
 	{formatTagname(tag.name)}
 </button>
 

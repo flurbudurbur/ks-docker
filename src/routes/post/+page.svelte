@@ -19,7 +19,7 @@
 	const id = url && url.searchParams.has('id') ? Number(url.searchParams.get('id')) : undefined;
 	const src = url && url.searchParams.get('src');
 
-	$: ext = decodeURIComponent(src?.split('.')?.at(-1) ?? '');
+	let ext = $derived(decodeURIComponent(src?.split('.')?.at(-1) ?? ''));
 </script>
 
 <svelte:head>

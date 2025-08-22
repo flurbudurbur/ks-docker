@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run, preventDefault } from 'svelte/legacy';
+
 	import FullscreenProgress from './FullscreenProgress.svelte';
 	import autoplayFullscreenDelay from '$lib/store/autoplay-fullscreen-delay-store';
 	import LoadingAnimation from '$lib/components/pure/loading-animation/LoadingAnimation.svelte';
@@ -10,8 +12,12 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let post: kurosearch.Post;
-	export let postId = -1;
+	interface Props {
+		post: kurosearch.Post;
+		postId?: any;
+	}
+
+	let { post, postId = $bindable(-1) }: Props = $props();
 
 	const getSources = (type: string, file_url: string, sample_url: string, preview_url: string) => {
 		if (type === 'gif') {
@@ -22,14 +28,14 @@
 		return highResolutionEnabled ? [sample_url, file_url] : [preview_url, sample_url];
 	};
 
-	$: [previewSrc, fullSrc] = getSources(
+	let [previewSrc, fullSrc] = $derived(getSources(
 		post.type,
 		post.file_url,
 		post.sample_url,
 		post.preview_url
-	);
+	));
 
-	let currentTime = 0;
+	let currentTime = $state(0);
 	let lastFrameTime = Date.now();
 	let currentFrameTime = Date.now();
 	let difference: number;
@@ -58,12 +64,12 @@
 		paused = !paused;
 	};
 
-	$: {
+	run(() => {
 		if (post.id !== postId) {
 			postId = post.id;
 			currentTime = 0;
 		}
-	}
+	});
 
 	const keybinds = (event: KeyboardEvent) => {
 		if (event.code === 'Space' || event.key === 'k') {
@@ -120,16 +126,16 @@
 	};
 </script>
 
-<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
 
 {#await preload(fullSrc)}
 	<img
 		src={previewSrc}
 		alt="[{post.type}] post #{post.id}"
 		title="[{post.type}] post #{post.id}"
-		on:contextmenu|preventDefault={() => {}}
-		on:click={togglePaused}
+		oncontextmenu={preventDefault(() => {})}
+		onclick={togglePaused}
 	/>
 	<div>
 		<LoadingAnimation />
@@ -139,8 +145,8 @@
 		src={fullSrc}
 		alt="[{post.type}] post #{post.id}"
 		title="[{post.type}] post #{post.id}"
-		on:contextmenu|preventDefault={() => {}}
-		on:click={togglePaused}
+		oncontextmenu={preventDefault(() => {})}
+		onclick={togglePaused}
 		use:pauseoffscreen
 	/>
 {/await}

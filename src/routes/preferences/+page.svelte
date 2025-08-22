@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	const THEME_OPTIONS = Object.freeze({
 		'crimson dark': 'Dark',
 		'crimson light': 'Light',
@@ -43,7 +43,7 @@
 	import openTagsOnPostClick from '$lib/store/tags-shortcut-store';
 	import TextInput from '$lib/components/pure/input-text/TextInput.svelte';
 
-	let resetDialog: HTMLDialogElement;
+	let resetDialog: HTMLDialogElement = $state();
 
 	const reset = () => {
 		theme.reset();

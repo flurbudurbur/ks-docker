@@ -8,11 +8,15 @@
 	import Rule34Source from '../source-rule34/Rule34Source.svelte';
 	import PostDetailsTagList from '../tag-list/PostDetailsTagList.svelte';
 
-	export let post: kurosearch.Post;
+	interface Props {
+		post: kurosearch.Post;
+	}
 
-	$: file_url = post.file_url;
-	$: sample_url = post.sample_url;
-	$: tagsByType = post.tags.reduce(
+	let { post }: Props = $props();
+
+	let file_url = $derived(post.file_url);
+	let sample_url = $derived(post.sample_url);
+	let tagsByType = $derived(post.tags.reduce(
 		(result, tag) => {
 			if (result[tag.type] === undefined) {
 				result[tag.type] = [];
@@ -24,7 +28,7 @@
 		},
 
 		{} as Record<string, kurosearch.Tag[]>
-	);
+	));
 </script>
 
 <div class="details">

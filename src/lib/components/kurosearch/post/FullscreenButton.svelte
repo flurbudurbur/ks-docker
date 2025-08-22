@@ -1,4 +1,10 @@
-<button type="button" title="Enter Fullscreen mode" aria-label="Enter Fullscreen mode" on:click>
+<script lang="ts">
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
+</script>
+
+<button type="button" title="Enter Fullscreen mode" aria-label="Enter Fullscreen mode" onclick={bubble('click')}>
 	<i class="codicon codicon-screen-full"></i>
 </button>
 

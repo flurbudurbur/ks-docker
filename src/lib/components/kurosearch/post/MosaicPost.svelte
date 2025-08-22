@@ -1,10 +1,17 @@
 <script lang="ts">
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import { formatCount } from '$lib/logic/format-count';
 	import { getPostId } from '$lib/logic/id-utils';
 	import { isEnter } from '$lib/logic/keyboard-utils';
 	import { calculateAspectRatio } from './ratio';
 
-	export let post: kurosearch.Post;
+	interface Props {
+		post: kurosearch.Post;
+	}
+
+	let { post }: Props = $props();
 
 	let maxRatio = 1 / 3;
 	let rowsPerSquare = 5;
@@ -15,7 +22,7 @@
 	const isImage = (src: string) =>
 		src.endsWith('.jpg') || src.endsWith('.jpeg') || src.endsWith('.png') || src.endsWith('.webp');
 
-	$: previewSrc = isImage(post.sample_url) ? post.sample_url : post.preview_url;
+	let previewSrc = $derived(isImage(post.sample_url) ? post.sample_url : post.preview_url);
 
 	function handleKeydown(event: KeyboardEvent) {
 		if (isEnter(event) || event.key === 'f') {
@@ -25,13 +32,13 @@
 	}
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
 	id={getPostId(post.id)}
 	class="post"
 	style="grid-row: span {rows};"
-	on:click
-	on:keydown={handleKeydown}
+	onclick={bubble('click')}
+	onkeydown={handleKeydown}
 	class:open
 >
 	<img src={previewSrc} alt="post" class="post-media" tabindex="-1" loading="lazy" />

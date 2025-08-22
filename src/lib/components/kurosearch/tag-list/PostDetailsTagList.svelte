@@ -2,7 +2,11 @@
 	import activeTagsStore from '$lib/store/active-tags-store';
 	import SimpleTag from '../tag-simple/SimpleTag.svelte';
 
-	export let tags: kurosearch.Tag[];
+	interface Props {
+		tags: kurosearch.Tag[];
+	}
+
+	let { tags }: Props = $props();
 </script>
 
 <ul class="tags">

@@ -37,7 +37,7 @@
 		}
 	};
 
-	$: query = getQueryUrl(
+	let query = $derived(getQueryUrl(
 		new SearchBuilder()
 			.withApiKey($apiKey)
 			.withUserId($userId)
@@ -51,17 +51,17 @@
 			.withRating($filter.rating)
 			.withSupertags($activeSupertags)
 			.getQuery()
-	);
+	));
 
-	$: base = query && `${query.protocol}//${query.hostname}`;
-	$: fixedParams = query
+	let base = $derived(query && `${query.protocol}//${query.hostname}`);
+	let fixedParams = $derived(query
 		? [...query.searchParams.entries()].filter(([key]) =>
 				['page', 's', 'q', 'fields', 'json', 'limit'].includes(key)
 			)
-		: [];
-	$: tags = query
+		: []);
+	let tags = $derived(query
 		? ([...query.searchParams.entries()].find(([key]) => key === 'tags') ?? ['tags', ''])
-		: ['tags', ''];
+		: ['tags', '']);
 </script>
 
 <svelte:head>

@@ -8,7 +8,7 @@
 	import theme from '$lib/store/theme-store';
 	import wideLayoutEnabled from '$lib/store/wide-layout-enabled-store';
 	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import TermsOfUseDialog from '$lib/components/kurosearch/dialog-terms-of-use/CookieMessage.svelte';
 
 	import './reset.css';
@@ -19,6 +19,11 @@
 	import './scrollbar.css';
 
 	import '$lib/logic/firebase/firebase';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	const userPhoto: string | undefined = undefined;
 
@@ -58,8 +63,8 @@
 	</nav>
 </header>
 
-<main class:extra-wide={$wideLayoutEnabled && $page.url.pathname === '/'}>
-	<slot />
+<main class:extra-wide={$wideLayoutEnabled && page.url.pathname === '/'}>
+	{@render children?.()}
 </main>
 
 <footer>

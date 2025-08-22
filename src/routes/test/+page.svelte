@@ -22,14 +22,14 @@
 		Object.keys(TAG_TYPES_WITH_ICONS).map((t) => [t, t.charAt(0)])
 	);
 
-	let count = 0;
-	let disabled = false;
-	let name = '';
-	let selectedValue = 'one';
+	let count = $state(0);
+	let disabled = $state(false);
+	let name = $state('');
+	let selectedValue = $state('one');
 
-	let selectedType: kurosearch.TagType = 'artist';
+	let selectedType: kurosearch.TagType = $state('artist');
 
-	let modifier: kurosearch.TagModifier = '+';
+	let modifier: kurosearch.TagModifier = $state('+');
 </script>
 
 <svelte:head>

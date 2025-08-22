@@ -11,16 +11,20 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let placeholder: string;
-	export let fetchSuggestions: (searchTerm: string) => Promise<Array<kurosearch.Suggestion>>;
+	interface Props {
+		placeholder: string;
+		fetchSuggestions: (searchTerm: string) => Promise<Array<kurosearch.Suggestion>>;
+	}
 
-	let searchTerm = '';
+	let { placeholder, fetchSuggestions }: Props = $props();
+
+	let searchTerm = $state('');
 	let previousSearchTerm = '';
-	let searchPromise: Promise<kurosearch.Suggestion[]>;
-	let selectedIndex = 0;
-	let modifier: kurosearch.TagModifier = '+';
-	let focusInside = false;
-	let hasDropdownContent = false;
+	let searchPromise: Promise<kurosearch.Suggestion[]> = $state();
+	let selectedIndex = $state(0);
+	let modifier: kurosearch.TagModifier = $state('+');
+	let focusInside = $state(false);
+	let hasDropdownContent = $state(false);
 
 	// hacky, I'd like to avoid caching this but i need it in the keydown handler
 	let suggestionItems: kurosearch.Suggestion[] = [];
@@ -87,7 +91,7 @@
 	};
 </script>
 
-<div class="searchbar" class:open={focusInside && hasDropdownContent} on:blur={close}>
+<div class="searchbar" class:open={focusInside && hasDropdownContent} onblur={close}>
 	<ModifierSelect bind:modifier />
 	<input
 		type="text"
@@ -96,10 +100,10 @@
 		{placeholder}
 		autocomplete="off"
 		bind:value={searchTerm}
-		on:focus={focus}
-		on:blur={closeIfFocusOutside}
-		on:keydown={handleKeyDown}
-		on:keyup={search}
+		onfocus={focus}
+		onblur={closeIfFocusOutside}
+		onkeydown={handleKeyDown}
+		onkeyup={search}
 		aria-label="Search for tags."
 	/>
 

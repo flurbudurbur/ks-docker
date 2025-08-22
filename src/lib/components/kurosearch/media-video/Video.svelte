@@ -1,3 +1,9 @@
+<!-- @migration-task Error while migrating Svelte code: Cannot split a chunk that has already been edited (124:9 – "on:ended={() => {
+				if (!loop) {
+					loading = false;
+					playing = false;
+				}
+			}}") -->
 <script lang="ts">
 	import { formatVideoTime } from '$lib/logic/format-time';
 	import { isSpace } from '$lib/logic/keyboard-utils';

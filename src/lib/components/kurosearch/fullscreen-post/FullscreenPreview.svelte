@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { isAnimated } from '$lib/logic/media-utils';
 
-	export let post: kurosearch.Post;
-	export let offset: string;
+	interface Props {
+		post: kurosearch.Post;
+		offset: string;
+	}
 
-	$: preview = isAnimated(post.sample_url) ? post.preview_url : post.sample_url;
+	let { post, offset }: Props = $props();
+
+	let preview = $derived(isAnimated(post.sample_url) ? post.preview_url : post.sample_url);
 </script>
 
 <img src={preview} alt="post #{post.id}" style:top={offset} />

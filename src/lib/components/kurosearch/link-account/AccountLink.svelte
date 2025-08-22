@@ -2,7 +2,11 @@
 	import { base } from '$app/paths';
 	import IconLink from '$lib/components/pure/icon-link/IconLink.svelte';
 
-	export let src: string | undefined;
+	interface Props {
+		src: string | undefined;
+	}
+
+	let { src }: Props = $props();
 </script>
 
 <IconLink title="Account" href="{base}/account">

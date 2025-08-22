@@ -3,7 +3,11 @@
 	import results from '$lib/store/results-store';
 	import SortFilterConfig from '../sort-filter-config/SortFilterConfig.svelte';
 
-	export let loading: boolean;
+	interface Props {
+		loading: boolean;
+	}
+
+	let { loading }: Props = $props();
 </script>
 
 <div>

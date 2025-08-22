@@ -21,9 +21,13 @@
 	const dispatch = createEventDispatcher();
 	const submit = () => dispatch('submit');
 
-	export let loading: boolean;
+	interface Props {
+		loading: boolean;
+	}
 
-	let createSupertagDialog: HTMLDialogElement;
+	let { loading }: Props = $props();
+
+	let createSupertagDialog: HTMLDialogElement = $state();
 
 	const fetchSuggestions = async (term: string) => {
 		const matchingTags = await getTagSuggestions(term);

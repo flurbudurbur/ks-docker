@@ -7,9 +7,9 @@
 	import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
 	import { onMount } from 'svelte';
 
-	let message = 'Update';
+	let message = $state('Update');
 
-	let latestCommitPromise: Promise<{ sha: string }>;
+	let latestCommitPromise: Promise<{ sha: string }> = $state();
 
 	const forceUpdate = async () => {
 		message = 'Updating...';

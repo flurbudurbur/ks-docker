@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 </script>
 
 <script lang="ts">
@@ -20,7 +20,11 @@
 		LABELS_SORT_PROPERTY
 	} from '../sort-filter-config/sortfilter';
 
-	export let dialog: HTMLDialogElement;
+	interface Props {
+		dialog: HTMLDialogElement;
+	}
+
+	let { dialog = $bindable() }: Props = $props();
 
 	const close = () => dialog.close();
 
@@ -35,7 +39,7 @@
 		<div class="row">
 			<h3>Sorting and Filtering</h3>
 			<div class="spacer"></div>
-			<button type="button" class="codicon codicon-close" aria-label="Close dialog" on:click={close}
+			<button type="button" class="codicon codicon-close" aria-label="Close dialog" onclick={close}
 			></button>
 		</div>
 		<div>

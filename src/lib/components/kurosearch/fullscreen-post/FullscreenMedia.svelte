@@ -2,7 +2,11 @@
 	import FullscreenVideo from './FullscreenVideo.svelte';
 	import FullscreenImage from './FullscreenImage.svelte';
 
-	export let post: kurosearch.Post;
+	interface Props {
+		post: kurosearch.Post;
+	}
+
+	let { post }: Props = $props();
 </script>
 
 <div>

@@ -11,17 +11,21 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let index: number;
+	interface Props {
+		index: number;
+	}
 
-	let container: HTMLDivElement;
-	let current: HTMLDivElement;
+	let { index = $bindable() }: Props = $props();
 
-	$: postCurrent = $results.posts[index];
-	$: postPrevious = index > 0 ? $results.posts[index - 1] : undefined;
-	$: postNext = index < $results.posts.length - 1 ? $results.posts[index + 1] : undefined;
-	$: offsetCurrent = `${index * 100}vh`;
-	$: offsetPrevious = `${(index - 1) * 100}vh`;
-	$: offsetNext = `${(index + 1) * 100}vh`;
+	let container: HTMLDivElement = $state();
+	let current: HTMLDivElement = $state();
+
+	let postCurrent = $derived($results.posts[index]);
+	let postPrevious = $derived(index > 0 ? $results.posts[index - 1] : undefined);
+	let postNext = $derived(index < $results.posts.length - 1 ? $results.posts[index + 1] : undefined);
+	let offsetCurrent = $derived(`${index * 100}vh`);
+	let offsetPrevious = $derived(`${(index - 1) * 100}vh`);
+	let offsetNext = $derived(`${(index + 1) * 100}vh`);
 
 	const scrollToPrevious = () => {
 		container.scrollTo({
@@ -96,7 +100,7 @@
 	});
 </script>
 
-<div class="root screen snap-container" bind:this={container} on:scroll={onScroll}>
+<div class="root screen snap-container" bind:this={container} onscroll={onScroll}>
 	{#if postPrevious}
 		<FullscreenPreview post={postPrevious} offset={offsetPrevious} />
 	{/if}

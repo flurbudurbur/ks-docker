@@ -10,16 +10,16 @@
 	const serializeSortFilter = (sort: any, filter: any) =>
 		JSON.stringify(Object.assign({}, sort, filter));
 
-	let dialog: HTMLDialogElement;
-	let sortFilterBefore = '';
+	let dialog: HTMLDialogElement = $state();
+	let sortFilterBefore = $state('');
 
-	$: filterLabel = getFilterLabel($filter.rating, $filter.scoreValue, $filter.scoreComparator);
-	$: sortLabel = getSortLabel($sort.property, $sort.direction);
+	let filterLabel = $derived(getFilterLabel($filter.rating, $filter.scoreValue, $filter.scoreComparator));
+	let sortLabel = $derived(getSortLabel($sort.property, $sort.direction));
 </script>
 
 <button
 	type="button"
-	on:click={() => {
+	onclick={() => {
 		sortFilterBefore = serializeSortFilter($sort, $filter);
 		dialog.showModal();
 		addHistory('dialog');

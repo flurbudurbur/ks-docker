@@ -1,21 +1,28 @@
 <script lang="ts">
+	import { createBubbler, preventDefault } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import { getVideoSources } from '$lib/logic/media-utils';
 	import { videoObserver } from '$lib/logic/video-observer';
 	import { onDestroy, onMount } from 'svelte';
 	import FullscreenProgress from './FullscreenProgress.svelte';
 	import { formatVideoTime } from '$lib/logic/format-time';
 
-	export let post: kurosearch.Post;
+	interface Props {
+		post: kurosearch.Post;
+	}
 
-	let video: HTMLVideoElement | undefined;
+	let { post }: Props = $props();
 
-	$: sources = getVideoSources(post.file_url, post.sample_url, post.preview_url);
-	$: animatedSource = sources.animated;
-	$: staticSource = sources.static;
+	let video: HTMLVideoElement | undefined = $state();
 
-	let currentTime = 0;
-	let paused = false;
-	let duration: number;
+	let sources = $derived(getVideoSources(post.file_url, post.sample_url, post.preview_url));
+	let animatedSource = $derived(sources.animated);
+	let staticSource = $derived(sources.static);
+
+	let currentTime = $state(0);
+	let paused = $state(false);
+	let duration: number = $state();
 
 	const keybinds = (event: KeyboardEvent) => {
 		if (video) {
@@ -51,7 +58,7 @@
 	});
 </script>
 
-<!-- svelte-ignore a11y-media-has-caption -->
+<!-- svelte-ignore a11y_media_has_caption -->
 <video
 	src={animatedSource}
 	poster={staticSource}
@@ -62,7 +69,7 @@
 	bind:currentTime
 	bind:paused
 	bind:duration
-	on:click={() => {
+	onclick={() => {
 		if (video) {
 			if (video.paused) {
 				void video.play();
@@ -71,8 +78,8 @@
 			}
 		}
 	}}
-	on:ended
-	on:contextmenu|preventDefault
+	onended={bubble('ended')}
+	oncontextmenu={preventDefault(bubble('contextmenu'))}
 ></video>
 
 {#if currentTime !== undefined && duration !== undefined}

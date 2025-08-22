@@ -7,7 +7,11 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let tags: Array<kurosearch.ModifiedTag | kurosearch.Supertag>;
+	interface Props {
+		tags: Array<kurosearch.ModifiedTag | kurosearch.Supertag>;
+	}
+
+	let { tags }: Props = $props();
 </script>
 
 <ul>

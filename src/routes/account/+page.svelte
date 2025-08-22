@@ -57,9 +57,9 @@
 		}
 	};
 
-	let cloudPullDialog: HTMLDialogElement;
-	let cloudPushDialog: HTMLDialogElement;
-	let resetDialog: HTMLDialogElement;
+	let cloudPullDialog: HTMLDialogElement = $state();
+	let cloudPushDialog: HTMLDialogElement = $state();
+	let resetDialog: HTMLDialogElement = $state();
 </script>
 
 <svelte:head>

@@ -7,10 +7,14 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let supertag: kurosearch.Supertag;
+	interface Props {
+		supertag: kurosearch.Supertag;
+	}
 
-	let deleteDialog: HTMLDialogElement;
-	let editDialog: HTMLDialogElement;
+	let { supertag }: Props = $props();
+
+	let deleteDialog: HTMLDialogElement = $state();
+	let editDialog: HTMLDialogElement = $state();
 </script>
 
 <li>
@@ -20,7 +24,7 @@
 		type="button"
 		class="codicon codicon-edit"
 		aria-label="Edit supertag"
-		on:click={() => {
+		onclick={() => {
 			editDialog.showModal();
 			addHistory('dialog');
 		}}
@@ -29,7 +33,7 @@
 		type="button"
 		class="codicon codicon-close"
 		aria-label="Delete supertag"
-		on:click={() => {
+		onclick={() => {
 			deleteDialog.showModal();
 			addHistory('dialog');
 		}}

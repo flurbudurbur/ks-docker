@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { run, createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import PlayButton from '../button-play/PlayButton.svelte';
 	import { clickOnEnter, isSpace } from '$lib/logic/keyboard-utils';
 	import { getGifSources } from '$lib/logic/media-utils';
@@ -6,27 +9,31 @@
 	import { observeGif } from '$lib/logic/gif-observer';
 	import gifPreloadEnabled from '$lib/store/gif-preload-enabled-store';
 
-	export let post: kurosearch.Post;
+	interface Props {
+		post: kurosearch.Post;
+	}
 
-	let media: HTMLImageElement;
-	let playing = false;
-	let loading = false;
+	let { post }: Props = $props();
+
+	let media: HTMLImageElement = $state();
+	let playing = $state(false);
+	let loading = $state(false);
 	const transparentPixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
 
-	$: sources = getGifSources(post.file_url, post.sample_url, post.preview_url);
-	$: animatedSource = sources.animated;
-	$: staticSource = sources.static;
-	$: data_src = playing ? animatedSource : staticSource;
-	$: {
+	let sources = $derived(getGifSources(post.file_url, post.sample_url, post.preview_url));
+	let animatedSource = $derived(sources.animated);
+	let staticSource = $derived(sources.static);
+	let data_src = $derived(playing ? animatedSource : staticSource);
+	run(() => {
 		if (media) {
 			media.src = playing ? animatedSource : staticSource;
 		}
-	}
+	});
 </script>
 
 <div class="container" style="aspect-ratio: {calculateAspectRatioCss(post.width, post.height)}">
-	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 	<img
 		class="post-media media-img"
 		loading="lazy"
@@ -37,8 +44,8 @@
 		bind:this={media}
 		src={transparentPixel}
 		tabindex="0"
-		on:click
-		on:keydown={(event) => {
+		onclick={bubble('click')}
+		onkeydown={(event) => {
 			clickOnEnter(event);
 			if (isSpace(event)) {
 				event.preventDefault();
@@ -46,7 +53,7 @@
 				playing = !playing;
 			}
 		}}
-		on:load={() => (loading = false)}
+		onload={() => (loading = false)}
 		use:observeGif
 	/>
 	{#if $gifPreloadEnabled}

@@ -1,11 +1,16 @@
 <script lang="ts">
-	export let checked: boolean;
-	export let id: string;
+	interface Props {
+		checked: boolean;
+		id: string;
+		children?: import('svelte').Snippet;
+	}
+
+	let { checked = $bindable(), id, children }: Props = $props();
 </script>
 
 <label for={id}>
 	<input type="checkbox" {id} bind:checked />
-	<slot />
+	{@render children?.()}
 </label>
 
 <style lang="scss">

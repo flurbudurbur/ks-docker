@@ -4,7 +4,11 @@
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import FullscreenScroller from './FullscreenScroller.svelte';
 
-	export let index: number;
+	interface Props {
+		index: number;
+	}
+
+	let { index = $bindable() }: Props = $props();
 
 	const dispatch = createEventDispatcher();
 	const close = () => {

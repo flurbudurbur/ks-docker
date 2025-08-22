@@ -4,11 +4,21 @@
 	import Heading3 from '$lib/components/pure/heading/Heading3.svelte';
 	import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
 
-	export let dialog: HTMLDialogElement;
-	export let title: string;
-	export let warning: string;
-	export let labelConfirm: string;
-	export let labelCancel: string;
+	interface Props {
+		dialog: HTMLDialogElement;
+		title: string;
+		warning: string;
+		labelConfirm: string;
+		labelCancel: string;
+	}
+
+	let {
+		dialog = $bindable(),
+		title,
+		warning,
+		labelConfirm,
+		labelCancel
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher<{ confirm: void }>();
 	const confirm = () => {

@@ -3,7 +3,7 @@
 	import { onDestroy, onMount } from 'svelte';
 
 	let previousY = 0;
-	let visible = false;
+	let visible = $state(false);
 
 	const listener = () => {
 		const currentY = window.scrollY;
@@ -24,7 +24,7 @@
 	type="button"
 	aria-label="back to top"
 	title="Go back up"
-	on:click={() => window.scrollTo(0, 0)}
+	onclick={() => window.scrollTo(0, 0)}
 	class:visible
 >
 	<i class="codicon codicon-arrow-up"></i>

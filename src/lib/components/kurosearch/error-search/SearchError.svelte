@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let error: Error;
+	interface Props {
+		error: Error;
+	}
+
+	let { error }: Props = $props();
 
 	let title = error.message === 'Failed to fetch' ? 'Connection Error' : 'Application Error';
 	let icon =

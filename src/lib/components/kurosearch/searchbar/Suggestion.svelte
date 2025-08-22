@@ -5,13 +5,17 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let suggestion: kurosearch.Suggestion;
-	export let selected = false;
+	interface Props {
+		suggestion: kurosearch.Suggestion;
+		selected?: boolean;
+	}
+
+	let { suggestion, selected = false }: Props = $props();
 </script>
 
 <button
 	tabindex="0"
-	on:click={() => dispatch('click', suggestion)}
+	onclick={() => dispatch('click', suggestion)}
 	title={suggestion.label}
 	class:selected
 >

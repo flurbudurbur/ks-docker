@@ -5,11 +5,20 @@
 	import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
 	import DetailedTag from '$lib/components/kurosearch/tag-detailed/DetailedTag.svelte';
 
-	export let dialog: HTMLDialogElement;
-	export let name = '';
-	export let description = '';
 
-	export let tags: kurosearch.ModifiedTag[];
+	interface Props {
+		dialog: HTMLDialogElement;
+		name?: string;
+		description?: string;
+		tags: kurosearch.ModifiedTag[];
+	}
+
+	let {
+		dialog = $bindable(),
+		name = $bindable(''),
+		description = $bindable(''),
+		tags
+	}: Props = $props();
 
 	type LocalSearchableTag = { modifier: '+' | '-' | '~'; name: string };
 	const dispatch = createEventDispatcher<{
@@ -17,14 +26,14 @@
 	}>();
 	const close = () => dialog.close();
 
-	$: valid = name !== '' && tags.length > 1;
+	let valid = $derived(name !== '' && tags.length > 1);
 </script>
 
 <Dialog on:close={close} bind:dialog>
 	<section>
 		<h3>Create Supertag</h3>
 
-		<button type="button" class="codicon codicon-close" aria-label="Close dialog" on:click={close}
+		<button type="button" class="codicon codicon-close" aria-label="Close dialog" onclick={close}
 		></button>
 
 		<div>

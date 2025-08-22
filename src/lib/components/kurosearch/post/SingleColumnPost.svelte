@@ -16,8 +16,12 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let post: kurosearch.Post;
-	export let openTab: string | undefined = undefined;
+	interface Props {
+		post: kurosearch.Post;
+		openTab?: string | undefined;
+	}
+
+	let { post, openTab = $bindable(undefined) }: Props = $props();
 
 	const selectTab = (tab: string) => {
 		openTab = openTab === tab ? undefined : tab;
@@ -42,12 +46,12 @@
 	];
 </script>
 
-<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <li
 	id={getPostId(post.id)}
 	class="post"
 	class:openTab
-	on:keydown={(event) => {
+	onkeydown={(event) => {
 		if (event.key === 'f') {
 			dispatch('fullscreen');
 		}

@@ -1,8 +1,17 @@
 <script lang="ts">
-	export let id: string;
-	export let icon: string;
-	export let title: string;
-	export let description: string;
+	interface Props {
+		id: string;
+		icon: string;
+		title: string;
+		description: string;
+	}
+
+	let {
+		id,
+		icon,
+		title,
+		description
+	}: Props = $props();
 </script>
 
 <a class="card" href="#{id}">

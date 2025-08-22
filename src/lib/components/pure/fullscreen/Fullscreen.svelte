@@ -1,5 +1,12 @@
 <script lang="ts">
+	import { stopPropagation } from 'svelte/legacy';
+
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	const dispatch = createEventDispatcher();
 	const close = () => dispatch('close');
@@ -14,8 +21,8 @@
 		}
 	};
 
-	let dialog: HTMLDivElement;
-	let ready = false;
+	let dialog: HTMLDivElement = $state();
+	let ready = $state(false);
 
 	onMount(async () => {
 		dialog.focus();
@@ -42,11 +49,11 @@
 	bind:this={dialog}
 	role="none"
 	tabindex="-1"
-	on:click|stopPropagation={() => {}}
-	on:keydown={closeOnEscapePressed}
+	onclick={stopPropagation(() => {})}
+	onkeydown={closeOnEscapePressed}
 >
 	{#if ready}
-		<slot />
+		{@render children?.()}
 	{/if}
 </div>
 

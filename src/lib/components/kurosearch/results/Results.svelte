@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { getPostId } from '$lib/logic/id-utils';
 	import resultColumns from '$lib/store/result-columns-store';
 	import results from '$lib/store/results-store';
@@ -6,7 +8,7 @@
 	import MosaicPost from '../post/MosaicPost.svelte';
 	import SingleColumnPost from '../post/SingleColumnPost.svelte';
 
-	let fullscreenIndex: undefined | number;
+	let fullscreenIndex: undefined | number = $state();
 
 	const exitFullscreen = (event: CustomEvent<number>) => {
 		const post = $results.posts[event.detail];
@@ -15,7 +17,7 @@
 		fullscreenIndex = undefined;
 	};
 
-	$: {
+	run(() => {
 		if (fullscreenIndex !== undefined) {
 			history.pushState({ ...history.state, fullscreen: true }, '');
 		} else {
@@ -23,7 +25,7 @@
 				history.back();
 			}
 		}
-	}
+	});
 </script>
 
 {#if $resultColumns === '1'}

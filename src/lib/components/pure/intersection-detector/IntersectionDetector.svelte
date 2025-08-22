@@ -1,12 +1,19 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { createEventDispatcher } from 'svelte';
 
-	/**
+	
+	interface Props {
+		/**
 	 * This prop should not change at runtime.
 	 * Dynamically adjusting it is not implemented
 	 */
-	export let rootMargin: string;
-	export let absoluteTop: string | undefined;
+		rootMargin: string;
+		absoluteTop: string | undefined;
+	}
+
+	let { rootMargin, absoluteTop }: Props = $props();
 
 	const dispatch = createEventDispatcher();
 	const intersectionObserver = new IntersectionObserver(
@@ -18,14 +25,14 @@
 		{ rootMargin }
 	);
 
-	let ref: HTMLDivElement;
+	let ref: HTMLDivElement = $state();
 
-	$: {
+	run(() => {
 		intersectionObserver.disconnect();
 		if (ref) {
 			intersectionObserver.observe(ref);
 		}
-	}
+	});
 </script>
 
 <div

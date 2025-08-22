@@ -1,19 +1,19 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 
-	let details = false;
+	let details = $state(false);
 </script>
 
 <div>
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 	<img
 		id="happy"
 		src="{base}/assets/lynxy-chibi.webp"
 		alt="Helheim Lynx"
 		width="1231"
 		height="864"
-		on:click={() => (details = !details)}
+		onclick={() => (details = !details)}
 	/>
 	{#if details}
 		<a

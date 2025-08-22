@@ -23,8 +23,8 @@
 	import apiKey from '$lib/store/api-key-store';
 	import userId from '$lib/store/user-id-store';
 
-	let loading = false;
-	let error: Error | undefined;
+	let loading = $state(false);
+	let error: Error | undefined = $state();
 	let nextFocus = 0;
 
 	const createDefaultSearch = () =>

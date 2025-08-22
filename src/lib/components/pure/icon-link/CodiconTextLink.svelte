@@ -1,9 +1,19 @@
 <script lang="ts">
-	export let title: string;
-	export let href: string;
-	export let icon: string;
-	export let label: string;
-	export let target: string = '_self';
+	interface Props {
+		title: string;
+		href: string;
+		icon: string;
+		label: string;
+		target?: string;
+	}
+
+	let {
+		title,
+		href,
+		icon,
+		label,
+		target = '_self'
+	}: Props = $props();
 </script>
 
 <a {title} {href} {target} class={icon}>

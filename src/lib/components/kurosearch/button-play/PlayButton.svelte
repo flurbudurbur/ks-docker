@@ -1,18 +1,26 @@
 <script lang="ts">
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import { base } from '$app/paths';
 
 	const LOAD_SRC = `${base}/assets/load.svg`;
 	const PLAY_SRC = `${base}/assets/play.svg`;
 	const PAUSE_SRC = `${base}/assets/pause.svg`;
 
-	export let playing: boolean;
-	export let loading: boolean;
+	interface Props {
+		playing: boolean;
+		loading: boolean;
+		[key: string]: any
+	}
+
+	let { ...props }: Props = $props();
 </script>
 
-<button type="button" on:click class={$$props.class}>
-	{#if loading}
+<button type="button" onclick={bubble('click')} class={props.class}>
+	{#if props.loading}
 		<img src={LOAD_SRC} alt="Loading GIF" width="16" height="32" />
-	{:else if playing}
+	{:else if props.playing}
 		<img src={PAUSE_SRC} alt="Stop GIF" width="16" height="32" />
 	{:else}
 		<img src={PLAY_SRC} alt="Start GIF" width="16" height="32" style="margin-left: 4px;" />

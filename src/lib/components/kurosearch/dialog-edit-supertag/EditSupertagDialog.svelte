@@ -11,16 +11,20 @@
 	type LocalSearchableTag = { modifier: '+' | '-' | '~'; name: string };
 	type LocalSupertag = { name: string; description: string; tags: LocalSearchableTag[] };
 
-	export let dialog: HTMLDialogElement;
 
-	export let supertag: kurosearch.Supertag;
+	interface Props {
+		dialog: HTMLDialogElement;
+		supertag: kurosearch.Supertag;
+	}
+
+	let { dialog = $bindable(), supertag }: Props = $props();
 
 	const dispatch = createEventDispatcher<{
 		edit: { oldName: string; newSupertag: LocalSupertag };
 	}>();
 	const emitEdit = () => dispatch('edit', { oldName: supertag.name, newSupertag });
 
-	let newSupertag: LocalSupertag = { ...supertag, tags: [...supertag.tags] };
+	let newSupertag: LocalSupertag = $state({ ...supertag, tags: [...supertag.tags] });
 </script>
 
 <Dialog bind:dialog on:close>

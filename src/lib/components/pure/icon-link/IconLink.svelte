@@ -1,12 +1,23 @@
 <script lang="ts">
-	export let title: string;
-	export let href: string;
-	export let newtab = false;
-	export let className = '';
+	interface Props {
+		title: string;
+		href: string;
+		newtab?: boolean;
+		className?: string;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		title,
+		href,
+		newtab = false,
+		className = '',
+		children
+	}: Props = $props();
 </script>
 
 <a {title} {href} target={newtab ? '_blank' : '_self'} class={className}>
-	<slot />
+	{@render children?.()}
 </a>
 
 <style lang="scss">
