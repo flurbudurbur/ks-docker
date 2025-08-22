@@ -1,8 +1,8 @@
 <script lang="ts">
-    import {formatTagname} from '$lib/logic/format-tag';
-    import {MODIFIER_NAMES} from '$lib/logic/tag-modifier-data';
+	import { formatTagname } from '$lib/logic/format-tag';
+	import { MODIFIER_NAMES } from '$lib/logic/tag-modifier-data';
 
-    export let tag: kurosearch.SearchableTag;
+	export let tag: kurosearch.SearchableTag;
 </script>
 
 <button type="button" class={MODIFIER_NAMES[tag.modifier]} on:click on:contextmenu|preventDefault>

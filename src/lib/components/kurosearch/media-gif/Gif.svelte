@@ -1,16 +1,18 @@
 <script lang="ts">
-    import PlayButton from '../button-play/PlayButton.svelte';
-    import {clickOnEnter, isSpace} from '$lib/logic/keyboard-utils';
-    import {getGifSources} from '$lib/logic/media-utils';
-    import {calculateAspectRatioCss} from '../post/ratio';
-    import {observeGif} from '$lib/logic/gif-observer';
-    import gifPreloadEnabled from '$lib/store/gif-preload-enabled-store';
+	import PlayButton from '../button-play/PlayButton.svelte';
+	import { clickOnEnter, isSpace } from '$lib/logic/keyboard-utils';
+	import { getGifSources } from '$lib/logic/media-utils';
+	import { calculateAspectRatioCss } from '../post/ratio';
+	import { observeGif } from '$lib/logic/gif-observer';
+	import gifPreloadEnabled from '$lib/store/gif-preload-enabled-store';
 
-    export let post: kurosearch.Post;
+	export let post: kurosearch.Post;
 
 	let media: HTMLImageElement;
 	let playing = false;
 	let loading = false;
+	const transparentPixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
+
 
 	$: sources = getGifSources(post.file_url, post.sample_url, post.preview_url);
 	$: animatedSource = sources.animated;
@@ -34,6 +36,7 @@
 		width={post.width}
 		height={post.height}
 		bind:this={media}
+		src={transparentPixel}
 		tabindex="0"
 		on:click
 		on:keydown={(event) => {
@@ -49,6 +52,7 @@
 	/>
 	{#if $gifPreloadEnabled}
 		<img
+			src={transparentPixel}
 			data-src={animatedSource}
 			loading="lazy"
 			alt="animated source preload"

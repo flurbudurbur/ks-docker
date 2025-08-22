@@ -1,11 +1,11 @@
 <script lang="ts">
-    import {createEventDispatcher} from 'svelte';
-    import TagButton from '../button-tag/TagButton.svelte';
-    import DetailedTag from '../tag-detailed/DetailedTag.svelte';
-    import ShareButton from '../button-share/ShareButton.svelte';
-    import {supportsUrlSharing} from '$lib/logic/feature-support';
+	import { createEventDispatcher } from 'svelte';
+	import TagButton from '../button-tag/TagButton.svelte';
+	import DetailedTag from '../tag-detailed/DetailedTag.svelte';
+	import ShareButton from '../button-share/ShareButton.svelte';
+	import { supportsUrlSharing } from '$lib/logic/feature-support';
 
-    const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher();
 
 	export let tags: Array<kurosearch.ModifiedTag | kurosearch.Supertag>;
 </script>

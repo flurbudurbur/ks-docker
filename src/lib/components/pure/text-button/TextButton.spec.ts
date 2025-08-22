@@ -16,10 +16,10 @@ describe('TextButton', () => {
 
 	it('is clickable', async () => {
 		const click = vi.fn();
-		const { component } = render(TextButton, { title: TITLE });
-		component.$on(`click`, click);
+		render(TextButton, { title: TITLE });
 
 		const button: HTMLButtonElement = screen.getByRole('button');
+		button.addEventListener('click', click);
 		await fireEvent.click(button);
 		expect(click).toHaveBeenCalledOnce();
 	});

@@ -4,8 +4,8 @@ services:
     restart: unless-stopped
     image: 'ghcr.io/flurbudurbur/kurosearch:latest'
     ports:
-      - 8080:8080
-      - 8443:8443
+      - "8080:8080"
+      - "8443:8443"
     volumes:
       - caddy_data:/data
       - caddy_config:/config

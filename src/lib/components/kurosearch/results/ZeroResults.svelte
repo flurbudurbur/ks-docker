@@ -1,15 +1,15 @@
 <script lang="ts">
-    import {base} from '$app/paths';
-    import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
-    import sort from '$lib/store/sort-store';
-    import filter from '$lib/store/filter-store';
-    import {createEventDispatcher} from 'svelte';
-    import activeTagsStore from '$lib/store/active-tags-store';
-    import activeSupertagsStore from '$lib/store/active-supertags-store';
-    import blockedContent from '$lib/store/blocked-content-store';
-    import {BLOCKING_GROUP_TAGS} from '$lib/logic/blocking-group-data';
+	import { base } from '$app/paths';
+	import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
+	import sort from '$lib/store/sort-store';
+	import filter from '$lib/store/filter-store';
+	import { createEventDispatcher } from 'svelte';
+	import activeTagsStore from '$lib/store/active-tags-store';
+	import activeSupertagsStore from '$lib/store/active-supertags-store';
+	import blockedContent from '$lib/store/blocked-content-store';
+	import { BLOCKING_GROUP_TAGS } from '$lib/logic/blocking-group-data';
 
-    const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher();
 
 	$: conflictingTags = validateTags($activeTagsStore, $blockedContent, $activeSupertagsStore);
 

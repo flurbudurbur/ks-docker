@@ -1,14 +1,14 @@
 <script lang="ts">
-    import FullscreenProgress from './FullscreenProgress.svelte';
-    import autoplayFullscreenDelay from '$lib/store/autoplay-fullscreen-delay-store';
-    import LoadingAnimation from '$lib/components/pure/loading-animation/LoadingAnimation.svelte';
-    import {getGifSources} from '$lib/logic/media-utils';
-    import autoplayFullscreenEnabled from '$lib/store/autoplay-fullscreen-enabled-store';
-    import highResolutionEnabled from '$lib/store/high-resolution-enabled';
-    import {createEventDispatcher, onDestroy, onMount} from 'svelte';
-    import {browser} from '$app/environment';
+	import FullscreenProgress from './FullscreenProgress.svelte';
+	import autoplayFullscreenDelay from '$lib/store/autoplay-fullscreen-delay-store';
+	import LoadingAnimation from '$lib/components/pure/loading-animation/LoadingAnimation.svelte';
+	import { getGifSources } from '$lib/logic/media-utils';
+	import autoplayFullscreenEnabled from '$lib/store/autoplay-fullscreen-enabled-store';
+	import highResolutionEnabled from '$lib/store/high-resolution-enabled';
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+	import { browser } from '$app/environment';
 
-    const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher();
 
 	export let post: kurosearch.Post;
 	export let postId = -1;

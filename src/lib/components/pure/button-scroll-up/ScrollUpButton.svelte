@@ -1,6 +1,6 @@
 <script lang="ts">
-    import {browser} from '$app/environment';
-    import {onDestroy, onMount} from 'svelte';
+	import { browser } from '$app/environment';
+	import { onDestroy, onMount } from 'svelte';
 
 	let previousY = 0;
 	let visible = false;
@@ -27,7 +27,7 @@
 	on:click={() => window.scrollTo(0, 0)}
 	class:visible
 >
-	<i class="codicon codicon-arrow-up"></i>
+	<i class="codicon codicon-arrow-up" />
 </button>
 
 <style>

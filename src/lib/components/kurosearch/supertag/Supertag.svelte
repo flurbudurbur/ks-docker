@@ -1,11 +1,11 @@
 <script lang="ts">
-    import {addHistory} from '$lib/logic/use/onpopstate';
-    import ConfirmDialog from '../dialog-confirm/ConfirmDialog.svelte';
-    import EditSupertagDialog from '../dialog-edit-supertag/EditSupertagDialog.svelte';
-    import ModifiedTag from '../tag-modified/ModifiedTag.svelte';
-    import {createEventDispatcher} from 'svelte';
+	import { addHistory } from '$lib/logic/use/onpopstate';
+	import ConfirmDialog from '../dialog-confirm/ConfirmDialog.svelte';
+	import EditSupertagDialog from '../dialog-edit-supertag/EditSupertagDialog.svelte';
+	import ModifiedTag from '../tag-modified/ModifiedTag.svelte';
+	import { createEventDispatcher } from 'svelte';
 
-    const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher();
 
 	export let supertag: kurosearch.Supertag;
 

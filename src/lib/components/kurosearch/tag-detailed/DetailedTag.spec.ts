@@ -36,13 +36,13 @@ describe('DetailedTag', () => {
 	it('is clickable', async () => {
 		const click = vi.fn();
 		const contextMenu = vi.fn();
-		const { component } = render(DetailedTag, {
+		render(DetailedTag, {
 			tag: { name: 'my_tag', count: 10, modifier: '+', type: 'ambiguous' }
 		});
-		component.$on(`click`, click);
-		component.$on(`contextmenu`, contextMenu);
 
 		const tag: HTMLButtonElement = screen.getByRole('button');
+		tag.addEventListener('click', click);
+		tag.addEventListener('contextmenu', contextMenu);
 		await fireEvent.click(tag);
 		expect(click).toHaveBeenCalled();
 		await fireEvent.contextMenu(tag);

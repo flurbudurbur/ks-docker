@@ -20,24 +20,29 @@ export const saveFile = async (content: string) => {
 	}
 };
 
-export const loadFile = async (): Promise<string> =>
-	new Promise(async (resolve, reject) => {
-		try {
-			if ('showOpenFilePicker' in window) {
-				// @ts-expect-error - too new i guess
-				const [handle] = await showOpenFilePicker();
-				const file = await handle.getFile();
-				resolve(await file.text());
-			} else {
+export const loadFile = async (): Promise<string> => {
+	try {
+		if ('showOpenFilePicker' in window) {
+			// @ts-expect-error - too new i guess
+			const [handle] = await showOpenFilePicker();
+			const file = await handle.getFile();
+			return await file.text();
+		} else {
+			return await new Promise<string>((resolve, reject) => {
 				const fileInput: HTMLInputElement = document.createElement('input');
 				const readFile = (e: any) => {
 					const file = e.target.files[0];
 					if (!file) {
+						reject(new Error('No file selected'));
 						return;
 					}
 					const reader = new FileReader();
 					reader.onload = (e: any) => {
 						resolve(e.target.result);
+						document.body.removeChild(fileInput);
+					};
+					reader.onerror = () => {
+						reject(new Error('Failed to read file'));
 						document.body.removeChild(fileInput);
 					};
 					reader.readAsText(file);
@@ -47,8 +52,9 @@ export const loadFile = async (): Promise<string> =>
 				fileInput.onchange = readFile;
 				document.body.appendChild(fileInput);
 				fileInput.click();
-			}
-		} catch (error) {
-			reject(error);
+			});
 		}
-	});
+	} catch (error) {
+		return Promise.reject(error);
+	}
+};

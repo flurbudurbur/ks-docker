@@ -1,9 +1,9 @@
 <script lang="ts">
-    import {formatCount} from '$lib/logic/format-count';
-    import results from '$lib/store/results-store';
-    import SortFilterConfig from '../sort-filter-config/SortFilterConfig.svelte';
+	import { formatCount } from '$lib/logic/format-count';
+	import results from '$lib/store/results-store';
+	import SortFilterConfig from '../sort-filter-config/SortFilterConfig.svelte';
 
-    export let loading: boolean;
+	export let loading: boolean;
 </script>
 
 <div>

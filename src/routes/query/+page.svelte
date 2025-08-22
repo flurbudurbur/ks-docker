@@ -1,22 +1,22 @@
 <script lang="ts">
-    import KurosearchTitle from '$lib/components/kurosearch/kurosearch-title/KurosearchTitle.svelte';
-    import Searchbar from '$lib/components/kurosearch/searchbar/Searchbar.svelte';
-    import ActiveTagList from '$lib/components/kurosearch/tag-list/ActiveTagList.svelte';
-    import {getTagSuggestions} from '$lib/logic/api-client/ApiClient';
-    import results from '$lib/store/results-store';
-    import activeTags from '$lib/store/active-tags-store';
-    import {getTagDetails} from '$lib/logic/api-client/tags/tags';
-    import sort from '$lib/store/sort-store';
-    import filter from '$lib/store/filter-store';
-    import blockedContent from '$lib/store/blocked-content-store';
-    import {nextModifier} from '$lib/logic/modifier-utils';
-    import supertags from '$lib/store/supertags-store';
-    import activeSupertags from '$lib/store/active-supertags-store';
-    import {SearchBuilder} from '$lib/logic/search-builder';
-    import apiKey from '$lib/store/api-key-store';
-    import userId from '$lib/store/user-id-store';
+	import KurosearchTitle from '$lib/components/kurosearch/kurosearch-title/KurosearchTitle.svelte';
+	import Searchbar from '$lib/components/kurosearch/searchbar/Searchbar.svelte';
+	import ActiveTagList from '$lib/components/kurosearch/tag-list/ActiveTagList.svelte';
+	import { getTagSuggestions } from '$lib/logic/api-client/ApiClient';
+	import results from '$lib/store/results-store';
+	import activeTags from '$lib/store/active-tags-store';
+	import { getTagDetails } from '$lib/logic/api-client/tags/tags';
+	import sort from '$lib/store/sort-store';
+	import filter from '$lib/store/filter-store';
+	import blockedContent from '$lib/store/blocked-content-store';
+	import { nextModifier } from '$lib/logic/modifier-utils';
+	import supertags from '$lib/store/supertags-store';
+	import activeSupertags from '$lib/store/active-supertags-store';
+	import { SearchBuilder } from '$lib/logic/search-builder';
+	import apiKey from '$lib/store/api-key-store';
+	import userId from '$lib/store/user-id-store';
 
-    const fetchSuggestions = async (term: string) => {
+	const fetchSuggestions = async (term: string) => {
 		const matchingTags = await getTagSuggestions(term);
 		const matchingSupertags = $supertags.items
 			.filter(({ name }) => name.toLowerCase().includes(term.toLowerCase()))

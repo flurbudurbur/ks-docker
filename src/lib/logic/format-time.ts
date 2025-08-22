@@ -1,8 +1,4 @@
 export const formatVideoTime = (seconds: number) => {
-	if (typeof seconds !== 'number') {
-		throw new TypeError(`Attempted to call formatVideoTime with invalid value: ${seconds}`);
-	}
-
 	const floored = Math.floor(seconds);
 	const s = floored % 60;
 	const m = Math.floor(floored / 60);

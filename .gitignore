@@ -1,14 +1,14 @@
-/.idea
-/.vscode
 /build
 /.svelte-kit
 /package
 /node_modules
 /test-results
+.*
 
-.DS_Store
-.env
-.env.*
 vite.config.*.timestamp-*
 
+!.github
 !.env.example
+!*ignore
+!*rc
+!.husky

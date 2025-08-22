@@ -1,11 +1,11 @@
 <script lang="ts">
-    import {getVideoSources} from '$lib/logic/media-utils';
-    import {videoObserver} from '$lib/logic/video-observer';
-    import {onDestroy, onMount} from 'svelte';
-    import FullscreenProgress from './FullscreenProgress.svelte';
-    import {formatVideoTime} from '$lib/logic/format-time';
+	import { getVideoSources } from '$lib/logic/media-utils';
+	import { videoObserver } from '$lib/logic/video-observer';
+	import { onDestroy, onMount } from 'svelte';
+	import FullscreenProgress from './FullscreenProgress.svelte';
+	import { formatVideoTime } from '$lib/logic/format-time';
 
-    export let post: kurosearch.Post;
+	export let post: kurosearch.Post;
 
 	let video: HTMLVideoElement | undefined;
 

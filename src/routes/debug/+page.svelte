@@ -1,16 +1,16 @@
 <script>
-    import {browser} from '$app/environment';
-    import FeatureSupportInfo from '$lib/components/kurosearch/feature-support-info/FeatureSupportInfo.svelte';
-    import Heading1 from '$lib/components/pure/heading/Heading1.svelte';
-    import Heading3 from '$lib/components/pure/heading/Heading3.svelte';
-    import {
-        supportsAspectRatio,
-        supportsFullscreen,
-        supportsGap,
-        supportsLocalStorage,
-        supportsObjectFit,
-        supportsSessionStorage
-    } from '$lib/logic/feature-support';
+	import { browser } from '$app/environment';
+	import FeatureSupportInfo from '$lib/components/kurosearch/feature-support-info/FeatureSupportInfo.svelte';
+	import Heading1 from '$lib/components/pure/heading/Heading1.svelte';
+	import Heading3 from '$lib/components/pure/heading/Heading3.svelte';
+	import {
+		supportsAspectRatio,
+		supportsFullscreen,
+		supportsGap,
+		supportsLocalStorage,
+		supportsObjectFit,
+		supportsSessionStorage
+	} from '$lib/logic/feature-support';
 </script>
 
 <svelte:head>

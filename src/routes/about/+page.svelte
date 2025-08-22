@@ -1,13 +1,13 @@
 <script lang="ts">
-    import {version} from '$app/environment';
-    import {base} from '$app/paths';
-    import Heading1 from '$lib/components/pure/heading/Heading1.svelte';
-    import Heading3 from '$lib/components/pure/heading/Heading3.svelte';
-    import IconLink from '$lib/components/pure/icon-link/IconLink.svelte';
-    import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
-    import {onMount} from 'svelte';
+	import { version } from '$app/environment';
+	import { base } from '$app/paths';
+	import Heading1 from '$lib/components/pure/heading/Heading1.svelte';
+	import Heading3 from '$lib/components/pure/heading/Heading3.svelte';
+	import IconLink from '$lib/components/pure/icon-link/IconLink.svelte';
+	import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
+	import { onMount } from 'svelte';
 
-    let message = 'Update';
+	let message = 'Update';
 
 	let latestCommitPromise: Promise<{ sha: string }>;
 

@@ -1,14 +1,14 @@
 <script lang="ts">
-    import Comments from '../post-comment/Comments.svelte';
-    import Rating from '../rating/Rating.svelte';
-    import RelativeTime from '../relative-time/RelativeTime.svelte';
-    import Score from '../score/Score.svelte';
-    import ExternalSource from '../source-external/ExternalSource.svelte';
-    import KurosearchSource from '../source-kurosearch/KurosearchSource.svelte';
-    import Rule34Source from '../source-rule34/Rule34Source.svelte';
-    import PostDetailsTagList from '../tag-list/PostDetailsTagList.svelte';
+	import Comments from '../post-comment/Comments.svelte';
+	import Rating from '../rating/Rating.svelte';
+	import RelativeTime from '../relative-time/RelativeTime.svelte';
+	import Score from '../score/Score.svelte';
+	import ExternalSource from '../source-external/ExternalSource.svelte';
+	import KurosearchSource from '../source-kurosearch/KurosearchSource.svelte';
+	import Rule34Source from '../source-rule34/Rule34Source.svelte';
+	import PostDetailsTagList from '../tag-list/PostDetailsTagList.svelte';
 
-    export let post: kurosearch.Post;
+	export let post: kurosearch.Post;
 
 	$: file_url = post.file_url;
 	$: sample_url = post.sample_url;

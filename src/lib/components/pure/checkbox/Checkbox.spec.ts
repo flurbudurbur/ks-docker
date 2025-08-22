@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/svelte';
 import Checkbox from './Checkbox.svelte';
 
@@ -12,9 +12,7 @@ describe('Checkbox', () => {
 	});
 
 	it('is clickable', async () => {
-		const change = vi.fn();
-		const { component } = render(Checkbox, { checked: true, id: 'test-checkbox' });
-		component.$on(`change`, change);
+		render(Checkbox, { checked: true, id: 'test-checkbox' });
 
 		const checkbox: HTMLInputElement = screen.getByRole('checkbox');
 		await fireEvent.click(checkbox);

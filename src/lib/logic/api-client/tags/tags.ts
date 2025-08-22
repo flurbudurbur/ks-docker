@@ -54,7 +54,7 @@ export const getTagDetails = async (
 
 	const tag = parseTag(tagXml.attributes);
 	if (tag) {
-		addIndexedTag(tag);
+		await addIndexedTag(tag);
 	}
 	return tag;
 };
