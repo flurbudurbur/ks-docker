@@ -13,7 +13,6 @@
 	let loading = false;
 	const transparentPixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
 
-
 	$: sources = getGifSources(post.file_url, post.sample_url, post.preview_url);
 	$: animatedSource = sources.animated;
 	$: staticSource = sources.static;

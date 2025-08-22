@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { calculateAspectRatio, calculateAspectRatioCss } from '$lib/components/kurosearch/post/ratio';
+	import {
+		calculateAspectRatio,
+		calculateAspectRatioCss
+	} from '$lib/components/kurosearch/post/ratio';
 	import highResolutionEnabled from '$lib/store/high-resolution-enabled';
 	import { createEventDispatcher } from 'svelte';
 	import ObservedImage from './ObservedImage.svelte';
