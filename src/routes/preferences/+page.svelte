@@ -44,7 +44,7 @@
 	import TextInput from '$lib/components/pure/input-text/TextInput.svelte';
 	import pageNavigationEnabled from '$lib/store/page-navigation-enabled-store';
 
-let resetDialog: HTMLDialogElement | undefined = $state();
+	let resetDialog: HTMLDialogElement | undefined = $state();
 
 	const reset = () => {
 		theme.reset();
@@ -198,7 +198,7 @@ let resetDialog: HTMLDialogElement | undefined = $state();
 	>
 		<TextButton
 			title="Reset preferences"
-  	onclick={() => {
+			onclick={() => {
 				resetDialog?.showModal();
 				addHistory('dialog');
 			}}

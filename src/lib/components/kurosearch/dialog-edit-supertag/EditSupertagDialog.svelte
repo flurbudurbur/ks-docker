@@ -27,11 +27,7 @@
 		<span>Name</span>
 		<TextInput bind:value={newSupertag.name} placeholder="Name" autocomplete="off" />
 		<span>Description</span>
-		<TextInput
-			bind:value={newSupertag.description}
-			placeholder="Description"
-			autocomplete="off"
-		/>
+		<TextInput bind:value={newSupertag.description} placeholder="Description" autocomplete="off" />
 
 		<span>Add or remove tags</span>
 		<Searchbar
@@ -60,10 +56,10 @@
 		</ul>
 		<TextButton
 			title="Save changes"
-				onclick={() => {
-					emitEdit();
-					dialog?.close();
-				}}
+			onclick={() => {
+				emitEdit();
+				dialog?.close();
+			}}
 		>
 			Save
 		</TextButton>

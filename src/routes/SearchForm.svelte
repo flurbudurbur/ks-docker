@@ -25,7 +25,7 @@
 
 	let { loading, onsubmit }: Props = $props();
 
-let createSupertagDialog: HTMLDialogElement | undefined = $state(undefined);
+	let createSupertagDialog: HTMLDialogElement | undefined = $state(undefined);
 
 	const fetchSuggestions = async (term: string) => {
 		const matchingTags = await getTagSuggestions(term);

@@ -9,7 +9,7 @@
 
 	let message = $state('Update');
 
-let latestCommitPromise: Promise<{ sha: string }> | undefined = $state(undefined);
+	let latestCommitPromise: Promise<{ sha: string }> | undefined = $state(undefined);
 
 	const forceUpdate = async () => {
 		message = 'Updating...';

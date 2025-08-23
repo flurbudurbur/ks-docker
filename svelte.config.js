@@ -3,8 +3,6 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import pkg from './package.json' with { type: 'json' };
 const pkgVersion = pkg.version;
 
-
-
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	preprocess: [vitePreprocess()],
@@ -37,12 +35,7 @@ const config = {
 					'https://api.github.com',
 					'https://*.ingest.us.sentry.io'
 				],
-				'img-src': [
-					'self',
-					'data:',
-					'https://*.rule34.xxx',
-					'https://*.googleusercontent.com'
-				],
+				'img-src': ['self', 'data:', 'https://*.rule34.xxx', 'https://*.googleusercontent.com'],
 				'media-src': ['self', 'https://*.rule34.xxx']
 			}
 		}
