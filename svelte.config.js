@@ -1,6 +1,9 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import * as child_process from 'node:child_process';
+import pkg from './package.json' with { type: 'json' };
+const pkgVersion = pkg.version;
+
+
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -12,7 +15,7 @@ const config = {
 		},
 		appDir: 'app',
 		version: {
-			name: child_process.execSync('git rev-parse HEAD').toString().trim().substring(0, 7)
+			name: pkgVersion
 		},
 		csp: {
 			mode: 'auto',
@@ -23,7 +26,6 @@ const config = {
 				'script-src': [
 					'self',
 					'https://apis.google.com',
-					'https://www.googletagmanager.com',
 					'sha256-OkhWme9R0KBn9/HhayIdrq4L0tupV+XoB9Z6NlRtT8g=',
 					'sha256-QQcRtQ7ld24zg8Aw+N4rSSUV74xluhui+0R1h02Axi4='
 				],
@@ -32,20 +34,16 @@ const config = {
 					'https://apis.google.com',
 					'https://*.rule34.xxx',
 					'https://*.googleapis.com',
-					'https://*.google-analytics.com',
 					'https://api.github.com',
-					'https://rule34-api.netlify.app',
 					'https://*.ingest.us.sentry.io'
 				],
 				'img-src': [
 					'self',
 					'data:',
 					'https://*.rule34.xxx',
-					'https://*.googleusercontent.com',
-					'https://www.googletagmanager.com'
+					'https://*.googleusercontent.com'
 				],
-				'media-src': ['self', 'https://*.rule34.xxx'],
-				'frame-src': ['https://r34-react.firebaseapp.com']
+				'media-src': ['self', 'https://*.rule34.xxx']
 			}
 		}
 	}

@@ -16,14 +16,14 @@
 	} from '../sort-filter-config/sortfilter';
 
 	interface Props {
-		dialog: HTMLDialogElement;
+		dialog: HTMLDialogElement | undefined;
 		onclose: () => void;
 	}
 
 	let { dialog = $bindable(), onclose }: Props = $props();
 
 	const oncloseinternal = () => {
-		dialog.close();
+		dialog?.close();
 		onclose();
 	};
 

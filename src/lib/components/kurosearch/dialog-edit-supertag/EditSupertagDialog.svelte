@@ -8,7 +8,7 @@
 	import ModifiedTag from '../tag-modified/ModifiedTag.svelte';
 
 	interface Props {
-		dialog: HTMLDialogElement;
+		dialog: HTMLDialogElement | undefined;
 		supertag: kurosearch.Supertag;
 		onedit: (oldName: string, newSupertag: kurosearch.Supertag) => void;
 		onclose?: () => void;
@@ -25,12 +25,12 @@
 	<div>
 		<h3>Edit Supertag</h3>
 		<span>Name</span>
-		<TextInput bind:value={newSupertag.name} placeholder="Name" autocomplete="false" />
+		<TextInput bind:value={newSupertag.name} placeholder="Name" autocomplete="off" />
 		<span>Description</span>
 		<TextInput
 			bind:value={newSupertag.description}
 			placeholder="Description"
-			autocomplete="false"
+			autocomplete="off"
 		/>
 
 		<span>Add or remove tags</span>
@@ -60,14 +60,14 @@
 		</ul>
 		<TextButton
 			title="Save changes"
-			onclick={() => {
-				emitEdit();
-				dialog.close();
-			}}
+				onclick={() => {
+					emitEdit();
+					dialog?.close();
+				}}
 		>
 			Save
 		</TextButton>
-		<TextButton type="secondary" title="Cancel" onclick={() => dialog.close()}>Cancel</TextButton>
+		<TextButton type="secondary" title="Cancel" onclick={() => dialog?.close()}>Cancel</TextButton>
 	</div>
 </Dialog>
 

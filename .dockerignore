@@ -1,7 +1,6 @@
 /node_modules
 /build
 /package
-/.github/brand
 /test-results
 *.md
 vite.config.*.timestamp-*

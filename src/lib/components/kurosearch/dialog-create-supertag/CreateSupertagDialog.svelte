@@ -4,7 +4,7 @@
 	import DetailedTag from '$lib/components/kurosearch/tag-detailed/DetailedTag.svelte';
 
 	interface Props {
-		dialog: HTMLDialogElement;
+		dialog: HTMLDialogElement | undefined;
 		name?: string;
 		description?: string;
 		tags: kurosearch.ModifiedTag[];
@@ -13,7 +13,7 @@
 
 	let { dialog = $bindable(), name = '', description = '', tags, onsubmit }: Props = $props();
 
-	const close = () => dialog.close();
+	const close = () => dialog?.close();
 
 	let valid = $derived(typeof name === 'string' && name !== '' && tags.length > 1);
 </script>

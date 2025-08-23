@@ -4,7 +4,7 @@
 	import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
 
 	interface Props {
-		dialog: HTMLDialogElement;
+		dialog: HTMLDialogElement | undefined;
 		title: string;
 		warning: string;
 		labelConfirm: string;
@@ -25,7 +25,7 @@
 
 	const confirmAndClose = () => {
 		onconfirm();
-		dialog.close();
+		dialog?.close();
 	};
 </script>
 
@@ -36,7 +36,7 @@
 		<TextButton title="Delete supertag" onclick={confirmAndClose}>
 			{labelConfirm}
 		</TextButton>
-		<TextButton type="secondary" title="Cancel" onclick={() => dialog.close()}>
+		<TextButton type="secondary" title="Cancel" onclick={() => dialog?.close()}>
 			{labelCancel}
 		</TextButton>
 	</div>

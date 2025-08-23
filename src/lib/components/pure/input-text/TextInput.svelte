@@ -2,7 +2,7 @@
 	interface Props {
 		placeholder?: string;
 		value?: string;
-		autocomplete?: string;
+		autocomplete?: HTMLInputElement['autocomplete'];
 	}
 
 	let { placeholder = '', value = $bindable(), autocomplete = 'off' }: Props = $props();

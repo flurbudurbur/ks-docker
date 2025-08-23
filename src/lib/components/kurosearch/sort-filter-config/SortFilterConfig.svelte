@@ -14,7 +14,7 @@
 	const serializeSortFilter = (sort: SortStoreData, filter: FilterStoreData) =>
 		JSON.stringify(Object.assign({}, sort, filter));
 
-	let dialog: HTMLDialogElement = $state(undefined);
+let dialog: HTMLDialogElement | undefined = $state(undefined);
 	let sortFilterBefore = '';
 
 	let filterLabel = $derived(
@@ -27,7 +27,7 @@
 	type="button"
 	onclick={() => {
 		sortFilterBefore = serializeSortFilter($sort, $filter);
-		dialog.showModal();
+		dialog?.showModal();
 		addHistory('dialog');
 	}}
 >

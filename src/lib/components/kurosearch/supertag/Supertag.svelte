@@ -12,8 +12,8 @@
 
 	let { supertag, onremove, onedit }: Props = $props();
 
-	let deleteDialog: HTMLDialogElement = $state(undefined);
-	let editDialog: HTMLDialogElement = $state(undefined);
+	let deleteDialog: HTMLDialogElement | undefined = $state(undefined);
+	let editDialog: HTMLDialogElement | undefined = $state(undefined);
 </script>
 
 <li>
@@ -23,7 +23,7 @@
 		type="button"
 		class="codicon codicon-edit"
 		onclick={() => {
-			editDialog.showModal();
+			editDialog?.showModal();
 			addHistory('dialog');
 		}}
 		aria-label="Edit Supertag"
@@ -33,7 +33,7 @@
 		type="button"
 		class="codicon codicon-close"
 		onclick={() => {
-			deleteDialog.showModal();
+			deleteDialog?.showModal();
 			addHistory('dialog');
 		}}
 		aria-label="Delete Supertag"

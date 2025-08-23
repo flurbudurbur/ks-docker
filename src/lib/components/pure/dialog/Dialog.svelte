@@ -3,7 +3,7 @@
 	import { onMount, type Snippet } from 'svelte';
 
 	interface Props {
-		dialog: HTMLDialogElement;
+		dialog: HTMLDialogElement | undefined;
 		onclose?: () => void;
 		children: Snippet;
 	}
@@ -11,13 +11,13 @@
 	let { dialog = $bindable(), onclose, children }: Props = $props();
 
 	const onPopState = () => {
-		dialog.close();
+		dialog?.close();
 	};
 
 	onMount(() => {
 		// Close on backdrop click
-		dialog.addEventListener('click', (event) => {
-			const rect = dialog.getBoundingClientRect();
+		dialog?.addEventListener('click', (event) => {
+			const rect = dialog!.getBoundingClientRect();
 			const isInDialog =
 				rect.top <= event.clientY &&
 				event.clientY <= rect.top + rect.height &&

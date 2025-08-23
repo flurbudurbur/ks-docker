@@ -29,49 +29,39 @@
 	}
 }
 
-{$KUROSEARCH_HOSTNAME}
+{env.KUROSEARCH_HOST} {
+	tls {$KUROSEARCH_TLS}
 
-tls {$KUROSEARCH_TLS}
+    reverse_proxy localhost:8080
 
-encode zstd gzip
+	encode zstd gzip
 
-@rule34 {
-    host api.rule34.com
+	@rule34 {
+		host api.rule34.com
+	}
+
+	rewrite @rule34 {path}&api_key={env.RULE34_API_KEY}&user_id={env.RULE34_API_USER}
+
+	header {
+		# CSP (https://content-security-policy.com)
+		Content-Security-Policy "upgrade-insecure-requests; default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; form-action 'self' https:; font-src 'self'; frame-ancestors 'self'; base-uri 'self'; connect-src 'self'; img-src * data:; frame-src https:;"
+
+		# Disable browser features
+		Permissions-Policy "accelerometer=(),camera=(),geolocation=(),gyroscope=(),magnetometer=(),microphone=(),payment=(),usb=()"
+
+		# Only allow same-origin requests
+		Referrer-Policy "same-origin"
+
+		# Prevent MIME type sniffing from the declared Content-Type
+		X-Content-Type-Options "nosniff"
+
+		# Comment header to allow indexing by search engines
+		X-Robots-Tag "noindex, nofollow, noarchive, nositelinkssearchbox, nosnippet, notranslate, noimageindex"
+
+		# enable HSTS
+		# WARNING: Once this value is set, the site must continue to support HTTPS until the expiry time is reached.
+
+		# Remove "Server" header
+		-Server
+	}
 }
-
-rewrite @rule34 {path}&api_key={env.RULE34_API_KEY}&user_id={env.RULE34_API_USER}
-
-header {
-	# CSP (https://content-security-policy.com)
-	Content-Security-Policy "upgrade-insecure-requests; default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; form-action 'self' https:; font-src 'self'; frame-ancestors 'self'; base-uri 'self'; connect-src 'self'; img-src * data:; frame-src https:;"
-
-	# Disable browser features
-	Permissions-Policy "accelerometer=(),camera=(),geolocation=(),gyroscope=(),magnetometer=(),microphone=(),payment=(),usb=()"
-
-	# Only allow same-origin requests
-	Referrer-Policy "same-origin"
-
-	# Prevent MIME type sniffing from the declared Content-Type
-	X-Content-Type-Options "nosniff"
-
-	# Comment header to allow indexing by search engines
-	X-Robots-Tag "noindex, nofollow, noarchive, nositelinkssearchbox, nosnippet, notranslate, noimageindex"
-
-	# enable HSTS
-	# WARNING: Once this value is set, the site must continue to support HTTPS until the expiry time is reached.
-
-	# Strict-Transport-Security max-age=15768000;
-
-	# Remove "Server" header
-	-Server
-}
-
-
-route {
-	# Cache policy
-	header Cache-Control "no-cache"
-	header @static Cache-Control "public, max-age=30, stale-while-revalidate=60"
-}
-
-# KuroSearch
-reverse_proxy localhost:8080

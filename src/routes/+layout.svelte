@@ -64,7 +64,7 @@
 	</nav>
 </header>
 
-<main class:extra-wide={$wideLayoutEnabled && page.url.pathname === '/'}>
+<main class:extra-wide={$wideLayoutEnabled && $page.url.pathname === '/'}>
 	{@render children?.()}
 </main>
 

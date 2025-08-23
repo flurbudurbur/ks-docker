@@ -18,7 +18,7 @@
 
 	let searchTerm = $state('');
 	let previousSearchTerm = $state('');
-	let searchPromise: Promise<kurosearch.Suggestion[]> = $state(undefined);
+	let searchPromise: Promise<kurosearch.Suggestion[]> | undefined = $state(undefined);
 	let selectedIndex = $state(0);
 	let modifier: kurosearch.TagModifier = $state('+');
 	let focusInside = $state(false);

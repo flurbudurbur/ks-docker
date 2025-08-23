@@ -8,10 +8,10 @@
 
 	interface Props {
 		post: kurosearch.Post;
-		onclick: () => void;
+		onclick?: () => void;
 	}
 
-	let { post, onclick }: Props = $props();
+	let { post, onclick = () => {} }: Props = $props();
 
 	const onclickinternal = () => {
 		open = !open;

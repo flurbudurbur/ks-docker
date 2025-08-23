@@ -16,8 +16,7 @@ ENV CI=true \
 
 # prepare minimal environment
 # pin pnpm to same version as package.json
-RUN apk add --no-cache git \
-  && corepack enable \
+RUN corepack enable \
   && corepack prepare pnpm@${PNPM_VERSION} --activate
 
 # Use cache for speed & fetch config
@@ -64,8 +63,7 @@ ENV NODE_ENV=production \
     PNPM_HOME=/root/.local/share/pnpm \
     PATH="/root/.local/share/pnpm:$PATH"
 
-RUN apk add --no-cache git \
-  && corepack enable \
+RUN corepack enable \
   && corepack prepare pnpm@${PNPM_VERSION} --activate
 
 COPY --from=playwright-tests /app ./
@@ -75,11 +73,9 @@ RUN pnpm run build
 FROM caddy:2.10.0-alpine AS server
 LABEL author=flurbudurbur \
     org.opencontainers.image.title="kurosearch" \
-    org.opencontainers.image.source="https://github.com/kurozenzen/kurosearch" \
-    org.opencontainers.image.description="Static site served by Caddy" \
+    org.opencontainers.image.source="https://github.com/flurbudurbur/kurosearch" \
+    org.opencontainers.image.description="A self-hosted, self-contaied version of kurosearch.com" \
     org.opencontainers.image.licenses="MIT"
-
-USER caddy
 
 # expose ports for http(s) traffic
 EXPOSE 80 443

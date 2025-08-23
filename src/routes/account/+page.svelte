@@ -57,9 +57,9 @@
 		}
 	};
 
-	let cloudPullDialog: HTMLDialogElement = $state();
-	let cloudPushDialog: HTMLDialogElement = $state();
-	let resetDialog: HTMLDialogElement = $state();
+let cloudPullDialog: HTMLDialogElement | undefined = $state();
+let cloudPushDialog: HTMLDialogElement | undefined = $state();
+let resetDialog: HTMLDialogElement | undefined = $state();
 </script>
 
 <svelte:head>
@@ -115,20 +115,20 @@
 			<TextButton
 				type="secondary"
 				title="Apply your settings from the cloud."
-				onclick={() => {
-					cloudPullDialog.showModal();
-					addHistory('dialog');
-				}}
+					onclick={() => {
+						cloudPullDialog?.showModal();
+						addHistory('dialog');
+					}}
 			>
 				<span class="codicon codicon-cloud">Load Config</span>
 			</TextButton>
 			<TextButton
 				type="secondary"
 				title="Store current settings in the cloud."
-				onclick={() => {
-					cloudPushDialog.showModal();
-					addHistory('dialog');
-				}}
+					onclick={() => {
+						cloudPushDialog?.showModal();
+						addHistory('dialog');
+					}}
 			>
 				<span class="codicon codicon-cloud">Save config</span>
 			</TextButton>
@@ -143,8 +143,8 @@
 	<Heading3>Delete Data</Heading3>
 	<TextButton
 		title="Delete all your data."
-		onclick={() => {
-			resetDialog.showModal();
+ 	onclick={() => {
+			resetDialog?.showModal();
 			addHistory('dialog');
 		}}
 	>
