@@ -1,4 +1,3 @@
-import { addIndexedTag, getIndexedTag } from '$lib/indexeddb/idb';
 import { replaceHtmlEntities } from '$lib/logic/replace-html-entities';
 import { fetchAbortPrevious } from '../fetchAbortPrevious';
 import { API_URL, R34_API_URL } from '../url';
@@ -33,9 +32,17 @@ export const getTagDetails = async (
 	apiKey: string,
 	userId: string
 ): Promise<kurosearch.Tag | undefined> => {
-	const indexedTag = await getIndexedTag(name);
-	if (indexedTag) {
-		return indexedTag;
+	// Try IndexedDB cache only in a browser with IndexedDB
+	if (typeof window !== 'undefined' && 'indexedDB' in window) {
+		try {
+			const { getIndexedTag } = await import('$lib/indexeddb/idb');
+			const indexedTag = await getIndexedTag(name);
+			if (indexedTag) {
+				return indexedTag;
+			}
+		} catch {
+			// ignore cache if idb module fails to load
+		}
 	}
 
 	let url: URL;
@@ -53,8 +60,14 @@ export const getTagDetails = async (
 	const tagXml = xml.getElementsByTagName('tag')[0];
 
 	const tag = parseTag(tagXml.attributes);
-	if (tag) {
-		await addIndexedTag(tag);
+	if (tag && typeof window !== 'undefined' && 'indexedDB' in window) {
+		// Best-effort caching; don't block on failures
+		try {
+			const { addIndexedTag } = await import('$lib/indexeddb/idb');
+			await addIndexedTag(tag);
+		} catch {
+			// ignore caching errors
+		}
 	}
 	return tag;
 };
