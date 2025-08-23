@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { isAnimated } from '$lib/logic/media-utils';
+
 	interface Props {
 		post: kurosearch.Post;
 		offset: string;

@@ -3,7 +3,6 @@
 	import NumberInput from '../dialog-sort-filter/NumberInput.svelte';
 	import results from '$lib/store/results-store';
 	import { PAGE_SIZE } from '$lib/logic/api-client/ApiClient';
-	import PageButton, { pageLabel } from './PageButton.svelte';
 
 	interface Props {
 		onpagechange: (newPage: number) => void;

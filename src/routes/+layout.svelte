@@ -19,6 +19,7 @@
 	import './theme.css';
 
 	import '$lib/logic/firebase/firebase';
+
 	interface Props {
 		children?: import('svelte').Snippet;
 	}

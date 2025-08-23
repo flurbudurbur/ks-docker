@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
 	import PreviewedImage from '$lib/components/pure/smart-image/PreviewedImage.svelte';
 	import { getPostId } from '$lib/logic/id-utils';
 	import { getVideoSources, isLoop } from '$lib/logic/media-utils';

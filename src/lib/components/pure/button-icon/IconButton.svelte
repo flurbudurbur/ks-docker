@@ -31,36 +31,36 @@
 </button>
 
 <style lang="scss">
-  button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--line-height);
-    height: var(--line-height);
-    border-radius: var(--border-radius-full);
-    border: none;
-    color: var(--text);
-    background-color: transparent;
-    font-size: var(--text-size-large);
-    vertical-align: middle;
+	button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--line-height);
+		height: var(--line-height);
+		border-radius: var(--border-radius-full);
+		border: none;
+		color: var(--text);
+		background-color: transparent;
+		font-size: var(--text-size-large);
+		vertical-align: middle;
 
-    &.background {
-      background-color: var(--background-1);
-    }
+		&.background {
+			background-color: var(--background-1);
+		}
 
 		&.half-background {
-		background-color: #0008;
+			background-color: #0008;
+		}
 	}
-  }
 
-  @media (hover: hover) {
-    button {
-      transition: all var(--default-transition-behaviour);
-    }
+	@media (hover: hover) {
+		button {
+			transition: all var(--default-transition-behaviour);
+		}
 
-    button:hover {
-      color: var(--text-highlight);
-      background-color: var(--background-2);
-    }
-  }
+		button:hover {
+			color: var(--text-highlight);
+			background-color: var(--background-2);
+		}
+	}
 </style>
