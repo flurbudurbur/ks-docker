@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import { isEnter } from '$lib/logic/keyboard-utils';
 
 	interface Props {
@@ -12,25 +10,20 @@
 
 	let { value = $bindable(), min, max, step }: Props = $props();
 
-	let internalValue: string = $state();
+	let internalValue: string = $state(`${value}`);
 
 	const blurOnEnter = (event: KeyboardEvent) =>
 		isEnter(event) && (event.target as HTMLElement)?.blur();
 
-	const parseNumber = (str: string) => {
-		let n = Number(str);
+	$effect(() => {
+		let n = Number(internalValue);
 		if (!isNaN(n)) {
 			value = n;
 		}
-	};
-
-	const toString = (n: number) => (internalValue = `${n}`);
-
-	run(() => {
-		parseNumber(internalValue);
 	});
-	run(() => {
-		toString(value);
+
+	$effect(() => {
+		internalValue = `${value}`;
 	});
 </script>
 

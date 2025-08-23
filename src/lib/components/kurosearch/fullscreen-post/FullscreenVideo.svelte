@@ -1,28 +1,30 @@
-<script lang="ts">
-	import { createBubbler, preventDefault } from 'svelte/legacy';
+<script module lang="ts">
+	let volume: number = $state(1);
+</script>
 
-	const bubble = createBubbler();
+<script lang="ts">
 	import { getVideoSources } from '$lib/logic/media-utils';
 	import { videoObserver } from '$lib/logic/video-observer';
 	import { onDestroy, onMount } from 'svelte';
 	import FullscreenProgress from './FullscreenProgress.svelte';
 	import { formatVideoTime } from '$lib/logic/format-time';
+	import IconButton from '$lib/components/pure/button-icon/IconButton.svelte';
 
 	interface Props {
 		post: kurosearch.Post;
+		onended?: () => void;
 	}
 
-	let { post }: Props = $props();
+	let { post, onended }: Props = $props();
 
-	let video: HTMLVideoElement | undefined = $state();
+	let video: HTMLVideoElement | undefined;
 
 	let sources = $derived(getVideoSources(post.file_url, post.sample_url, post.preview_url));
-	let animatedSource = $derived(sources.animated);
-	let staticSource = $derived(sources.static);
 
 	let currentTime = $state(0);
 	let paused = $state(false);
-	let duration: number = $state();
+	let duration: number | undefined = $state(undefined);
+	let isVolumeVisible = $state(false);
 
 	const keybinds = (event: KeyboardEvent) => {
 		if (video) {
@@ -60,8 +62,8 @@
 
 <!-- svelte-ignore a11y_media_has_caption -->
 <video
-	src={animatedSource}
-	poster={staticSource}
+	src={sources.animated}
+	poster={sources.static}
 	title="[VIDEO] post #{post.id}"
 	preload="metadata"
 	autoplay
@@ -72,21 +74,50 @@
 	onclick={() => {
 		if (video) {
 			if (video.paused) {
-				void video.play();
+				video.play();
 			} else {
 				video.pause();
 			}
 		}
 	}}
-	onended={bubble('ended')}
-	oncontextmenu={preventDefault(bubble('contextmenu'))}
+	{onended}
+	oncontextmenu={(e) => {
+		e.preventDefault();
+		e.stopPropagation();
+	}}
+	{volume}
 ></video>
 
 {#if currentTime !== undefined && duration !== undefined}
 	<span>{formatVideoTime(currentTime)} / {formatVideoTime(duration)}</span>
 {/if}
 
-<FullscreenProgress bind:value={currentTime} max={duration} />
+{#if isVolumeVisible}
+	<input
+		class="volume-slider"
+		type="range"
+		min="0"
+		max="1"
+		step="0.01"
+		bind:value={volume}
+		onclick={(e) => {
+			e.stopPropagation();
+			e.preventDefault();
+		}}
+	/>
+{/if}
+
+<IconButton
+	id="volume-button"
+	variant="half-background"
+	onclick={() => {
+		isVolumeVisible = !isVolumeVisible;
+	}}
+>
+	🔊
+</IconButton>
+
+<FullscreenProgress bind:value={currentTime} max={duration} type="video" />
 
 <style lang="scss">
 	video {
@@ -111,5 +142,24 @@
 		padding: var(--tiny-gap);
 		color: white;
 		user-select: none;
+	}
+
+	:global(#volume-button) {
+		position: absolute;
+		bottom: 1rem;
+		right: calc(2 * var(--grid-gap) + var(--line-height));
+		z-index: var(--z-media-controls);
+	}
+
+	.volume-slider {
+		writing-mode: vertical-lr;
+		display: flex;
+		justify-content: center;
+		position: absolute;
+		transform: rotate(180deg);
+		bottom: calc(2 * var(--grid-gap) + var(--line-height));
+		right: calc(2 * var(--grid-gap) + var(--line-height));
+		width: var(--line-height);
+		z-index: var(--z-media-controls);
 	}
 </style>

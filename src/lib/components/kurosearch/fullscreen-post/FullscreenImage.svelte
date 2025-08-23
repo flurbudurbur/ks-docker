@@ -1,23 +1,20 @@
 <script lang="ts">
-	import { run, preventDefault } from 'svelte/legacy';
-
 	import FullscreenProgress from './FullscreenProgress.svelte';
 	import autoplayFullscreenDelay from '$lib/store/autoplay-fullscreen-delay-store';
 	import LoadingAnimation from '$lib/components/pure/loading-animation/LoadingAnimation.svelte';
 	import { getGifSources } from '$lib/logic/media-utils';
 	import autoplayFullscreenEnabled from '$lib/store/autoplay-fullscreen-enabled-store';
 	import highResolutionEnabled from '$lib/store/high-resolution-enabled';
-	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { browser } from '$app/environment';
-
-	const dispatch = createEventDispatcher();
 
 	interface Props {
 		post: kurosearch.Post;
-		postId?: any;
+		postId?: number;
+		onended?: () => void;
 	}
 
-	let { post, postId = $bindable(-1) }: Props = $props();
+	let { post, postId = -1, onended }: Props = $props();
 
 	const getSources = (type: string, file_url: string, sample_url: string, preview_url: string) => {
 		if (type === 'gif') {
@@ -33,8 +30,8 @@
 	);
 
 	let currentTime = $state(0);
-	let lastFrameTime = Date.now();
-	let currentFrameTime = Date.now();
+	let lastFrameTime = $state(Date.now());
+	let currentFrameTime = $state(Date.now());
 	let difference: number;
 	let paused = true;
 	let animationHandle: number;
@@ -50,7 +47,7 @@
 		}
 
 		if (currentTime >= $autoplayFullscreenDelay) {
-			dispatch('ended');
+			onended?.();
 			currentTime = 0;
 		}
 
@@ -61,8 +58,8 @@
 		paused = !paused;
 	};
 
-	run(() => {
-		if (post.id !== postId) {
+	$effect(() => {
+		if (postId !== post.id) {
 			postId = post.id;
 			currentTime = 0;
 		}
@@ -123,33 +120,34 @@
 	};
 </script>
 
-<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-<!-- svelte-ignore a11y_click_events_have_key_events -->
-
 {#await preload(fullSrc)}
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 	<img
 		src={previewSrc}
 		alt="[{post.type}] post #{post.id}"
 		title="[{post.type}] post #{post.id}"
-		oncontextmenu={preventDefault(() => {})}
+		oncontextmenu={(e) => e.preventDefault()}
 		onclick={togglePaused}
 	/>
 	<div>
 		<LoadingAnimation />
 	</div>
 {:then _}
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 	<img
 		src={fullSrc}
 		alt="[{post.type}] post #{post.id}"
 		title="[{post.type}] post #{post.id}"
-		oncontextmenu={preventDefault(() => {})}
+		oncontextmenu={(e) => e.preventDefault()}
 		onclick={togglePaused}
 		use:pauseoffscreen
 	/>
 {/await}
 
 {#if $autoplayFullscreenEnabled}
-	<FullscreenProgress bind:value={currentTime} max={$autoplayFullscreenDelay} />
+	<FullscreenProgress bind:value={currentTime} max={$autoplayFullscreenDelay} type="image" />
 {/if}
 
 <style lang="scss">

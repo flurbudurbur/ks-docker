@@ -1,16 +1,14 @@
 <script lang="ts">
-	import { createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 	import { onpopstate } from '$lib/logic/use/onpopstate';
-	import { onMount } from 'svelte';
+	import { onMount, type Snippet } from 'svelte';
 
 	interface Props {
 		dialog: HTMLDialogElement;
-		children?: import('svelte').Snippet;
+		onclose?: () => void;
+		children: Snippet;
 	}
 
-	let { dialog = $bindable(), children }: Props = $props();
+	let { dialog = $bindable(), onclose, children }: Props = $props();
 
 	const onPopState = () => {
 		dialog.close();
@@ -32,8 +30,8 @@
 	});
 </script>
 
-<dialog bind:this={dialog} onclose={bubble('close')} use:onpopstate={onPopState}>
-	{@render children?.()}
+<dialog bind:this={dialog} {onclose} use:onpopstate={onPopState}>
+	{@render children()}
 </dialog>
 
 <style lang="scss">

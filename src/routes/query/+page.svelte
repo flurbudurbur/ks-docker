@@ -55,7 +55,7 @@
 		)
 	);
 
-	let base = $derived(query && `${query.protocol}//${query.hostname}`);
+	let server = $derived(query && `${query.protocol}//${query.hostname}`);
 	let fixedParams = $derived(
 		query
 			? [...query.searchParams.entries()].filter(([key]) =>
@@ -83,9 +83,7 @@
 	<Searchbar
 		placeholder="Search for tags"
 		{fetchSuggestions}
-		on:pick={async (e) => {
-			const suggestion = e.detail;
-
+		onpick={async (suggestion) => {
 			if (suggestion.type === 'supertag') {
 				const supertag = $supertags.items.find((x) => x.name === suggestion.label);
 				if (!supertag) {
@@ -94,11 +92,11 @@
 				}
 				activeSupertags.addOrReplace(supertag);
 			} else {
-				const tag = await getTagDetails(e.detail.label, $apiKey, $userId);
+				const tag = await getTagDetails(suggestion.label, $apiKey, $userId);
 				activeTags.addOrReplace({
-					name: e.detail.label,
-					modifier: e.detail.modifier,
-					count: e.detail.count,
+					name: suggestion.label,
+					modifier: suggestion.modifier,
+					count: suggestion.count,
 					type: tag?.type ?? 'tag'
 				});
 			}
@@ -106,14 +104,14 @@
 	/>
 	<ActiveTagList
 		tags={[...$activeTags, ...$activeSupertags]}
-		on:click={(e) =>
-			'description' in e.detail
-				? activeSupertags.removeByName(e.detail.name)
-				: activeTags.removeByName(e.detail.name)}
-		on:contextmenu={(e) => {
-			if (!('description' in e.detail)) {
-				e.detail.modifier = nextModifier(e.detail.modifier);
-				activeTags.addOrReplace(e.detail);
+		onclick={(tag) =>
+			'description' in tag
+				? activeSupertags.removeByName(tag.name)
+				: activeTags.removeByName(tag.name)}
+		oncontextmenu={(tag) => {
+			if (!('description' in tag)) {
+				tag.modifier = nextModifier(tag.modifier);
+				activeTags.addOrReplace(tag);
 			}
 		}}
 	/>
@@ -122,8 +120,8 @@
 	</code>
 
 	<code>
-		<span class="base">{base}</span>
-		{#each fixedParams as p (p[0])}
+		<span class="base">{server}</span>
+		{#each fixedParams as p}
 			<span class="fixed">{p[0]}={p[1]}</span>
 		{/each}
 		<span class="tags">{tags[0]}={tags[1]}</span>

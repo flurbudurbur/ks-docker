@@ -1,27 +1,25 @@
 <script lang="ts">
-	import { stopPropagation } from 'svelte/legacy';
+	import { onDestroy, onMount, type Snippet } from 'svelte';
 
-	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	interface Props {
-		children?: import('svelte').Snippet;
+		children: Snippet;
+		onclose?: () => void;
 	}
 
-	let { children }: Props = $props();
+	let { children, onclose }: Props = $props();
 
-	const dispatch = createEventDispatcher();
-	const close = () => dispatch('close');
 	const closeOnEscapePressed = (event: KeyboardEvent) => {
 		if (event.key === 'Escape') {
-			close();
+			onclose?.();
 		}
 	};
 	const closeOnFullscreenExit = () => {
 		if (!document.fullscreenElement) {
-			close();
+			onclose?.();
 		}
 	};
 
-	let dialog: HTMLDivElement = $state();
+	let dialog: HTMLDivElement;
 	let ready = $state(false);
 
 	onMount(async () => {
@@ -49,11 +47,13 @@
 	bind:this={dialog}
 	role="none"
 	tabindex="-1"
-	onclick={stopPropagation(() => {})}
+	onclick={(e) => {
+		e.stopPropagation();
+	}}
 	onkeydown={closeOnEscapePressed}
 >
 	{#if ready}
-		{@render children?.()}
+		{@render children()}
 	{/if}
 </div>
 
@@ -73,7 +73,6 @@
 		backdrop-filter: blur(5px);
 		z-index: var(--z-dialog);
 		overflow-y: scroll;
-		overscroll-behavior-block: none;
 	}
 
 	div:focus {

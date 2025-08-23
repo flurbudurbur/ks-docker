@@ -1,3 +1,4 @@
+import { addIndexedTag } from '$lib/indexeddb/idb';
 import { replaceHtmlEntities } from '$lib/logic/replace-html-entities';
 import { getTagTypePriority } from '$lib/logic/tag-type-data';
 import { fetchAbortPrevious } from '../fetchAbortPrevious';
@@ -20,9 +21,8 @@ export const getPage = async (
 	throwOnUnexpectedStatus(response);
 
 	try {
-		const data: unknown = await response.json();
-		const arrayData = Array.isArray(data) ? data : [];
-		const filtered = arrayData.filter((x: any) => x && x.change); // sometimes api returns placeholders
+		let data = await response.json();
+		data = data.filter((x: r34.Post) => x.change); // sometimes api returns placeholders that cause lots of null issues
 
 		const posts = filtered.map(parsePost) as kurosearch.Post[];
 

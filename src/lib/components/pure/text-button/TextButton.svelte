@@ -1,16 +1,33 @@
-<!-- @migration-task Error while migrating Svelte code: $$props is used together with named props in a way that cannot be automatically migrated. -->
-<script context="module" lang="ts">
+<script module lang="ts">
 	export type ButtonType = 'primary' | 'secondary';
 </script>
 
 <script lang="ts">
-	export let title: string;
-	export let disabled = false;
-	export let type: ButtonType = 'primary';
+	import type { Snippet } from 'svelte';
+
+	interface Props {
+		id?: string;
+		title: string;
+		disabled?: boolean;
+		type?: ButtonType;
+		onclick?: () => void;
+		children?: Snippet;
+		reducepadding?: boolean;
+	}
+
+	let {
+		id,
+		title,
+		disabled = false,
+		type = 'primary',
+		children,
+		onclick,
+		reducepadding = false
+	}: Props = $props();
 </script>
 
-<button type="button" id={$$props.id} {title} class={type} on:click {disabled}>
-	<slot />
+<button type="button" {id} {title} class={type} class:reducepadding {onclick} {disabled}>
+	{@render children?.()}
 </button>
 
 <style lang="scss">
@@ -21,6 +38,11 @@
 		text-align: center;
 		text-transform: uppercase;
 		white-space: nowrap;
+	}
+
+	button.reducepadding {
+		height: var(--line-height);
+		padding-inline: 1rem;
 	}
 
 	button:disabled {

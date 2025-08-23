@@ -4,20 +4,18 @@
 		calculateAspectRatioCss
 	} from '$lib/components/kurosearch/post/ratio';
 	import highResolutionEnabled from '$lib/store/high-resolution-enabled';
-	import { createEventDispatcher } from 'svelte';
 	import ObservedImage from './ObservedImage.svelte';
-
-	const dispatch = createEventDispatcher();
 
 	interface Props {
 		post: kurosearch.Post;
+		onclick: () => void;
 	}
 
-	let { post }: Props = $props();
+	let { post, onclick }: Props = $props();
 
-	const onclick = () => {
+	const onclickinternal = () => {
 		open = !open;
-		dispatch('click');
+		onclick();
 	};
 
 	let open: boolean = $state(false);
@@ -32,7 +30,7 @@
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class:expandable class:open {onclick} style="aspect-ratio: {cssRation};">
+<div class:expandable class:open onclick={onclickinternal} style="aspect-ratio: {cssRation};">
 	<ObservedImage src={previewSrc} {alt} width={post.width} height={post.height} />
 	<ObservedImage src={actualSrc} {alt} width={post.width} height={post.height} />
 </div>

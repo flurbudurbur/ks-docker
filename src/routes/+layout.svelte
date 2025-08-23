@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { browser } from '$app/environment';
+	import { resolve } from '$app/paths';
+	import { page } from '$app/stores';
+	import TermsOfUseDialog from '$lib/components/kurosearch/dialog-terms-of-use/CookieMessage.svelte';
 	import AccountLink from '$lib/components/kurosearch/link-account/AccountLink.svelte';
 	import DiscordLink from '$lib/components/kurosearch/link-discord/DiscordLink.svelte';
 	import SettingsLink from '$lib/components/kurosearch/settings-link/SettingsLink.svelte';
@@ -7,16 +10,13 @@
 	import CodiconTextLink from '$lib/components/pure/icon-link/CodiconTextLink.svelte';
 	import theme from '$lib/store/theme-store';
 	import wideLayoutEnabled from '$lib/store/wide-layout-enabled-store';
-	import { browser } from '$app/environment';
-	import { page } from '$app/state';
-	import TermsOfUseDialog from '$lib/components/kurosearch/dialog-terms-of-use/CookieMessage.svelte';
 
-	import './reset.css';
-	import './fonts.css';
-	import './defaults.css';
-	import './theme.css';
 	import './codicon.css';
+	import './defaults.css';
+	import './fonts.css';
+	import './reset.css';
 	import './scrollbar.css';
+	import './theme.css';
 
 	import '$lib/logic/firebase/firebase';
 	interface Props {
@@ -38,7 +38,7 @@
 
 <svelte:head>
 	<script lang="ts">
-		const [accent, theme] = (localStorage.getItem('Kurosearch:theme') ?? 'crimson dark').split(' ');
+		const [accent, theme] = (localStorage.getItem('kurosearch:theme') ?? 'crimson dark').split(' ');
 		document.documentElement.dataset.theme = theme;
 		document.documentElement.dataset.accent = accent;
 	</script>
@@ -55,9 +55,9 @@
 			newtab
 		/>
 		<DiscordLink />
-		<CodiconLink title="Documentation" href="{base}/help" icon="codicon codicon-book" />
+		<CodiconLink title="Documentation" href={resolve('/help')} icon="codicon codicon-book" />
 		<div></div>
-		<CodiconLink title="Search" href="{base}/" icon="codicon codicon-search" />
+		<CodiconLink title="Search" href={resolve('/')} icon="codicon codicon-search" />
 		<SettingsLink />
 		<AccountLink src={userPhoto} />
 	</nav>
@@ -79,7 +79,12 @@
 
 		<span class="copyright">© 2023 kurozenzen</span>
 
-		<CodiconTextLink title="About" href="{base}/about" icon="codicon codicon-info" label="About" />
+		<CodiconTextLink
+			title="About"
+			href={resolve('/about')}
+			icon="codicon codicon-info"
+			label="About"
+		/>
 	</section>
 	<p>
 		I do not own the rights to Helheim Lynx and this site is in no way endorsed by, affiliated with,

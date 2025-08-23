@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { resolve } from '$app/paths';
 	import IconLink from '$lib/components/pure/icon-link/IconLink.svelte';
 
 	interface Props {
-		src: string | undefined;
+		src?: string;
 	}
 
 	let { src }: Props = $props();
 </script>
 
-<IconLink title="Account" href="{base}/account">
+<IconLink title="Account" href={resolve('/account')}>
 	{#if src}
 		<img class="profile-picture" {src} alt="Account" />
 	{:else}

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import Comments from '../post-comment/Comments.svelte';
 	import Rating from '../rating/Rating.svelte';
 	import RelativeTime from '../relative-time/RelativeTime.svelte';
@@ -14,8 +15,6 @@
 
 	let { post }: Props = $props();
 
-	let file_url = $derived(post.file_url);
-	let sample_url = $derived(post.sample_url);
 	let tagsByType = $derived(
 		post.tags.reduce(
 			(result, tag) => {
@@ -27,14 +26,13 @@
 
 				return result;
 			},
-
 			{} as Record<string, kurosearch.Tag[]>
 		)
 	);
 </script>
 
 <div class="details">
-	<img class="preview" src={sample_url} alt="preview" />
+	<img class="preview" src={post.sample_url} alt="preview" />
 	<h1>Post <b>#{post.id}</b></h1>
 	<div class="flex-row">
 		<Rating value={post.rating} />
@@ -46,11 +44,13 @@
 		<RelativeTime value={post.change} />
 	</div>
 	<div class="flex-row">
-		<KurosearchSource url="/post?id={post.id}&src={encodeURIComponent(file_url)}" />
+		<KurosearchSource
+			url="{resolve('/post')}?id={post.id}&src={encodeURIComponent(post.file_url)}"
+		/>
 		<span>•</span>
 		<ExternalSource source="https://rule34.xxx/index.php?page=post&s=view&id={post.id}" />
 		<span>•</span>
-		<Rule34Source url={file_url} />
+		<Rule34Source url={post.file_url} />
 		{#if post.source}
 			<span>•</span>
 			<ExternalSource source={post.source} />

@@ -1,29 +1,25 @@
 <script lang="ts">
-	import { createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
-	import { base } from '$app/paths';
-
-	const LOAD_SRC = `${base}/assets/load.svg`;
-	const PLAY_SRC = `${base}/assets/play.svg`;
-	const PAUSE_SRC = `${base}/assets/pause.svg`;
+	import loadSrc from '$lib/assets/load.svg?url';
+	import pauseSrc from '$lib/assets/pause.svg?url';
+	import playSrc from '$lib/assets/play.svg?url';
 
 	interface Props {
 		playing: boolean;
 		loading: boolean;
-		[key: string]: any;
+		onclick?: () => void;
+		class?: string;
 	}
 
-	let { ...props }: Props = $props();
+	let { playing = $bindable(), loading = $bindable(), onclick, ...rest }: Props = $props();
 </script>
 
-<button type="button" onclick={bubble('click')} class={props.class}>
-	{#if props.loading}
-		<img src={LOAD_SRC} alt="Loading GIF" width="16" height="32" />
-	{:else if props.playing}
-		<img src={PAUSE_SRC} alt="Stop GIF" width="16" height="32" />
+<button type="button" {onclick} class={rest.class}>
+	{#if loading}
+		<img src={loadSrc} alt="Loading GIF" width="16" height="32" />
+	{:else if playing}
+		<img src={pauseSrc} alt="Stop GIF" width="16" height="32" />
 	{:else}
-		<img src={PLAY_SRC} alt="Start GIF" width="16" height="32" style="margin-left: 4px;" />
+		<img src={playSrc} alt="Start GIF" width="16" height="32" style="margin-left: 4px;" />
 	{/if}
 </button>
 

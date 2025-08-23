@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { version } from '$app/environment';
-	import { base } from '$app/paths';
+	import { resolve } from '$app/paths';
 	import Heading1 from '$lib/components/pure/heading/Heading1.svelte';
 	import Heading3 from '$lib/components/pure/heading/Heading3.svelte';
 	import IconLink from '$lib/components/pure/icon-link/IconLink.svelte';
@@ -9,7 +9,7 @@
 
 	let message = $state('Update');
 
-	let latestCommitPromise: Promise<{ sha: string }> = $state();
+	let latestCommitPromise: Promise<{ sha: string }> = $state(undefined);
 
 	const forceUpdate = async () => {
 		message = 'Updating...';
@@ -36,7 +36,7 @@
 	<Heading1>About</Heading1>
 	<Heading3>Version</Heading3>
 	<section class="info">
-		<img src="{base}/favicon.svg" alt="kuroseach logo" />
+		<img src="/favicon.svg" alt="kuroseach logo" />
 		<h2>kurosearch</h2>
 		<span>
 			Version: {version}{#await latestCommitPromise then commit}
@@ -45,17 +45,17 @@
 		</span>
 	</section>
 	<section class="update">
-		<TextButton title="Force an update of the app" on:click={forceUpdate}>{message}</TextButton>
+		<TextButton title="Force an update of the app" onclick={forceUpdate}>{message}</TextButton>
 	</section>
 	<Heading3>More Info</Heading3>
 	<section class="more">
-		<IconLink title="Debug Information" className="codicon codicon-link" href="{base}/debug">
+		<IconLink title="Debug Information" className="codicon codicon-link" href={resolve('/debug')}>
 			<p>Debug Information</p>
 		</IconLink>
 		<IconLink
 			title="Rule34.xxx URL Comparison"
 			className="codicon codicon-link"
-			href="{base}/query"
+			href={resolve('/query')}
 		>
 			<p>Rule34.xxx URL Comparison</p>
 		</IconLink>

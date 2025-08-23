@@ -12,8 +12,8 @@
 	};
 </script>
 
-<button type="button" {title} aria-label={title} class={icon} class:active onclick={toggleActive}
-></button>
+<button type="button" {title} class={icon} class:active onclick={toggleActive} aria-label="Toggle">
+</button>
 
 <style lang="scss">
 	button {

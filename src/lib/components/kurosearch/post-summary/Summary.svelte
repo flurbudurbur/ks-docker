@@ -1,20 +1,18 @@
 <script lang="ts">
-	import { stopPropagation } from 'svelte/legacy';
-
-	import { createEventDispatcher } from 'svelte';
 	import RelativeTime from '../relative-time/RelativeTime.svelte';
 	import Score from '../score/Score.svelte';
 	import { formatCount } from '$lib/logic/format-count';
 
-	const dispatch = createEventDispatcher();
-
 	interface Props {
 		post: kurosearch.Post;
-		active: string | undefined;
+		active?: string;
 		links: number;
+		ontags: () => void;
+		oncomments: () => void;
+		onlinks: () => void;
 	}
 
-	let { post, active, links }: Props = $props();
+	let { post, active, links, ontags, oncomments, onlinks }: Props = $props();
 </script>
 
 <div class="summary">
@@ -26,7 +24,10 @@
 		type="button"
 		class="codicon codicon-link"
 		class:active={active === 'links'}
-		onclick={stopPropagation(() => dispatch('links'))}
+		onclick={(e) => {
+			e.stopPropagation();
+			onlinks();
+		}}
 	>
 		{formatCount(links)}
 	</button>
@@ -35,7 +36,10 @@
 			type="button"
 			class="codicon codicon-comment"
 			class:active={active === 'comments'}
-			onclick={stopPropagation(() => dispatch('comments'))}
+			onclick={(e) => {
+				e.stopPropagation();
+				oncomments();
+			}}
 		>
 			{formatCount(post.comment_count)}
 		</button>
@@ -44,7 +48,10 @@
 		type="button"
 		class="codicon codicon-tag"
 		class:active={active === 'tags'}
-		onclick={stopPropagation(() => dispatch('tags'))}
+		onclick={(e) => {
+			e.stopPropagation();
+			ontags();
+		}}
 	>
 		{formatCount(post.tags.length)}
 	</button>

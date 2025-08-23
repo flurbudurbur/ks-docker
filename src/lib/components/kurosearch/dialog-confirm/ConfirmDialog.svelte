@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import Dialog from '$lib/components/pure/dialog/Dialog.svelte';
 	import Heading3 from '$lib/components/pure/heading/Heading3.svelte';
 	import TextButton from '$lib/components/pure/text-button/TextButton.svelte';
@@ -10,25 +9,34 @@
 		warning: string;
 		labelConfirm: string;
 		labelCancel: string;
+		onconfirm: () => void;
+		onclose?: () => void;
 	}
 
-	let { dialog = $bindable(), title, warning, labelConfirm, labelCancel }: Props = $props();
+	let {
+		dialog = $bindable(),
+		title,
+		warning,
+		labelConfirm,
+		labelCancel,
+		onconfirm,
+		onclose
+	}: Props = $props();
 
-	const dispatch = createEventDispatcher<{ confirm: void }>();
-	const confirm = () => {
-		dispatch('confirm');
+	const confirmAndClose = () => {
+		onconfirm();
 		dialog.close();
 	};
 </script>
 
-<Dialog on:close bind:dialog>
+<Dialog {onclose} bind:dialog>
 	<div>
 		<Heading3>{title}</Heading3>
 		<span>{warning}</span>
-		<TextButton title="Delete supertag" on:click={confirm}>
+		<TextButton title="Delete supertag" onclick={confirmAndClose}>
 			{labelConfirm}
 		</TextButton>
-		<TextButton type="secondary" title="Cancel" on:click={() => dialog.close()}>
+		<TextButton type="secondary" title="Cancel" onclick={() => dialog.close()}>
 			{labelCancel}
 		</TextButton>
 	</div>

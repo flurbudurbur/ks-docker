@@ -2,12 +2,12 @@
 	import IconButton from '../button-icon/IconButton.svelte';
 
 	interface Props {
+		id?: string;
 		options: Record<string, string>;
 		value: string;
-		id?: string | undefined;
 	}
 
-	let { options, value = $bindable(), id = undefined }: Props = $props();
+	let { id, options, value = $bindable() }: Props = $props();
 
 	let index = $derived(Object.keys(options).indexOf(value));
 	let entries = $derived(Object.entries(options));
@@ -19,4 +19,4 @@
 	};
 </script>
 
-<IconButton {id} on:click={rotate}>{text}</IconButton>
+<IconButton {id} onclick={rotate} variant="with-background">{text}</IconButton>

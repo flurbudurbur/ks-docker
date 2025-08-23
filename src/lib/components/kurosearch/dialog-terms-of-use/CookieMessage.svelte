@@ -35,8 +35,8 @@
 		<h3>Use of Cookies</h3>
 		<p>Additinally, this website uses cookies to provide functionality.</p>
 		<div class="row">
-			<TextButton title="Accept terms of use" on:click={accept}>Accept</TextButton>
-			<TextButton title="Leave website" type="secondary" on:click={leave}>Leave</TextButton>
+			<TextButton title="Accept terms of use" onclick={accept}>Accept</TextButton>
+			<TextButton title="Leave website" type="secondary" onclick={leave}>Leave</TextButton>
 		</div>
 	</section>
 </div>

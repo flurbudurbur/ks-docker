@@ -1,26 +1,25 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import { createEventDispatcher } from 'svelte';
-	import ModifierSelect from '../modifier-select/ModifierSelect.svelte';
-	import LoadingAnimation from '$lib/components/pure/loading-animation/LoadingAnimation.svelte';
+	import { resolve } from '$app/paths';
 	import CodiconLink from '$lib/components/pure/icon-link/CodiconLink.svelte';
-	import Suggestion from './Suggestion.svelte';
+	import LoadingAnimation from '$lib/components/pure/loading-animation/LoadingAnimation.svelte';
 	import { getTagDetails } from '$lib/logic/api-client/ApiClient';
 	import apiKey from '$lib/store/api-key-store';
 	import userId from '$lib/store/user-id-store';
-
-	const dispatch = createEventDispatcher();
+	import type { FocusEventHandler } from 'svelte/elements';
+	import ModifierSelect from '../modifier-select/ModifierSelect.svelte';
+	import Suggestion from './Suggestion.svelte';
 
 	interface Props {
 		placeholder: string;
 		fetchSuggestions: (searchTerm: string) => Promise<Array<kurosearch.Suggestion>>;
+		onpick: (suggestion: kurosearch.Suggestion & { modifier: kurosearch.TagModifier }) => void;
 	}
 
-	let { placeholder, fetchSuggestions }: Props = $props();
+	let { placeholder, fetchSuggestions, onpick }: Props = $props();
 
 	let searchTerm = $state('');
-	let previousSearchTerm = '';
-	let searchPromise: Promise<kurosearch.Suggestion[]> = $state();
+	let previousSearchTerm = $state('');
+	let searchPromise: Promise<kurosearch.Suggestion[]> = $state(undefined);
 	let selectedIndex = $state(0);
 	let modifier: kurosearch.TagModifier = $state('+');
 	let focusInside = $state(false);
@@ -40,7 +39,7 @@
 	};
 
 	const pick = (suggestion: kurosearch.Suggestion) => {
-		dispatch('pick', { modifier, ...suggestion });
+		onpick({ modifier, ...suggestion });
 		searchTerm = '';
 		selectedIndex = 0;
 		hasDropdownContent = false;
@@ -109,7 +108,7 @@
 
 	<CodiconLink
 		title="More information on tags."
-		href="{base}/help#search"
+		href="{resolve('/help')}#search"
 		icon="codicon codicon-question"
 	/>
 	<ol class:open={focusInside && hasDropdownContent}>
@@ -122,7 +121,7 @@
 				{#each suggestions as suggestion, index}
 					<Suggestion
 						{suggestion}
-						on:click={() => pick(suggestion)}
+						onclick={() => pick(suggestion)}
 						selected={index === selectedIndex}
 					/>
 				{/each}
@@ -130,7 +129,7 @@
 			<div class="suggestion-footer"></div>
 		{:catch error}
 			<div class="suggestion-footer">
-				<i class="codicon codicon-error"></i>
+				<i class={`codicon codicon-error`}></i>
 				<span>{error.message}</span>
 			</div>
 		{/await}

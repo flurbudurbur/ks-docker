@@ -1,8 +1,10 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+
 	interface Props {
 		checked: boolean;
 		id: string;
-		children?: import('svelte').Snippet;
+		children?: Snippet;
 	}
 
 	let { checked = $bindable(), id, children }: Props = $props();

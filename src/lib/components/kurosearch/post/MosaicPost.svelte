@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 	import { formatCount } from '$lib/logic/format-count';
 	import { getPostId } from '$lib/logic/id-utils';
 	import { isEnter } from '$lib/logic/keyboard-utils';
@@ -9,27 +6,20 @@
 
 	interface Props {
 		post: kurosearch.Post;
+		onclick?: (event: MouseEvent) => void;
 	}
 
-	let { post }: Props = $props();
+	let { post, onclick }: Props = $props();
 
 	let maxRatio = 1 / 3;
 	let rowsPerSquare = 5;
 	let ratio = calculateAspectRatio(post.width, post.height);
 	let rows = Math.max(Math.min(Math.round(rowsPerSquare / ratio), rowsPerSquare / maxRatio), 2);
-	let open = false;
 
 	const isImage = (src: string) =>
 		src.endsWith('.jpg') || src.endsWith('.jpeg') || src.endsWith('.png') || src.endsWith('.webp');
 
 	let previewSrc = $derived(isImage(post.sample_url) ? post.sample_url : post.preview_url);
-
-	function handleKeydown(event: KeyboardEvent) {
-		if (isEnter(event) || event.key === 'f') {
-			const el = event.currentTarget as HTMLElement | null;
-			el?.click();
-		}
-	}
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -37,8 +27,12 @@
 	id={getPostId(post.id)}
 	class="post"
 	style="grid-row: span {rows};"
-	onclick={bubble('click')}
-	onkeydown={handleKeydown}
+	{onclick}
+	onkeydown={(event) => {
+		if (isEnter(event) || event.key === 'f') {
+			(event.target as HTMLDivElement)?.click();
+		}
+	}}
 	class:open
 >
 	<img src={previewSrc} alt="post" class="post-media" tabindex="-1" loading="lazy" />

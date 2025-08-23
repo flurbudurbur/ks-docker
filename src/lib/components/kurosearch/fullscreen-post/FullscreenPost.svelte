@@ -1,30 +1,28 @@
 <script lang="ts">
 	import IconButton from '$lib/components/pure/button-icon/IconButton.svelte';
 	import Fullscreen from '$lib/components/pure/fullscreen/Fullscreen.svelte';
-	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import FullscreenScroller from './FullscreenScroller.svelte';
 
 	interface Props {
 		index: number;
+		onendreached: () => void;
+		onclose: (index: number) => void;
 	}
 
-	let { index = $bindable() }: Props = $props();
+	let { index, onendreached, onclose }: Props = $props();
 
-	const dispatch = createEventDispatcher();
-	const close = () => {
-		dispatch('close', index);
-	};
 	const keybinds = (event: KeyboardEvent) => {
 		if (event.key === 'f') {
 			event.preventDefault();
 			event.stopPropagation();
-			close();
+			onclose(index);
 		}
 	};
 
 	const exitOnStateChange = () => {
 		if (history.state?.fullscreen === undefined || history.state?.fullscreen === false) {
-			close();
+			onclose(index);
 		}
 	};
 
@@ -38,9 +36,9 @@
 	});
 </script>
 
-<Fullscreen on:close={close}>
-	<FullscreenScroller bind:index on:endreached />
-	<IconButton class="button-close" on:click={close}>
+<Fullscreen onclose={() => onclose(index)}>
+	<FullscreenScroller bind:index {onendreached} />
+	<IconButton class="button-close" onclick={() => onclose(index)}>
 		<i class="codicon codicon-close"></i>
 	</IconButton>
 </Fullscreen>

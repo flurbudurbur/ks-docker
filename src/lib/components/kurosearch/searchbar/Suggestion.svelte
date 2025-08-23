@@ -1,26 +1,24 @@
 <script lang="ts">
 	import { formatCount } from '$lib/logic/format-count';
 	import { formatTagname } from '$lib/logic/format-tag';
-	import { createEventDispatcher } from 'svelte';
-
-	const dispatch = createEventDispatcher();
 
 	interface Props {
 		suggestion: kurosearch.Suggestion;
 		selected?: boolean;
+		onclick: (suggestion: kurosearch.Suggestion) => void;
 	}
 
-	let { suggestion, selected = false }: Props = $props();
+	let { suggestion, selected = false, onclick }: Props = $props();
 </script>
 
 <button
 	tabindex="0"
-	onclick={() => dispatch('click', suggestion)}
+	onclick={() => onclick(suggestion)}
 	title={suggestion.label}
 	class:selected
 >
-	<i class={suggestion.type === 'supertag' ? 'codicon codicon-star-full' : 'codicon codicon-tag'}
-	></i>
+	<i class={suggestion.type === 'supertag' ? 'codicon codicon-star-full' : 'codicon codicon-tag'}>
+	</i>
 	<span class="tag-name">{formatTagname(suggestion.label)}</span>
 	<span class="tag-count">{formatCount(suggestion.count)}</span>
 </button>

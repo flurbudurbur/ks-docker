@@ -1,36 +1,27 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
+	/**
+	 * rootMargin should not change at runtime.
+	 * Dynamically adjusting it is not implemented
+	 */
+	let { rootMargin, absoluteTop, onintersection } = $props();
 
-	import { createEventDispatcher } from 'svelte';
-
-	interface Props {
-		/**
-		 * This prop should not change at runtime.
-		 * Dynamically adjusting it is not implemented
-		 */
-		rootMargin: string;
-		absoluteTop: string | undefined;
-	}
-
-	let { rootMargin, absoluteTop }: Props = $props();
-
-	const dispatch = createEventDispatcher();
 	const intersectionObserver = new IntersectionObserver(
 		(entries) => {
 			if (entries[0].isIntersecting) {
-				dispatch('intersection');
+				onintersection();
 			}
 		},
 		{ rootMargin }
 	);
 
-	let ref: HTMLDivElement = $state();
-
-	run(() => {
-		intersectionObserver.disconnect();
+	let ref: HTMLDivElement;
+	$effect(() => {
 		if (ref) {
 			intersectionObserver.observe(ref);
 		}
+		return () => {
+			intersectionObserver.disconnect();
+		};
 	});
 </script>
 

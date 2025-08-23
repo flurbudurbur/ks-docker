@@ -14,7 +14,7 @@
 		{@const active = $activeTagsStore.find((t) => t.name === tag.name) !== undefined}
 		<SimpleTag
 			{tag}
-			on:click={() =>
+			onclick={() =>
 				active
 					? activeTagsStore.removeByName(tag.name)
 					: activeTagsStore.addOrReplace({ ...tag, modifier: '+' })}

@@ -1,9 +1,6 @@
 <script lang="ts">
-	import { run, createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 	import PlayButton from '../button-play/PlayButton.svelte';
-	import { clickOnEnter, isSpace } from '$lib/logic/keyboard-utils';
+	import { isSpace, clickOnEnter } from '$lib/logic/keyboard-utils';
 	import { getGifSources } from '$lib/logic/media-utils';
 	import { calculateAspectRatioCss } from '../post/ratio';
 	import { observeGif } from '$lib/logic/gif-observer';
@@ -11,11 +8,12 @@
 
 	interface Props {
 		post: kurosearch.Post;
+		onclick?: () => void;
 	}
 
-	let { post }: Props = $props();
+	let { post, onclick }: Props = $props();
 
-	let media: HTMLImageElement = $state();
+	let media: HTMLImageElement;
 	let playing = $state(false);
 	let loading = $state(false);
 	const transparentPixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
@@ -24,7 +22,7 @@
 	let animatedSource = $derived(sources.animated);
 	let staticSource = $derived(sources.static);
 	let data_src = $derived(playing ? animatedSource : staticSource);
-	run(() => {
+	$effect(() => {
 		if (media) {
 			media.src = playing ? animatedSource : staticSource;
 		}
@@ -44,7 +42,7 @@
 		bind:this={media}
 		src={transparentPixel}
 		tabindex="0"
-		onclick={bubble('click')}
+		{onclick}
 		onkeydown={(event) => {
 			clickOnEnter(event);
 			if (isSpace(event)) {
@@ -71,7 +69,7 @@
 		bind:playing
 		bind:loading
 		class="center"
-		on:click={() => {
+		onclick={() => {
 			loading = true;
 			playing = !playing;
 		}}

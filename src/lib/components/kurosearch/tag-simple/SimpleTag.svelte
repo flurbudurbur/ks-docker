@@ -1,21 +1,19 @@
 <script lang="ts">
-	import { createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 	import { formatTagname } from '$lib/logic/format-tag';
 	import { TAG_TYPES_WITH_ICONS } from '$lib/logic/tag-type-data';
 
 	interface Props {
 		tag: kurosearch.Tag;
 		active?: boolean;
+		onclick?: () => void;
 	}
 
-	let { tag, active = false }: Props = $props();
+	let { tag, active = false, onclick }: Props = $props();
 
 	let icon = $derived(TAG_TYPES_WITH_ICONS[tag.type] ?? 'no-icon');
 </script>
 
-<button type="button" title="Click to add tag" onclick={bubble('click')} class:active class={icon}>
+<button type="button" title="Click to add tag" {onclick} class:active class={icon}>
 	{formatTagname(tag.name)}
 </button>
 

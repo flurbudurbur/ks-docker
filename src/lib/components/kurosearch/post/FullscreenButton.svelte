@@ -1,15 +1,12 @@
 <script lang="ts">
-	import { createBubbler } from 'svelte/legacy';
+	interface Props {
+		onclick?: () => void;
+	}
 
-	const bubble = createBubbler();
+	let { onclick }: Props = $props();
 </script>
 
-<button
-	type="button"
-	title="Enter Fullscreen mode"
-	aria-label="Enter Fullscreen mode"
-	onclick={bubble('click')}
->
+<button type="button" title="Enter Fullscreen mode" {onclick} aria-label="Enter Fullscreen mode">
 	<i class="codicon codicon-screen-full"></i>
 </button>
 

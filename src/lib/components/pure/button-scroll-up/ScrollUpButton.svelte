@@ -2,7 +2,7 @@
 	import { browser } from '$app/environment';
 	import { onDestroy, onMount } from 'svelte';
 
-	let previousY = 0;
+	let previousY = $state(0);
 	let visible = $state(false);
 
 	const listener = () => {
