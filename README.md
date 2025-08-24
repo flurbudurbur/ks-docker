@@ -1,7 +1,7 @@
-<div style="display: flex; place-content: center;">
-    <img src=".github/brand/banner.png" alt="logo"/>
-    <img src=".github/brand/cross.svg" alt="cross" width="100px">
-    <img src=".github/brand/docker.svg" alt="docker" width="300px">
+<div style="display: flex; place-content: center; padding: 1rem">
+    <img src=".github/brand/logo.svg" alt="logo" height="100px"/>
+    <img src=".github/brand/cross.svg" alt="cross" height="80px">
+    <img src=".github/brand/docker.svg" alt="docker" height="80px">
 </div>
 
 <section>
