@@ -33,9 +33,7 @@
 	};
 
 	const links = [
-		new URL(
-			`${window.location.origin}/post?id=${post.id}`
-		),
+		new URL(`${window.location.origin}/post?id=${post.id}`),
 		new URL(`https://rule34.xxx/index.php?page=post&s=view&id=${post.id}`),
 		new URL(post.file_url),
 		...(post.source

@@ -61,12 +61,14 @@ export const getPost = async (id: number, apiKey: string = '', userId: string = 
 	if (indexedPost !== undefined) {
 		return indexedPost;
 	}
-		let url: URL;
-		if (userId && apiKey) {
-			url = new URL(`${R34_API_URL}&s=post&q=index&fields=tag_info&json=1&id=${id}&api_key=${apiKey}&user_id=${userId}`);
-		} else {
-			url = new URL(`${API_URL}&s=post&q=index&fields=tag_info&json=1&id=${id}`);
-		}
+	let url: URL;
+	if (userId && apiKey) {
+		url = new URL(
+			`${R34_API_URL}&s=post&q=index&fields=tag_info&json=1&id=${id}&api_key=${apiKey}&user_id=${userId}`
+		);
+	} else {
+		url = new URL(`${API_URL}&s=post&q=index&fields=tag_info&json=1&id=${id}`);
+	}
 
 	const response = await fetch(url.toString());
 	throwOnUnexpectedStatus(response);
