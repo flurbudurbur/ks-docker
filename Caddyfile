@@ -29,38 +29,37 @@
 	}
 }
 
-{env.KUROSEARCH_HOST} {
+{$KUROSEARCH_HOST} {
 	tls {$KUROSEARCH_TLS}
 
-    reverse_proxy localhost:8080
-
+    root * /srv
 	encode zstd gzip
+    try_files {path} /index.html
+	file_server
 
-	@rule34 {
-		host api.rule34.com
+	handle_path /r34* {
+		uri strip_prefix /r34
+
+		@hasQuery expression `{query} != ""`
+		rewrite @hasQuery {uri}&api_key={$RULE34_API_KEY}&user_id={$RULE34_API_USER}
+
+		@noQuery expression `{query} == ""`
+		rewrite @noQuery {uri}?api_key={$RULE34_API_KEY}&user_id={$RULE34_API_USER}
+
+		reverse_proxy https://api.rule34.xxx {
+			header_up Host api.rule34.xxx
+		}
 	}
 
-	rewrite @rule34 {path}&api_key={env.RULE34_API_KEY}&user_id={env.RULE34_API_USER}
-
 	header {
-		# CSP (https://content-security-policy.com)
-		Content-Security-Policy "upgrade-insecure-requests; default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; form-action 'self' https:; font-src 'self'; frame-ancestors 'self'; base-uri 'self'; connect-src 'self'; img-src * data:; frame-src https:;"
-
 		# Disable browser features
 		Permissions-Policy "accelerometer=(),camera=(),geolocation=(),gyroscope=(),magnetometer=(),microphone=(),payment=(),usb=()"
-
 		# Only allow same-origin requests
 		Referrer-Policy "same-origin"
-
 		# Prevent MIME type sniffing from the declared Content-Type
 		X-Content-Type-Options "nosniff"
-
 		# Comment header to allow indexing by search engines
 		X-Robots-Tag "noindex, nofollow, noarchive, nositelinkssearchbox, nosnippet, notranslate, noimageindex"
-
-		# enable HSTS
-		# WARNING: Once this value is set, the site must continue to support HTTPS until the expiry time is reached.
-
 		# Remove "Server" header
 		-Server
 	}

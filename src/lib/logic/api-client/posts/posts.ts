@@ -1,7 +1,7 @@
 import { replaceHtmlEntities } from '$lib/logic/replace-html-entities';
 import { getTagTypePriority } from '$lib/logic/tag-type-data';
 import { fetchAbortPrevious } from '../fetchAbortPrevious';
-import { API_URL, R34_API_URL } from '../url';
+import { API_URL, R34_API_URL, URL_BASE } from '../url';
 
 const postCache = new Map<number, kurosearch.Post>();
 
@@ -76,7 +76,7 @@ export const getPost = async (id: number, apiKey: string = '', userId: string = 
 		if (userId && apiKey) {
 			url = `${R34_API_URL}&s=post&q=index&fields=tag_info&json=1&id=${id}&api_key=${apiKey}&user_id=${userId}`;
 		} else {
-			url = `${API_URL}/post?id=${id}`;
+			url = `${API_URL}&s=post&q=index&fields=tag_info&json=1&id=${id}`;
 		}
 		const response = await fetch(url);
 		throwOnUnexpectedStatus(response);
@@ -169,23 +169,28 @@ export const getPostsUrl = (
 	apiKey: string = '',
 	userId: string = ''
 ) => {
-	let url: string;
+	let url: URL;
 	if (userId && apiKey) {
-		url = `${R34_API_URL}&s=post&q=index&fields=tag_info&json=1&api_key=${apiKey}&user_id=${userId}&limit=${PAGE_SIZE}&pid=${pageNumber}`;
+		url = new URL(
+			`${R34_API_URL}&s=post&q=index&fields=tag_info&json=1&api_key=${apiKey}&user_id=${userId}&limit=${PAGE_SIZE}&pid=${pageNumber}`
+		);
 	} else {
-		url = `${API_URL}?page=dapi&s=post&q=index&fields=tag_info&json=1&limit=${PAGE_SIZE}&pid=${pageNumber}`;
+		url = new URL(
+			`${API_URL}&s=post&q=index&fields=tag_info&json=1&limit=${PAGE_SIZE}&pid=${pageNumber}`,
+			URL_BASE()
+		);
 	}
-	return serializedTags === '' ? url : `${url}&tags=${serializedTags}`;
+	return serializedTags === '' ? url.toString() : `${url}&tags=${serializedTags}`;
 };
 
 export const getCountUrl = (serializedTags: string, apiKey: string, userId: string) => {
-	let url: string;
+	let url: URL;
 	if (userId && apiKey) {
-		url = `${R34_API_URL}&s=post&q=index&limit=0&api_key=${apiKey}&user_id=${userId}`;
+		url = new URL(`${R34_API_URL}&s=post&q=index&limit=0&api_key=${apiKey}&user_id=${userId}`);
 	} else {
-		url = `${API_URL}/count`;
+		url = new URL(`${API_URL}&s=post&q=index&limit=0`, URL_BASE());
 	}
-	return serializedTags === '' ? url : `${url}?tags=${serializedTags}`;
+	return serializedTags === '' ? url.toString() : `${url}?tags=${serializedTags}`;
 };
 
 const throwOnInvalidCount = (count: unknown) => {

@@ -2,7 +2,7 @@ import { persistentWritable } from './persistent-store';
 import { StoreKey } from './store-keys';
 
 const getInitial = (): Record<kurosearch.BlockingGroup, boolean> => ({
-	'AI-Generated': false,
+	'AI-Generated': true,
 	'Animal-Related': false,
 	'Non-Consensual': false,
 	Gore: false,
