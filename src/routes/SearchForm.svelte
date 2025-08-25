@@ -14,6 +14,8 @@
 	import activeTags from '$lib/store/active-tags-store';
 	import results from '$lib/store/results-store';
 	import supertags from '$lib/store/supertags-store';
+	import userId from '$lib/store/user-id-store';
+	import apiKey from '$lib/store/api-key-store';
 	import { onDestroy, onMount } from 'svelte';
 
 	interface Props {
