@@ -9,7 +9,7 @@ services:
     cap_add:
       - 'NET_ADMIN'
     volumes:
-#      - './Caddyfile:/etc/caddy/Caddyfile'
+      #      - './Caddyfile:/etc/caddy/Caddyfile'
       - caddy_data:/data
       - caddy_config:/config
     env_file:
