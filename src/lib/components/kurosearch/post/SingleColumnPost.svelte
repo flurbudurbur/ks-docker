@@ -6,7 +6,7 @@
 	import alwaysLoop from '$lib/store/always-loop-store';
 	import openTagsOnPostClick from '$lib/store/tags-shortcut-store';
 	import Gif from '../media-gif/Gif.svelte';
-	import Video from '../media-video/Video.svelte';
+	import Video, { pausePlayingVideo } from '../media-video/Video.svelte';
 	import Comments from '../post-comment/Comments.svelte';
 	import Summary from '../post-summary/Summary.svelte';
 	import PostDetailsTagList from '../tag-list/PostDetailsTagList.svelte';
@@ -20,6 +20,11 @@
 	}
 
 	let { post, openTab = undefined, onfullscreen }: Props = $props();
+
+	const onfullscreeninteral = () => {
+		pausePlayingVideo();
+		onfullscreen();
+	};
 
 	const selectTab = (tab: string) => {
 		openTab = openTab === tab ? undefined : tab;
@@ -52,7 +57,7 @@
 	class:openTab
 	onkeydown={(event) => {
 		if (event.key === 'f') {
-			onfullscreen();
+			onfullscreeninteral();
 		}
 	}}
 >
@@ -74,7 +79,7 @@
 		{/if}
 	</div>
 
-	<FullscreenButton onclick={onfullscreen} />
+	<FullscreenButton onclick={onfullscreeninteral} />
 
 	<div class="details">
 		<Summary
