@@ -35,6 +35,7 @@
 			document.documentElement.dataset.accent = accent;
 		}
 	});
+	const year = new Date().getFullYear();
 </script>
 
 <svelte:head>
@@ -69,16 +70,25 @@
 </main>
 
 <footer>
-	<section>
-		<CodiconTextLink
-			title="Source Code"
-			href="https://github.com/kurozenzen/kurosearch"
-			icon="codicon codicon-github"
-			label="Github"
-			target="_blank"
-		/>
+	<section class="footer">
+		<span class="source-links">
+			<CodiconTextLink
+				title="Source Code"
+				href="https://github.com/kurozenzen/kurosearch"
+				icon="codicon codicon-github"
+				label="Github KuroSearch"
+				target="_blank"
+			/>
+			<CodiconTextLink
+				title="Source Code Docker"
+				href="https://github.com/flurbudurbur/kurosearch"
+				icon="codicon codicon-github"
+				label="Github KuroSearch Docker"
+				target="_blank"
+			/>
+		</span>
 
-		<span class="copyright">© 2023 kurozenzen</span>
+		<span class="copyright">&copy; {year} kurozenzen</span>
 
 		<CodiconTextLink
 			title="About"
@@ -94,64 +104,75 @@
 </footer>
 
 <style lang="scss">
-	:global(body) {
+  :global(body) {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    align-items: center;
+    overflow-y: scroll;
+  }
+
+	.source-links {
 		display: flex;
 		flex-direction: column;
-		min-height: 100vh;
-		width: 100%;
-		align-items: center;
-		overflow-y: scroll;
+		gap: 0.1rem;
 	}
 
-	nav,
-	footer section {
+	.footer {
 		display: flex;
-		gap: 8px;
+		align-items: flex-start;
 	}
 
-	main {
-		width: 100%;
-		flex-grow: 1;
-		max-width: var(--body-width);
-	}
+  nav,
+  footer section {
+    display: flex;
+    gap: 8px;
+  }
 
-	main.extra-wide {
-		max-width: 90vw;
-	}
+  main {
+    width: 100%;
+    flex-grow: 1;
+    max-width: var(--body-width);
+  }
 
-	header,
-	footer {
-		padding: var(--grid-gap);
-	}
+  main.extra-wide {
+    max-width: 90vw;
+  }
 
-	footer section {
-		color: var(--text-muted);
-		justify-content: space-between;
-	}
+  header,
+  footer {
+    padding: var(--grid-gap);
+  }
 
-	div {
-		flex-grow: 1;
-	}
+  footer section {
+    color: var(--text-muted);
+    justify-content: space-between;
+  }
 
-	span {
-		font-size: var(--text-size-small);
-	}
+  div {
+    flex-grow: 1;
+  }
 
-	header,
-	footer {
-		width: 100%;
-		max-width: calc(var(--body-width) + 2 * var(--grid-gap));
-	}
+  span {
+    font-size: var(--text-size-small);
+  }
 
-	footer {
-		display: flex;
-		flex-direction: column;
-		gap: var(--grid-gap);
-	}
+  header,
+  footer {
+    width: 100%;
+    max-width: calc(var(--body-width) + 2 * var(--grid-gap));
+  }
 
-	p {
-		font-size: var(--text-size-small);
-		text-align: center;
-		color: var(--text-muted);
-	}
+  footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--grid-gap);
+  }
+
+  p {
+    font-size: var(--text-size-small);
+    text-align: center;
+    color: var(--text-muted);
+  }
 </style>

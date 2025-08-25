@@ -7,7 +7,9 @@ const getInitial = (): Record<kurosearch.BlockingGroup, boolean> => ({
 	'Non-Consensual': false,
 	Gore: false,
 	Scat: false,
-	Vore: false
+	Vore: false,
+	Yaoi: false,
+	Yuri: false
 });
 
 const createBlockedContentStore = () => {
