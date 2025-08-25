@@ -1,6 +1,6 @@
 import { replaceHtmlEntities } from '$lib/logic/replace-html-entities';
 import { fetchAbortPrevious } from '../fetchAbortPrevious';
-import { API_URL, R34_API_URL, URL_BASE } from '../url';
+import { API_URL, BASE_URL, R34_API_URL } from '../url';
 
 const getTagSuggestionsAbortController: AbortController | null = null;
 
@@ -49,7 +49,7 @@ export const getTagDetails = async (
 	if (userId && apiKey) {
 		url = new URL(`${R34_API_URL}&s=comment&q=index&json=1&api_key=${apiKey}&user_id=${userId}`);
 	} else {
-		url = new URL(`${API_URL}&s=comment&q=index&json=1`, URL_BASE());
+		url = new URL(`${API_URL}&s=comment&q=index&json=1`, BASE_URL());
 	}
 	url.searchParams.append('name', name);
 

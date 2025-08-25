@@ -57,6 +57,12 @@ const cleanOldPosts = async () =>
 
 const initIdb = async (): Promise<IDBDatabase> => {
 	return new Promise((resolve, reject) => {
+		if (typeof globalThis === 'undefined' || typeof (globalThis as any).indexedDB === 'undefined') {
+			idb = undefined;
+			reject();
+			return;
+		}
+
 		const dbRequest = indexedDB.open('kurosearch', 2);
 
 		dbRequest.onsuccess = (event) => resolve((event.target as IDBOpenDBRequest).result);

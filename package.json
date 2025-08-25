@@ -11,7 +11,7 @@
 		"format": "prettier . --write .",
 		"test:unit": "vitest run",
 		"test:integration": "playwright test",
-		"test:all": "concurrently --names \"unit,integration,svelte\" \"pnpm -S test:unit\" \"pnpm -S test:integration\", \"pnpm -S check\"",
+		"verify": "concurrently --names \"unit,integration,svelte\" \"pnpm -S test:unit\" \"pnpm exec playwright test\", \"pnpm -S check\"",
 		"prepare": "husky"
 	},
 	"devDependencies": {

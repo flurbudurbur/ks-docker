@@ -37,14 +37,14 @@
     try_files {path} /index.html
 	file_server
 
-	handle_path /r34* {
-		uri strip_prefix /r34
-
+	@r34 path /r34/*
+	handle @r34 {
+		# If the request already has a query string, append creds; otherwise add them.
 		@hasQuery expression `{query} != ""`
-		rewrite @hasQuery {uri}&api_key={$RULE34_API_KEY}&user_id={$RULE34_API_USER}
+		rewrite @hasQuery /index.php{query}&api_key={$RULE34_API_KEY}&user_id={$RULE34_API_USER}
 
 		@noQuery expression `{query} == ""`
-		rewrite @noQuery {uri}?api_key={$RULE34_API_KEY}&user_id={$RULE34_API_USER}
+		rewrite @noQuery /index.php?api_key={$RULE34_API_KEY}&user_id={$RULE34_API_USER}
 
 		reverse_proxy https://api.rule34.xxx {
 			header_up Host api.rule34.xxx

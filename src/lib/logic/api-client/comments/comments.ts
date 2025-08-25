@@ -1,5 +1,5 @@
 import { addIndexedComments, getIndexedComments } from '$lib/indexeddb/idb';
-import { API_URL, R34_API_URL, URL_BASE } from '../url';
+import { API_URL, BASE_URL, R34_API_URL } from '../url';
 
 export type Comment = {
 	author: string;
@@ -21,7 +21,7 @@ export const getComments = async (postId: number, apiKey: string = '', userId: s
 	if (userId && apiKey) {
 		url = new URL(`${R34_API_URL}&s=comment&q=index&json=1&api_key=${apiKey}&user_id=${userId}`);
 	} else {
-		url = new URL(`${API_URL}&s=comment&q=index&json=1`, URL_BASE());
+		url = new URL(`${API_URL}&s=comment&q=index&json=1`, BASE_URL());
 	}
 	url.searchParams.append('post_id', String(postId));
 

@@ -44,7 +44,7 @@
 	import TextInput from '$lib/components/pure/input-text/TextInput.svelte';
 	import pageNavigationEnabled from '$lib/store/page-navigation-enabled-store';
 
-	let resetDialog: HTMLDialogElement | undefined = $state();
+	let resetDialog: HTMLDialogElement = $state<HTMLDialogElement>() as HTMLDialogElement;
 
 	const reset = () => {
 		theme.reset();

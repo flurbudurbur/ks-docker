@@ -2,7 +2,7 @@ import { addIndexedPost, addIndexedTag, getIndexedPost } from '$lib/indexeddb/id
 import { replaceHtmlEntities } from '$lib/logic/replace-html-entities';
 import { getTagTypePriority } from '$lib/logic/tag-type-data';
 import { fetchAbortPrevious } from '../fetchAbortPrevious';
-import { API_URL, R34_API_URL, URL_BASE } from '../url';
+import { API_URL, BASE_URL, R34_API_URL } from '../url';
 
 export const PAGE_SIZE = 20;
 
@@ -67,7 +67,7 @@ export const getPost = async (id: number, apiKey: string = '', userId: string = 
 			`${R34_API_URL}&s=post&q=index&fields=tag_info&json=1&id=${id}&api_key=${apiKey}&user_id=${userId}`
 		);
 	} else {
-		url = new URL(`${API_URL}&s=post&q=index&fields=tag_info&json=1&id=${id}`);
+		url = new URL(`${API_URL}&s=post&q=index&fields=tag_info&json=1&id=${id}`, BASE_URL());
 	}
 
 	const response = await fetch(url.toString());
@@ -164,7 +164,7 @@ export const getPostsUrl = (
 	} else {
 		url = new URL(
 			`${API_URL}&s=post&q=index&fields=tag_info&json=1&limit=${PAGE_SIZE}&pid=${pageNumber}`,
-			URL_BASE()
+			BASE_URL()
 		);
 	}
 	return serializedTags === '' ? url.toString() : `${url}&tags=${serializedTags}`;
@@ -175,7 +175,7 @@ export const getCountUrl = (serializedTags: string, apiKey: string, userId: stri
 	if (userId && apiKey) {
 		url = new URL(`${R34_API_URL}&s=post&q=index&limit=0&api_key=${apiKey}&user_id=${userId}`);
 	} else {
-		url = new URL(`${API_URL}&s=post&q=index&limit=0`, URL_BASE());
+		url = new URL(`${API_URL}&s=post&q=index&limit=0`, BASE_URL());
 	}
 	return serializedTags === '' ? url.toString() : `${url}?tags=${serializedTags}`;
 };
