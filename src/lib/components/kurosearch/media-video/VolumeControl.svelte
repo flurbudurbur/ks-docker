@@ -42,17 +42,18 @@
 	{/if}
 </IconButton>
 
-<style>
+<style lang="scss">
 	:global(#volume-button) {
 		color: white;
-	}
 
-	.volume-slider {
-		writing-mode: vertical-lr;
-		position: absolute;
-		transform: rotate(180deg);
-		bottom: calc(2 * var(--small-gap) + var(--line-height));
-		width: var(--line-height);
-		z-index: var(--z-media-controls);
+		// Show nesting by scoping the slider to the button
+		.volume-slider {
+			writing-mode: vertical-lr;
+			position: absolute;
+			transform: rotate(180deg);
+			bottom: calc(2 * var(--small-gap) + var(--line-height));
+			width: var(--line-height);
+			z-index: var(--z-media-controls);
+		}
 	}
 </style>
