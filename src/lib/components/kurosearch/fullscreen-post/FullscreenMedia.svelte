@@ -15,7 +15,7 @@
 	{#if post.type === 'video'}
 		<FullscreenVideo {post} {onended} {ondetails} />
 	{:else}
-		<FullscreenImage {post} {onended} {ondetails}/>
+		<FullscreenImage {post} {onended} {ondetails} />
 	{/if}
 </div>
 
