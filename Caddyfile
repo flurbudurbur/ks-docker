@@ -32,35 +32,35 @@
 {$KUROSEARCH_HOST} {
 	tls {$KUROSEARCH_TLS}
 
-    root * /srv
-	encode zstd gzip
-    try_files {path} /index.html
-	file_server
+	route {
+		# 1) Proxy /r34/* first
+		handle_path /r34/* {
+			@hasQuery expression `{query} != ""`
+			rewrite @hasQuery /index.php?{query}&api_key={$RULE34_API_KEY}&user_id={$RULE34_API_USER}
 
-	@r34 path /r34/*
-	handle @r34 {
-		# If the request already has a query string, append creds; otherwise add them.
-		@hasQuery expression `{query} != ""`
-		rewrite @hasQuery /index.php{query}&api_key={$RULE34_API_KEY}&user_id={$RULE34_API_USER}
+			@noQuery expression `{query} == ""`
+			rewrite @noQuery /index.php?api_key={$RULE34_API_KEY}&user_id={$RULE34_API_USER}
 
-		@noQuery expression `{query} == ""`
-		rewrite @noQuery /index.php?api_key={$RULE34_API_KEY}&user_id={$RULE34_API_USER}
+			reverse_proxy https://api.rule34.xxx {
+				header_up Host api.rule34.xxx
+			}
+		}
 
-		reverse_proxy https://api.rule34.xxx {
-			header_up Host api.rule34.xxx
+		# 2) SPA fallback
+		handle {
+			root * /srv
+			encode zstd gzip
+			try_files {path} /index.html
+			file_server
+
+			header {
+				Permissions-Policy "accelerometer=(),camera=(),geolocation=(),gyroscope=(),magnetometer=(),microphone=(),payment=(),usb=()"
+				Referrer-Policy "same-origin"
+				X-Content-Type-Options "nosniff"
+				X-Robots-Tag "noindex, nofollow, noarchive, nositelinkssearchbox, nosnippet, notranslate, noimageindex"
+				-Server
+			}
 		}
 	}
-
-	header {
-		# Disable browser features
-		Permissions-Policy "accelerometer=(),camera=(),geolocation=(),gyroscope=(),magnetometer=(),microphone=(),payment=(),usb=()"
-		# Only allow same-origin requests
-		Referrer-Policy "same-origin"
-		# Prevent MIME type sniffing from the declared Content-Type
-		X-Content-Type-Options "nosniff"
-		# Comment header to allow indexing by search engines
-		X-Robots-Tag "noindex, nofollow, noarchive, nositelinkssearchbox, nosnippet, notranslate, noimageindex"
-		# Remove "Server" header
-		-Server
-	}
 }
+

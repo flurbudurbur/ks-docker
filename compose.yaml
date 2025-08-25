@@ -4,12 +4,10 @@ services:
     restart: on-failure
     image: 'ghcr.io/flurbudurbur/kurosearch:latest'
     ports:
-      - '8080:80'
-      - '8443:443'
+      - '443:443'
     cap_add:
       - 'NET_ADMIN'
     volumes:
-      #      - './Caddyfile:/etc/caddy/Caddyfile'
       - caddy_data:/data
       - caddy_config:/config
     env_file:

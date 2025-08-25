@@ -38,6 +38,12 @@ const config = {
 				'img-src': ['self', 'data:', 'https://*.rule34.xxx', 'https://*.googleusercontent.com'],
 				'media-src': ['self', 'https://*.rule34.xxx']
 			}
+		},
+		prerender: {
+			handleHttpError: ({ path, response }) => {
+				if (path.startsWith('/r34')) return;
+				throw new Error(`${response.status} ${path}`);
+			}
 		}
 	}
 };
