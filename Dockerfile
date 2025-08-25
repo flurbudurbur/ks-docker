@@ -75,6 +75,7 @@ LABEL author=flurbudurbur \
     org.opencontainers.image.title="kurosearch" \
     org.opencontainers.image.source="https://github.com/flurbudurbur/kurosearch" \
     org.opencontainers.image.description="A self-hosted, self-contaied version of kurosearch.com" \
+    org.opencontainers.image.version="1.0.0-rc.1" \
     org.opencontainers.image.licenses="MIT"
 
 # expose ports for http(s) traffic
