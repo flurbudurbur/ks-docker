@@ -34,7 +34,6 @@
 			return r.json();
 		});
 	});
-
 </script>
 
 <svelte:head>

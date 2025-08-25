@@ -104,14 +104,14 @@
 </footer>
 
 <style lang="scss">
-  :global(body) {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    width: 100%;
-    align-items: center;
-    overflow-y: scroll;
-  }
+	:global(body) {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+		width: 100%;
+		align-items: center;
+		overflow-y: scroll;
+	}
 
 	.source-links {
 		display: flex;
@@ -124,55 +124,55 @@
 		align-items: flex-start;
 	}
 
-  nav,
-  footer section {
-    display: flex;
-    gap: 8px;
-  }
+	nav,
+	footer section {
+		display: flex;
+		gap: 8px;
+	}
 
-  main {
-    width: 100%;
-    flex-grow: 1;
-    max-width: var(--body-width);
-  }
+	main {
+		width: 100%;
+		flex-grow: 1;
+		max-width: var(--body-width);
+	}
 
-  main.extra-wide {
-    max-width: 90vw;
-  }
+	main.extra-wide {
+		max-width: 90vw;
+	}
 
-  header,
-  footer {
-    padding: var(--grid-gap);
-  }
+	header,
+	footer {
+		padding: var(--grid-gap);
+	}
 
-  footer section {
-    color: var(--text-muted);
-    justify-content: space-between;
-  }
+	footer section {
+		color: var(--text-muted);
+		justify-content: space-between;
+	}
 
-  div {
-    flex-grow: 1;
-  }
+	div {
+		flex-grow: 1;
+	}
 
-  span {
-    font-size: var(--text-size-small);
-  }
+	span {
+		font-size: var(--text-size-small);
+	}
 
-  header,
-  footer {
-    width: 100%;
-    max-width: calc(var(--body-width) + 2 * var(--grid-gap));
-  }
+	header,
+	footer {
+		width: 100%;
+		max-width: calc(var(--body-width) + 2 * var(--grid-gap));
+	}
 
-  footer {
-    display: flex;
-    flex-direction: column;
-    gap: var(--grid-gap);
-  }
+	footer {
+		display: flex;
+		flex-direction: column;
+		gap: var(--grid-gap);
+	}
 
-  p {
-    font-size: var(--text-size-small);
-    text-align: center;
-    color: var(--text-muted);
-  }
+	p {
+		font-size: var(--text-size-small);
+		text-align: center;
+		color: var(--text-muted);
+	}
 </style>

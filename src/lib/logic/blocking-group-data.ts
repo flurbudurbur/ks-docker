@@ -32,22 +32,9 @@ export const BLOCKING_GROUP_TAGS: Record<kurosearch.BlockingGroup, readonly stri
 			'scared',
 			'forced'
 		]),
-		Gore: Object.freeze([
-			'gore',
-			'necrophilia',
-			'amputee',
-			'guro',
-			'blood',
-			'amputed*'
-		]),
-		Scat: Object.freeze([
-			'scat',
-			'diaper',
-			'fart'
-		]),
-		Vore: Object.freeze([
-			'vore'
-		]),
+		Gore: Object.freeze(['gore', 'necrophilia', 'amputee', 'guro', 'blood', 'amputed*']),
+		Scat: Object.freeze(['scat', 'diaper', 'fart']),
+		Vore: Object.freeze(['vore']),
 		Yuri: Object.freeze([
 			'yuri',
 			'female_focus',
@@ -57,12 +44,5 @@ export const BLOCKING_GROUP_TAGS: Record<kurosearch.BlockingGroup, readonly stri
 			'lesbian*',
 			'mutial_yuri'
 		]),
-		Yaoi: Object.freeze([
-			'yaoi',
-			'male_focus',
-			'male_only',
-			'*boys',
-			'1boy',
-			'gay*',
-		])
+		Yaoi: Object.freeze(['yaoi', 'male_focus', 'male_only', '*boys', '1boy', 'gay*'])
 	});
