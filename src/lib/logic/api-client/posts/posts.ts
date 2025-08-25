@@ -1,9 +1,8 @@
+import { addIndexedPost, addIndexedTag, getIndexedPost } from '$lib/indexeddb/idb';
 import { replaceHtmlEntities } from '$lib/logic/replace-html-entities';
 import { getTagTypePriority } from '$lib/logic/tag-type-data';
 import { fetchAbortPrevious } from '../fetchAbortPrevious';
-import { API_URL, R34_API_URL } from '../url';
-
-const postCache = new Map<number, kurosearch.Post>();
+import { API_URL, BASE_URL, R34_API_URL } from '../url';
 
 export const PAGE_SIZE = 20;
 
@@ -26,24 +25,11 @@ export const getPage = async (
 		const posts = data.map(parsePost) as kurosearch.Post[];
 
 		posts.forEach((post) => {
-			postCache.set(post.id, post);
+			addIndexedPost(post);
+			post.tags.forEach((tag) => {
+				addIndexedTag(tag);
+			});
 		});
-
-		// Index tags only in a real browser with IndexedDB available
-		if (typeof window !== 'undefined' && 'indexedDB' in window) {
-			// Fire-and-forget so it won't affect tests or SSR
-			import('$lib/indexeddb/idb')
-				.then(({ addIndexedTag }) => {
-					for (const post of posts) {
-						for (const tag of post.tags) {
-							addIndexedTag(tag);
-						}
-					}
-				})
-				.catch(() => {
-					// Optional enhancement; ignore failures
-				});
-		}
 
 		return posts;
 	} catch (error) {
@@ -71,25 +57,26 @@ export const getCount = async (tags: string, apiKey: string = '', userId: string
 };
 
 export const getPost = async (id: number, apiKey: string = '', userId: string = '') => {
-	if (!postCache.has(id)) {
-		let url: string;
-		if (userId && apiKey) {
-			url = `${R34_API_URL}&s=post&q=index&fields=tag_info&json=1&id=${id}&api_key=${apiKey}&user_id=${userId}`;
-		} else {
-			url = `${API_URL}/post?id=${id}`;
-		}
-		const response = await fetch(url);
-		throwOnUnexpectedStatus(response);
-		const data = await response.json();
-		const post = parsePost(data[0]);
-		postCache.set(post.id, post);
+	const indexedPost = getIndexedPost(id);
+	if (indexedPost !== undefined) {
+		return indexedPost;
+	}
+	let url: URL;
+	if (userId && apiKey) {
+		url = new URL(
+			`${R34_API_URL}&s=post&q=index&fields=tag_info&json=1&id=${id}&api_key=${apiKey}&user_id=${userId}`
+		);
+	} else {
+		url = new URL(`${API_URL}&s=post&q=index&fields=tag_info&json=1&id=${id}`, BASE_URL());
 	}
 
-	const post = postCache.get(id);
+	const response = await fetch(url.toString());
+	throwOnUnexpectedStatus(response);
 
-	if (post === undefined) {
-		throw new Error('Post cannot be undefined');
-	}
+	const data = await response.json();
+	const post = parsePost(data[0]);
+
+	addIndexedPost(post);
 
 	return post;
 };
@@ -169,23 +156,28 @@ export const getPostsUrl = (
 	apiKey: string = '',
 	userId: string = ''
 ) => {
-	let url: string;
+	let url: URL;
 	if (userId && apiKey) {
-		url = `${R34_API_URL}&s=post&q=index&fields=tag_info&json=1&api_key=${apiKey}&user_id=${userId}&limit=${PAGE_SIZE}&pid=${pageNumber}`;
+		url = new URL(
+			`${R34_API_URL}&s=post&q=index&fields=tag_info&json=1&api_key=${apiKey}&user_id=${userId}&limit=${PAGE_SIZE}&pid=${pageNumber}`
+		);
 	} else {
-		url = `${API_URL}?page=dapi&s=post&q=index&fields=tag_info&json=1&limit=${PAGE_SIZE}&pid=${pageNumber}`;
+		url = new URL(
+			`${API_URL}&s=post&q=index&fields=tag_info&json=1&limit=${PAGE_SIZE}&pid=${pageNumber}`,
+			BASE_URL()
+		);
 	}
-	return serializedTags === '' ? url : `${url}&tags=${serializedTags}`;
+	return serializedTags === '' ? url.toString() : `${url}&tags=${serializedTags}`;
 };
 
 export const getCountUrl = (serializedTags: string, apiKey: string, userId: string) => {
-	let url: string;
+	let url: URL;
 	if (userId && apiKey) {
-		url = `${R34_API_URL}&s=post&q=index&limit=0&api_key=${apiKey}&user_id=${userId}`;
+		url = new URL(`${R34_API_URL}&s=post&q=index&limit=0&api_key=${apiKey}&user_id=${userId}`);
 	} else {
-		url = `${API_URL}/count`;
+		url = new URL(`${API_URL}&s=post&q=index&limit=0`, BASE_URL());
 	}
-	return serializedTags === '' ? url : `${url}?tags=${serializedTags}`;
+	return serializedTags === '' ? url.toString() : `${url}?tags=${serializedTags}`;
 };
 
 const throwOnInvalidCount = (count: unknown) => {

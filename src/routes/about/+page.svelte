@@ -9,7 +9,7 @@
 
 	let message = $state('Update');
 
-	let latestCommitPromise: Promise<{ sha: string }> | undefined = $state(undefined);
+	let latestCommitPromise: Promise<{ tag_name: string }> | undefined = $state(undefined);
 
 	const forceUpdate = async () => {
 		message = 'Updating...';
@@ -22,8 +22,17 @@
 	};
 	onMount(() => {
 		latestCommitPromise = fetch(
-			'https://api.github.com/repos/kurozenzen/kurosearch/commits/main'
-		).then((r) => r.json());
+			'https://api.github.com/repos/flurbudurbur/kurosearch/releases/latest'
+		).then(async (r) => {
+			if (r.status === 404) {
+				// Default to 0.0.0 if the release is not found
+				return { tag_name: '0.0.0' };
+			}
+			if (!r.ok) {
+				throw new Error(`Failed to fetch latest release: ${r.status} ${r.statusText}`);
+			}
+			return r.json();
+		});
 	});
 </script>
 
@@ -40,7 +49,7 @@
 		<h2>kurosearch</h2>
 		<span>
 			Version: {version}{#await latestCommitPromise then commit}
-				, Newest is: {commit?.sha?.substring(0, 7)}
+				, Newest is: {commit?.tag_name}
 			{/await}
 		</span>
 	</section>

@@ -35,6 +35,7 @@
 			document.documentElement.dataset.accent = accent;
 		}
 	});
+	const year = new Date().getFullYear();
 </script>
 
 <svelte:head>
@@ -69,16 +70,25 @@
 </main>
 
 <footer>
-	<section>
-		<CodiconTextLink
-			title="Source Code"
-			href="https://github.com/kurozenzen/kurosearch"
-			icon="codicon codicon-github"
-			label="Github"
-			target="_blank"
-		/>
+	<section class="footer">
+		<span class="source-links">
+			<CodiconTextLink
+				title="Source Code"
+				href="https://github.com/kurozenzen/kurosearch"
+				icon="codicon codicon-github"
+				label="Github KuroSearch"
+				target="_blank"
+			/>
+			<CodiconTextLink
+				title="Source Code Docker"
+				href="https://github.com/flurbudurbur/kurosearch"
+				icon="codicon codicon-github"
+				label="Github KuroSearch Docker"
+				target="_blank"
+			/>
+		</span>
 
-		<span class="copyright">© 2023 kurozenzen</span>
+		<span class="copyright">&copy; {year} kurozenzen</span>
 
 		<CodiconTextLink
 			title="About"
@@ -101,6 +111,17 @@
 		width: 100%;
 		align-items: center;
 		overflow-y: scroll;
+	}
+
+	.source-links {
+		display: flex;
+		flex-direction: column;
+		gap: 0.1rem;
+	}
+
+	.footer {
+		display: flex;
+		align-items: flex-start;
 	}
 
 	nav,

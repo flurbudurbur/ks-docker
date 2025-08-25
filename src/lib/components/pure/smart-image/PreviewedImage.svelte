@@ -15,7 +15,7 @@
 
 	const onclickinternal = () => {
 		open = !open;
-		onclick();
+		onclick?.();
 	};
 
 	let open: boolean = $state(false);
